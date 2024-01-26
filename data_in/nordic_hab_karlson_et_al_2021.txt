@@ -1,0 +1,58 @@
+Species	AphiaID	Match type	ScientificName	Authority	Taxon status	AphiaID_accepted	ScientificName_accepted	Authority_accepted
+Halamphora coffeaeformis	624065	exact	Halamphora coffeaeformis	(C.Agardh) Levkov, 2009	accepted	624065	Halamphora coffeaeformis	(C.Agardh) Levkov, 2009
+Pseudo-nitzschia calliantha	246605	exact	Pseudo-nitzschia calliantha	Lundholm, Moestrup & Hasle, 2003	accepted	246605	Pseudo-nitzschia calliantha	Lundholm, Moestrup & Hasle, 2003
+Pseudo-nitzschia cuspidate	370512	near_1	Pseudo-nitzschia cuspidata	(Hasle) Hasle, 1993	accepted	370512	Pseudo-nitzschia cuspidata	(Hasle) Hasle, 1993
+Pseudo-nitzschia delicatissima	149153	exact	Pseudo-nitzschia delicatissima	(Cleve) Heiden, 1928	accepted	149153	Pseudo-nitzschia delicatissima	(Cleve) Heiden, 1928
+Pseudo-nitzschia fraudulenta	246606	exact	Pseudo-nitzschia fraudulenta	(Cleve) Hasle, 1993	accepted	246606	Pseudo-nitzschia fraudulenta	(Cleve) Hasle, 1993
+Pseudo-nitzschia multiseries	175738	exact	Pseudo-nitzschia multiseries	(Hasle) Hasle, 1995	accepted	175738	Pseudo-nitzschia multiseries	(Hasle) Hasle, 1995
+Pseudo-nitzschia pseudodelicatissima	156548	exact	Pseudo-nitzschia pseudodelicatissima	(Hasle) Hasle, 1993	accepted	156548	Pseudo-nitzschia pseudodelicatissima	(Hasle) Hasle, 1993
+Pseudo-nitzschia pungens	160528	exact	Pseudo-nitzschia pungens	(Grunow ex Cleve) G.R.Hasle, 1993	accepted	160528	Pseudo-nitzschia pungens	(Grunow ex Cleve) G.R.Hasle, 1993
+Pseudo-nitzschia seriata	149152	exact	Pseudo-nitzschia seriata	(Cleve) H.Peragallo, 1899	accepted	149152	Pseudo-nitzschia seriata	(Cleve) H.Peragallo, 1899
+Chrysochromulina leadbeateri	246591	exact	Chrysochromulina leadbeateri	Estep, Davis, Hargreaves & Sieburth, 1984	accepted	246591	Chrysochromulina leadbeateri	Estep, Davis, Hargreaves & Sieburth, 1984
+Phaeocystis globosa	160538	exact	Phaeocystis globosa	Scherffel, 1899	accepted	160538	Phaeocystis globosa	Scherffel, 1899
+Phaeocystis pouchetii	115106	exact	Phaeocystis pouchetii	(Hariot) Lagerheim, 1896	accepted	115106	Phaeocystis pouchetii	(Hariot) Lagerheim, 1896
+Prymnesium parvum	160564	exact	Prymnesium parvum	N.Carter, 1937	accepted	160564	Prymnesium parvum	N.Carter, 1937
+Prymnesium polylepis	670030	exact	Prymnesium polylepis	(Manton & Parke) Edvardsen, Eikrem & Probert, 2011	accepted	670030	Prymnesium polylepis	(Manton & Parke) Edvardsen, Eikrem & Probert, 2011
+Amphidinium carterae	109723	exact	Amphidinium carterae	Hulburt, 1957	accepted	109723	Amphidinium carterae	Hulburt, 1957
+Amphidinium operculatum	109745	exact	Amphidinium operculatum	Claparède & Lachmann, 1859	accepted	109745	Amphidinium operculatum	Claparède & Lachmann, 1859
+Dinophysis acuminata	109603	exact	Dinophysis acuminata	Claparède & Lachmann, 1859	accepted	109603	Dinophysis acuminata	Claparède & Lachmann, 1859
+Dinophysis acuta	109604	exact	Dinophysis acuta	Ehrenberg, 1839	accepted	109604	Dinophysis acuta	Ehrenberg, 1839
+Dinophysis caudata	109612	exact	Dinophysis caudata	Saville-Kent, 1881	accepted	109612	Dinophysis caudata	Saville-Kent, 1881
+Dinophysis fortii	109624	exact	Dinophysis fortii	Pavillard, 1924	accepted	109624	Dinophysis fortii	Pavillard, 1924
+Dinophysis norvegica	109637	exact	Dinophysis norvegica	Claparède & Lachmann, 1859	accepted	109637	Dinophysis norvegica	Claparède & Lachmann, 1859
+Dinophysis tripos	109662	exact	Dinophysis tripos	Gourret, 1883	accepted	109662	Dinophysis tripos	Gourret, 1883
+Alexandrium minutum	109711	exact	Alexandrium minutum	Halim, 1960	accepted	109711	Alexandrium minutum	Halim, 1960
+Alexandrium ostenfeldii	109712	exact	Alexandrium ostenfeldii	(Paulsen) Balech & Tangen, 1985	accepted	109712	Alexandrium ostenfeldii	(Paulsen) Balech & Tangen, 1985
+Alexandrium pseudogonyaulax	109713	exact	Alexandrium pseudogonyaulax	(Biecheler) Horiguchi ex K.Yuki & Y.Fukuyo, 1992	accepted	109713	Alexandrium pseudogonyaulax	(Biecheler) Horiguchi ex K.Yuki & Y.Fukuyo, 1992
+Alexandrium tamarense	109714	exact	Alexandrium tamarense	(Lebour) Balech, 1995	accepted	109714	Alexandrium tamarense	(Lebour) Balech, 1995
+Gonyaulax spinifera	110041	exact	Gonyaulax spinifera	(Claparède & Lachmann) Diesing, 1866	accepted	110041	Gonyaulax spinifera	(Claparède & Lachmann) Diesing, 1866
+Lingulodinium polyedra	233592	exact	Lingulodinium polyedra	(F.Stein) J.D.Dodge, 1989	accepted	233592	Lingulodinium polyedra	(F.Stein) J.D.Dodge, 1989
+Protoceratium reticulatum	110321	exact	Protoceratium reticulatum	(Claparède & Lachmann) Bütschli, 1885	accepted	110321	Protoceratium reticulatum	(Claparède & Lachmann) Bütschli, 1885
+Karenia mikimotoi	233024	exact	Karenia mikimotoi	(Miyake & Kominami ex Oda) Gert Hansen & Moestrup, 2000	accepted	233024	Karenia mikimotoi	(Miyake & Kominami ex Oda) Gert Hansen & Moestrup, 2000
+Karlodinium veneficum	233037	exact	Karlodinium veneficum	(D.Ballantine) J.Larsen, 2000	accepted	233037	Karlodinium veneficum	(D.Ballantine) J.Larsen, 2000
+Prorocentrum lima	110301	exact	Prorocentrum lima	(Ehrenberg) F.Stein, 1878	accepted	110301	Prorocentrum lima	(Ehrenberg) F.Stein, 1878
+Azadinium spinosum	391509	exact	Azadinium spinosum	Elbrächter & Tillmann, 2009	accepted	391509	Azadinium spinosum	Elbrächter & Tillmann, 2009
+Fibrocapsa japonica	233761	exact	Fibrocapsa japonica	S.Toriumi & H.Takano, 1973	accepted	233761	Fibrocapsa japonica	S.Toriumi & H.Takano, 1973
+Heterosigma akashiwo	160585	exact	Heterosigma akashiwo	(Y.Hada) Y.Hada ex Y.Hara & M.Chihara, 1987	accepted	160585	Heterosigma akashiwo	(Y.Hada) Y.Hada ex Y.Hara & M.Chihara, 1987
+Pseudochattonella farcimen	531467	exact	Pseudochattonella farcimen	(Eikrem, Edvardsen & J.Throndsen) Eichrem, 2009	accepted	531467	Pseudochattonella farcimen	(Eikrem, Edvardsen & J.Throndsen) Eichrem, 2009
+Pseudochattonella verruculosa	531446	exact	Pseudochattonella verruculosa	(Y.Hara & M.Chihara) S.Tanabe-Hosoi, D.Honda, S.Fukaya, Y.Inagaki & Y.Sako, 2007	accepted	531446	Pseudochattonella verruculosa	(Y.Hara & M.Chihara) S.Tanabe-Hosoi, D.Honda, S.Fukaya, Y.Inagaki & Y.Sako, 2007
+Anagnostidinema amphibium	1313613	exact	Anagnostidinema amphibium	(C.Agardh ex Gomont) Strunecký, Bohunická, J.R.Johansen & J.Komárek, 2017	accepted	1313613	Anagnostidinema amphibium	(C.Agardh ex Gomont) Strunecký, Bohunická, J.R.Johansen & J.Komárek, 2017
+Aphanizomenon flosaquae	609460	exact	Aphanizomenon flosaquae	Ralfs ex Bornet & Flahault, 1886	accepted	609460	Aphanizomenon flosaquae	Ralfs ex Bornet & Flahault, 1886
+Coelosphaerium kuetzingianum	177100	exact	Coelosphaerium kuetzingianum	Nägeli, 1849	accepted	177100	Coelosphaerium kuetzingianum	Nägeli, 1849
+Dolichospermum flosaquae	623803	exact	Dolichospermum flosaquae	(Brébisson ex Bornet & Flahault) P.Wacklin, L.Hoffmann & J.Komárek, 2009	accepted	623803	Dolichospermum flosaquae	(Brébisson ex Bornet & Flahault) P.Wacklin, L.Hoffmann & J.Komárek, 2009
+Dolichospermum lemmermannii	625374	exact	Dolichospermum lemmermannii	(Richter) P.Wacklin, L.Hoffmann & J.Komárek, 2009	accepted	625374	Dolichospermum lemmermannii	(Richter) P.Wacklin, L.Hoffmann & J.Komárek, 2009
+Dolichospermum macrosporum	625403	exact	Dolichospermum macrosporum	(Klebhan) Wacklin, L.Hoffmann & Komárek, 2009	accepted	625403	Dolichospermum macrosporum	(Klebhan) Wacklin, L.Hoffmann & Komárek, 2009
+Dolichospermum planctonicum	625407	exact	Dolichospermum planctonicum	(Brunnthaler) Wacklin, L.Hoffmann & Komárek, 2009	accepted	625407	Dolichospermum planctonicum	(Brunnthaler) Wacklin, L.Hoffmann & Komárek, 2009
+Dolichospermum sigmoideum	625408	exact	Dolichospermum sigmoideum	(Nygaard) Wacklin, L.Hoffmann & Komárek, 2009	accepted	625408	Dolichospermum sigmoideum	(Nygaard) Wacklin, L.Hoffmann & Komárek, 2009
+Dolichospermum spiroides	625411	exact	Dolichospermum spiroides	(Klebhan) Wacklin, L.Hoffmann & Komárek, 2009	accepted	625411	Dolichospermum spiroides	(Klebhan) Wacklin, L.Hoffmann & Komárek, 2009
+Gloeotrichia echinulata	409630	exact	Gloeotrichia echinulata	P.G.Richter, 1894	accepted	409630	Gloeotrichia echinulata	P.G.Richter, 1894
+Limnothrix redekei	177508	exact	Limnothrix redekei	(Goor) Meffert, 1988	accepted	177508	Limnothrix redekei	(Goor) Meffert, 1988
+Microcystis aeruginosa	146558	exact	Microcystis aeruginosa	(Kützing) Kützing, 1846	accepted	146558	Microcystis aeruginosa	(Kützing) Kützing, 1846
+Microcystis flosaquae	699375	exact	Microcystis flosaquae	(Wittrock) Kirchner, 1898	accepted	699375	Microcystis flosaquae	(Wittrock) Kirchner, 1898
+Microcystis ichthyoblabe	177245	exact	Microcystis ichthyoblabe	(G.Kunze) Kützing, 1843	accepted	177245	Microcystis ichthyoblabe	(G.Kunze) Kützing, 1843
+Microcystis wesenbergii	146561	exact	Microcystis wesenbergii	(Komárek) Komárek ex Komárek, 2006	accepted	146561	Microcystis wesenbergii	(Komárek) Komárek ex Komárek, 2006
+Microcystis viridis	177400	exact	Microcystis viridis	(A.Braun) Lemmermann, 1903	accepted	177400	Microcystis viridis	(A.Braun) Lemmermann, 1903
+Nodularia spumigena	160566	exact	Nodularia spumigena	Mertens ex Bornet & Flahault, 1888	accepted	160566	Nodularia spumigena	Mertens ex Bornet & Flahault, 1888
+Planktothrix agardhii	146552	exact	Planktothrix agardhii	(Gomont) Anagnostidis & Komárek, 1988	accepted	146552	Planktothrix agardhii	(Gomont) Anagnostidis & Komárek, 1988
+Snowella lacustris	146645	exact	Snowella lacustris	(Chodat) Komárek & Hindák, 1988	accepted	146645	Snowella lacustris	(Chodat) Komárek & Hindák, 1988
+	
