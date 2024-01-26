@@ -1,14 +1,17 @@
 library(tidyverse)
 
+# Read taxa_worms file
+taxa_worms <- read_tsv("data_in/taxa_worms.txt")
+
 # Match taxa_worms with Dyntaxa through the web match interface, read .txt-file here
 dyntaxa_records <- read.table("data_in/dyntaxa_match.txt", header=TRUE, sep="\t", fill = TRUE, quote = "")
 
 # Remove the multiple choice that could not be solved and wrangle data
 dyntaxa_list <- dyntaxa_records %>%
-  filter(!Matchstatus == "Manuellt val måste göras") %>%
-  select(Sökterm, Taxon.id) %>%
+  filter(!Matchstatus == "Manuellt val mÃ¥ste gÃ¶ras") %>%
+  select(SÃ¶kterm, Taxon.id) %>%
   filter(!is.na(Taxon.id)) %>%
-  rename(scientific_name = Sökterm,
+  rename(scientific_name = SÃ¶kterm,
          dyntaxa_id = Taxon.id) %>%
   distinct()
 
