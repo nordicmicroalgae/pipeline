@@ -53,7 +53,7 @@ Scenedesmus quadricauda	596169	exact	Scenedesmus quadricauda	(Turpin) Brébisson
 Scenedesmus quadricauda var. maximus	696154	exact	Scenedesmus quadricauda var. maximus	West & G.S.West, 1895	249713	Desmodesmus maximus	(West & G.S.West) Hegewald, 2000	249713
 Scenedesmus smithii	622917	exact	Scenedesmus smithii	Teiling, 1942				622917
 Scenedesmus planctonicus	661421	exact	Scenedesmus planctonicus	(Korshikov) Fott, 1973	613604	Pseudodidymocystis planctonica	(Korshikov) E.Hegewald & Deason, 1989	613604
-Didymocystis	108733	exact	Didymocystis	Ariola, 1902	108733	Didymocystis	Ariola, 1902	108733
+Didymocystis	600814							600814
 Hofmania	577864	exact	Hofmania	Heister ex Fabricius, 1759	577864	Hofmania	Heister ex Fabricius, 1759	577864
 Microspora	144202	exact	Microspora	Thuret, 1850	144202	Microspora	Thuret, 1850	144202
 Chaetophora	143931	exact	Chaetophora	Schrank, 1783	143931	Chaetophora	Schrank, 1783	143931
@@ -557,7 +557,7 @@ Characium ornitocephalum	608439	phonetic	Characium ornithocephalum	A.Braun, 1855
 Eutetramorus nygardii	625414	phonetic	Eutetramorus nygaardii	KomÃ¡rek, 1979	840848	Coenococcus nygaardii	(KomÃ¡rek) HindÃ¡k, 1984	
 Hindakochloris nygardii	612919	phonetic	Hindakochloris nygaardii	(KomÃ¡rek) Comas, 1992	612919	Hindakochloris nygaardii	(KomÃ¡rek) Comas, 1992	612919
 Ostreobium quekettii	145095	phonetic	Ostreobium queckettii	Bornet & Flahault, 1889	145095	Ostreobium queckettii	Bornet & Flahault, 1889	145095
-Filosia	996112	phonetic	Filosa	O. Boettger, 1877	996112	Filosa	O. Boettger, 1877	
+Filosia	1282							
 Protoperidinium marielebourae	614620	phonetic	Protoperidinium marielebouriae	(Paulsen, 1931) Balech, 1974	614620	Protoperidinium marielebouriae	(Paulsen, 1931) Balech, 1974	614620
 Amphidinium lohammari	547845	phonetic	Amphidinium lohammarii	Skuja, 1956	547541	Prosoaulax multiplex	(J.Schiller) Calado & Moestrup, 2005	
 Gymnodinium vestificii	109837	phonetic	Gymnodinium vestifici	SchÃ¼tt, 1895	1368615	Kapelodinium vestifici	(SchÃ¼tt) Boutrup, Moestrup & Daugbjerg, 2016	
@@ -6426,7 +6426,7 @@ Tiarina fusus	247943	exact	Tiarina fusus	Bergh, 1881	247943	Tiarina fusus	Bergh,
 	655137		Oedogonium vaucheri	A.Braun ex Hirn, 1900	655137	Oedogonium vaucheri	A.Braun ex Hirn, 1900	655137
 	610898		Korshikoviella gracilipes	(F.D.Lambert) P.C.Silva, 1959	610898	Korshikoviella michailovskoensis	(Elenkin) P.C.Silva, 1959	610898
 	840848		Eutetramorus nygaardii	Komárek, 1979	840848	Coenococcus nygaardii	(Komárek) Hindák, 1984	840848
-	996112		Filosa	O. Boettger, 1877	996112	Filosa	O. Boettger, 1877	996112
+	1282		Filosa					1282
 	547541		Amphidinium lohammarii	Skuja, 1956	547541	Prosoaulax multiplex	(J.Schiller) Calado & Moestrup, 2005	547541
 	1368615		Gymnodinium vestifici	Schütt, 1895	1368615	Kapelodinium vestifici	(Schütt) Boutrup, Moestrup & Daugbjerg, 2016	1368615
 	1304225		Cyclotella rossii	Håkansson, 1990	1304225	Pantocsekiella rossii	(Håkansson) K.T. Kiss & Ács, 2016	1304225
