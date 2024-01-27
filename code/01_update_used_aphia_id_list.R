@@ -5,7 +5,7 @@ library(worrms)
 bvol_nomp <- read.table("data_in/bvol_nomp_version_2023.txt", header=TRUE, sep="\t", fill = TRUE)
 
 # Read NORCCA culture list with AphiaID through WoRMS match web function
-norcca <- read.table("data_in/norcca.txt", header=TRUE, sep="\t", fill = TRUE)
+# norcca <- read.table("data_in/norcca.txt", header=TRUE, sep="\t", fill = TRUE)
 
 # Read HAB list with AphiaID through WoRMS match web function
 ioc_hab <- read.table("data_in/nordic_hab_karlson_et_al_2021.txt", header=TRUE, sep="\t", fill = TRUE)
@@ -14,7 +14,7 @@ ioc_hab <- read.table("data_in/nordic_hab_karlson_et_al_2021.txt", header=TRUE, 
 old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
 
 # Combine unqiue AphiaIDs from NOMP, NORCCA, IOC-HAB and the old NuA species list
-aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, norcca$AphiaID, ioc_hab$AphiaID, old_nua$AphiaID)))
+aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, ioc_hab$AphiaID, old_nua$AphiaID)))
 aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
 
 # Extract records from WoRMS based on AphiaID
