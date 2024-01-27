@@ -4,6 +4,7 @@ library(tidyverse)
 norcca <- read_tsv("data_in/norcca_extended.txt") # Full list with links
 norcca_worms <- read_tsv("data_in/norcca_extended_taxa_names_matched.txt") # List that has been matched with the WoRMS web match interface
 
+# Fix column names and select relevant information
 norcca_worms <- norcca_worms %>%
   rename(scientific_name = ScientificName...1,
          ScientificName = ScientificName...4,
