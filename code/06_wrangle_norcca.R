@@ -21,13 +21,15 @@ norcca_combined <- norcca %>%
          scientific_name = gsub(" sp.", "", scientific_name)) %>%
   select(-status, -AphiaID, -AphiaID_accepted, -class, -environment) %>%
   rename(AphiaID = used_aphia_id) %>%
-  filter(AphiaID %in% taxa_worms$aphia_id)
+  filter(AphiaID %in% taxa_worms$aphia_id) %>%
+  rename("Link to NORCCA website" = taxa_link)
 
 # Version with only links to species, not all strains
 norcca_short <- norcca_combined %>%
   select(-strain, -strain_link) %>%
-  distinct()
+  distinct() %>%
+  rename("Link to NORCCA website" = taxa_link)
  
 # Store file
-write_delim(norcca_combined, "data_out/norcca.txt", delim = "\t") 
-write_delim(norcca_short, "data_out/norcca_short.txt", delim = "\t") 
+# write_delim(norcca_combined, "data_out/norcca.txt", delim = "\t") 
+write_delim(norcca_short, "data_out/norcca.txt", delim = "\t") 
