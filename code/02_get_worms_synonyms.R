@@ -31,4 +31,4 @@ taxa_worms_accepted <- taxa_worms %>%
   filter(!status == "unaccepted")
 
 # Store file
-write_delim(taxa_worms_accepted, "data_out/taxa_worms_accepted.txt", delim = "\t") 
+write_delim(taxa_worms_accepted, "data_out/taxa_worms_accepted.txt", delim = "\t", na = "") 
