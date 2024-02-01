@@ -1,5 +1,7 @@
 library(tidyverse)
 library(worrms)
+library(writexl)
+
 
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_in/taxa_worms.txt")
@@ -32,3 +34,5 @@ taxa_worms_accepted <- taxa_worms %>%
 
 # Store file
 write_delim(taxa_worms_accepted, "data_out/taxa_worms_accepted.txt", delim = "\t", na = "") 
+write_xlsx(taxa_worms_accepted, "data_out/nordicmicroalgae_checklist_2024_Jan_29.xlsx", format_headers = FALSE)
+write_delim(taxa_worms_accepted, "data_out/nordicmicroalgae_checklist_2024_Jan_29.txt", delim = "\t", na = "") 
