@@ -21,12 +21,13 @@ for(i in 1:length(taxa_worms$aphia_id)) {
 # Wrangle synonyms
 worms_synonyms <- all_synonyms %>%
   mutate(provider = "worms") %>%
-  select(provider, scientificname, valid_AphiaID) %>%
+  select(provider, scientificname, authority, valid_AphiaID) %>%
   rename(synonym_name = scientificname,
+         author = authority,
          AphiaID = valid_AphiaID)
 
 # Store file
-write_delim(worms_synonyms, "data_out/worms_synonyms.txt", delim = "\t") 
+write_delim(worms_synonyms, "data_out/worms_synonyms.txt", delim = "\t", na = "") 
 
 # Remove all unaccepted names that appear when constructing the higher taxonomy
 taxa_worms_accepted <- taxa_worms %>%
