@@ -1,0 +1,38 @@
+---
+title: "update-nua-taxonomy"
+author: "Anders Torstensson"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate)
+use_python("C:/Users/a002440/AppData/Local/Programs/Python/Python311/python.exe")
+source_python("C:/Python/taxa-worms-master/extract_from_worms_main.py")
+
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{python}
+python "C:/Python/taxa-worms-master/extract_from_worms_main.py"
+# py_run_file("C:/Python/taxa-worms-master/extract_from_worms_main.py")
+source_python("C:/Python/taxa-worms-master/extract_from_worms_main.py")
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
