@@ -1,7 +1,7 @@
 library(tidyverse)
 
 # Read current NOMP list
-bvol_nomp <- read.table("data_in/bvol_nomp_version_2023.txt", header=TRUE, sep="\t", fill = TRUE)
+bvol_nomp <- read.table("data_in/bvol_nomp_version_2023.txt", header=TRUE, sep="\t", fill = TRUE, encoding = "latin1")
 
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_in/taxa_worms.txt")
