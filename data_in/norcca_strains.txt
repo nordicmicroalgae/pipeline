@@ -790,7 +790,6 @@ NIVA-5/12	Pyramimonas sp.	Chlorophyta	Pyramimonadophyceae	Marine	https://norcca.
 NIVA-5/14	Dinobryon cf. sertularia	Ochrophyta	Chrysophyceae	Freshwater	https://norcca.scrol.net/strain/niva-514	https://norcca.scrol.net/species/dinobryon-cf-sertularia
 NIVA-5/89	Prochlorothrix hollandica	Cyanobacteria	Cyanophyceae	Freshwater	https://norcca.scrol.net/strain/niva-589	https://norcca.scrol.net/species/prochlorothrix-hollandica
 NIVA-5/91	Rhodomonas baltica	Cryptophyta	Cryptophyceae	Marine	https://norcca.scrol.net/strain/niva-591	https://norcca.scrol.net/species/rhodomonas-baltica
-NIVA-6/06	Tetraselmis sp.	Chlorophyta	Chlorodendrophyceae	Marine	https://norcca.scrol.net/strain/niva-606	https://norcca.scrol.net/species/tetraselmis-sp
 NIVA-6/12	Hemiselmis sp.	Cryptophyta	Cryptophyceae	Marine	https://norcca.scrol.net/strain/niva-612	https://norcca.scrol.net/species/hemiselmis-sp
 NIVA-6/92	Ochromonas minima	Ochrophyta	Chrysophyceae	Brackish	https://norcca.scrol.net/strain/niva-692	https://norcca.scrol.net/species/ochromonas-minima
 NIVA-7/05	Gonyostomum semen	Ochrophyta	Raphidophyceae	Freshwater	https://norcca.scrol.net/strain/niva-705	https://norcca.scrol.net/species/gonyostomum-semen

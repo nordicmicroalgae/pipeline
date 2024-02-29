@@ -1,20 +1,30 @@
 library(tidyverse)
 library(worrms)
 
+# Find the latest bvol file
+bvol_filename <- list.files("data_in") %>%
+  as_tibble() %>%
+  filter(agrepl("bvol", value)) %>%
+  arrange(value)
+
 # Read current NOMP list
-bvol_nomp <- read.table("data_in/bvol_nomp_version_2023.txt", header=TRUE, sep="\t", fill = TRUE)
+bvol_nomp <- read.table(file.path("data_in", bvol_filename$value[nrow(bvol_filename)]), 
+                        header=TRUE, 
+                        sep="\t", 
+                        encoding = "latin1",
+                        fill = TRUE)
 
 # Read NORCCA culture list with AphiaID through WoRMS match web function
 # norcca <- read.table("data_in/norcca.txt", header=TRUE, sep="\t", fill = TRUE)
 
 # Read HAB list with AphiaID through WoRMS match web function
-ioc_hab <- read.table("data_in/nordic_hab_karlson_et_al_2021.txt", header=TRUE, sep="\t", fill = TRUE)
+# ioc_hab <- read.table("data_in/nordic_hab_karlson_et_al_2021.txt", header=TRUE, sep="\t", fill = TRUE)
 
 # Read a WoRMS-matched species list from old NuA
 old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
 
 # Combine unqiue AphiaIDs from NOMP, NORCCA, IOC-HAB and the old NuA species list
-aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, ioc_hab$AphiaID, old_nua$AphiaID)))
+aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, old_nua$AphiaID)))
 aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
 
 # Extract records from WoRMS based on AphiaID
@@ -46,4 +56,4 @@ translate <- all_records %>%
 
 # Store files, use used_aphia_id_list.txt in https://github.com/nordicmicroalgae/taxa-worms to build taxa_worms.txt
 write_delim(translate, "data_out/translate_to_worms.txt", delim = "\t") 
-write_delim(all_records, "data_out/used_aphia_id_list.txt", delim = "\t") 
+write_delim(all_records, "data_in/used_aphia_id_list.txt", delim = "\t") 
