@@ -51,3 +51,8 @@ rsconnect/
 # Old files
 data_in/old/
 code/old/
+
+# Generated data
+data_out/*.txt
+data_out/*.xlsx
+data_out/content/*.txt
