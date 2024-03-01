@@ -1,4 +1,4 @@
-ScientificName	AphiaID	Match type	ScientificName	Authority	AphiaID_accepted	ScientificName_accepted	Authority_accepted	used_aphia_id	
+ScientificName	AphiaID	Match type	ScientificName	Authority	AphiaID_accepted	ScientificName_accepted	Authority_accepted	used_aphia_id	comment
 Chroococcus turgidus	146566	exact	Chroococcus turgidus	(Kützing) Nägeli, 1849	146566	Chroococcus turgidus	(Kützing) Nägeli, 1849	146566	
 Siphonema	603298	exact	Siphonema	Geitler	600988	Siphononema	Geitler, 1925	600988	
 Hydrococcus	206054	exact	Hydrococcus	Kützing, 1833	206054	Hydrococcus	Kützing, 1833	206054	
@@ -59,7 +59,7 @@ Microspora	144202	exact	Microspora	Thuret, 1850	144202	Microspora	Thuret, 1850	1
 Chaetophora	143931	exact	Chaetophora	Schrank, 1783	143931	Chaetophora	Schrank, 1783	143931	
 Stromatella	143939	exact	Stromatella	Kornmann & Sahling, 1985	836601	Neostromatella	M.J.Wynne, G.Furnari & R.Nielsen, 2014	836601	
 Uronema	143943							143943	
-Uronema marinus	172341	near_1	Uronema marinum	Dujardin, 1841	172341	Uronema marinum	Dujardin, 1841	172341	
+Uronema marinus	555270		Uronema marinum	Womersley, 1984	555270	Uronema marinum	Womersley, 1984	555270	manually corrected
 Chaetonema	600757	exact	Chaetonema	Nowakowski, 1876	600757	Chaetonema	Nowakowski, 1876	600757	
 Oedogonium calcareum	616392	exact	Oedogonium calcareum	Cleve & Wittrock, 1900	616392	Oedogonium calcareum	Cleve & Wittrock, 1900	616392	
 Oedogonium richterianum	649790	exact	Oedogonium richterianum	Lemmermann ex Hirn, 1900	649790	Oedogonium richterianum	Lemmermann ex Hirn, 1900	649790	
@@ -76,7 +76,7 @@ Haematococcus	428522	exact	Haematococcus	Flotow, 1844	428522	Haematococcus	Floto
 Carteria	367250	exact	Carteria	Diesing, 1866	367250	Carteria	Diesing, 1866	367250	
 Carteria globosa	238801	exact	Carteria globosa	Korshikov, 1927	555694	Carteria pseudoglobosa	Ettl, 1979	555694	
 Tetraëdron minimum	178956	exact	Tetraëdron minimum	(A.Braun) Hansgirg, 1888	178956	Tetraëdron minimum	(A.Braun) Hansgirg, 1888	178956	
-Lacrymaria	179314	exact	Lacrymaria	Bory de St. Vincent, 1824	179314	Lacrymaria	Bory de St. Vincent, 1824	179314	
+Lacrymaria	603050	exact	Lacrymaria	Ehrenberg, 1830	603050	Lacrymaria	Ehrenberg, 1830	603050	manually corrected
 Euglenozoa	536202	exact	Euglenozoa	Cavalier-Smith, 1981	536202	Euglenozoa	Cavalier-Smith, 1981	536202	
 Astasia	163791	exact	Astasia	Dujardin, 1841	163791	Astasia	Dujardin, 1841	163791	
 Euglena geniculata	163316	exact	Euglena geniculata	Dujardin, 1841	163316	Euglena geniculata	Dujardin, 1841	163316	
@@ -98,7 +98,7 @@ Ceratium arcticum	156509	exact	Ceratium arcticum	(Ehrenberg) Cleve, 1901	156509	
 Ceratium inflatum	109958	exact	Ceratium inflatum	(Kofoid) E.G.JÃ¸rgensen, 1911	837455	Tripos inflatus	(Kofoid) F.GÃ³mez, 2013	837455	
 Gonyaulax spinifera	110041	exact	Gonyaulax spinifera	(ClaparÃ¨de & Lachmann) Diesing, 1866	110041	Gonyaulax spinifera	(ClaparÃ¨de & Lachmann) Diesing, 1866	110041	
 Stephanodiscus tenuis	163420	exact	Stephanodiscus tenuis	Hustedt, 1939	971749	Stephanodiscus tenuis var. tenuis	Hustedt, 1939	971749	
-Cyclotella comta	959446	exact	Cyclotella comta	(Grunow) Skabichevskii, 1960	179634	Cyclotella comta var. glabriuscula	Grunow, 1882	179634	
+Cyclotella comta	148910	exact	Cyclotella comta	(Ehrenberg) K�tzing, 1849	148910	Cyclotella comta	(Ehrenberg) K�tzing, 1849	148910	manually corrected
 Cyclotella comta var. radiosa	163214	exact	Cyclotella comta var. radiosa	Grunow, 1882	984107	Cyclotella comta f. radiosa	Grunow in Van Heurck, 1882	984107	
 Cyclotella kuetzingiana	418570	exact	Cyclotella kuetzingiana	Thwaites, 1848	1304212	Pantocsekiella kuetzingiana	(Thwaites, 1848) K.T. Kiss & Ãcs, 2016	1304212	
 Cyclotella operculata	156651	exact	Cyclotella operculata	(C.Agardh) BrÃ©bisson, 1838	1325509	Epithemia operculata	(C.Agardh) Ruck & Nakov	1325509	
@@ -138,7 +138,6 @@ Tetracyclus rupestris	965738	exact	Tetracyclus rupestris	(Braun ex Rabenhorst) G
 Tabellaria fenestrata	149334	exact	Tabellaria fenestrata	(Lyngbye) KÃ¼tzing, 1844	149334	Tabellaria fenestrata	(Lyngbye) KÃ¼tzing, 1844	149334	
 Ardissonea	163703	exact	Ardissonea	G. De Notaris in G. De Notaris & F. Baglietto, 1870	163703	Ardissonea	G. De Notaris in G. De Notaris & F. Baglietto, 1870	163703	
 Ceratoneis arcus	593830	exact	Ceratoneis arcus	(Ehrenberg) KÃ¼tzing, 1844	180342	Hannaea arcus	(Ehrenberg) R.M.Patrick in Patrick & Reimer, 1966	180342	
-Ctenophora	956054	exact	Ctenophora	A. Grunow, 1862	956054	Ctenophora	A. Grunow, 1862	956054	
 Ctenophora pulchella	163922	exact	Ctenophora pulchella	(Ralfs ex KÃ¼tzing) D.M.Williams & Round, 1986	163922	Ctenophora pulchella	(Ralfs ex KÃ¼tzing) D.M.Williams & Round, 1986	163922	
 Diatoma	149013	exact	Diatoma	J.B.M. Bory de Saint-Vincent, 1824	149013	Diatoma	J.B.M. Bory de Saint-Vincent, 1824	149013	
 Diatoma moniliformis	164000	exact	Diatoma moniliformis	KÃ¼tzing, 1833	164000	Diatoma moniliformis	KÃ¼tzing, 1833	164000	
@@ -223,7 +222,7 @@ Pleurosigma normanii	149182	exact	Pleurosigma normanii	Ralfs, 1861	149182	Pleuro
 Fallacia	172375	exact	Fallacia	A.J. Stickle & D.G. Mann in F.E. Round, R.M. Crawford & D.G. Mann, 1990	172375	Fallacia	A.J. Stickle & D.G. Mann in F.E. Round, R.M. Crawford & D.G. Mann, 1990	172375	
 Fallacia pygmaea	172380	exact	Fallacia pygmaea	(Kützing) A.J.Stickle & D.G.Mann, 1990	172380	Fallacia pygmaea	(Kützing) A.J.Stickle & D.G.Mann, 1990	172380	
 Stauroneis legumen	175889	exact	Stauroneis legumen	(Ehrenberg) Kützing, 1844	175889	Stauroneis legumen	(Ehrenberg) Kützing, 1844	175889	
-Stauroneis spicula	175913	exact	Stauroneis spicula	Hickie, 1874	175913	Stauroneis spicula	Hickie, 1874	175913	
+Stauroneis spicula	669081	exact	Stauroneis spicula	Cleve & Grunow, 1880	669081	Stauroneis spicula	Cleve & Grunow, 1880	669081	manually corrected
 Stauroneis anceps sensu lato	149413	exact	Stauroneis anceps	Ehrenberg, 1843	149413	Stauroneis anceps	Ehrenberg, 1843	149413	
 Stauroneis anceps	149413	exact	Stauroneis anceps	Ehrenberg, 1843	149413	Stauroneis anceps	Ehrenberg, 1843	149413	
 Craticula	163902	exact	Craticula	A. Grunow, 1867	163902	Craticula	A. Grunow, 1867	163902	
@@ -2251,7 +2250,7 @@ Tetradesmus	600817	exact	Tetradesmus	G.M.Smith, 1913	600817	Tetradesmus	G.M.Smit
 Tetradesmus wisconsinensis	608639	exact	Tetradesmus wisconsinensis	G.M.Smith, 1913	608639	Tetradesmus wisconsinensis	G.M.Smith, 1913	608639	
 Tetrastrum	162934	exact	Tetrastrum	Chodat, 1895	162934	Tetrastrum	Chodat, 1895	162934	
 Tetrastrum elegans	608641	exact	Tetrastrum elegans	Playfair, 1917	608641	Tetrastrum elegans	Playfair, 1917	608641	
-Tetrastrum staurogeniaeforme	162935	exact	Tetrastrum staurogeniaeforme	(Schroeder) Lemmermann, 1900	610934	Tetrastrum staurogeniiforme	(SchrÃ¶der) Lemmermann, 1900	610934	
+Tetrastrum staurogeniaeforme	610934	exact	Tetrastrum staurogeniiforme	(SchrÃ¶der) Lemmermann, 1900	610934	Tetrastrum staurogeniiforme	(SchrÃ¶der) Lemmermann, 1900	610934	manually edited
 Tetrastrum triangulare	576711	exact	Tetrastrum triangulare	(Chodat) KomÃ¡rek, 1974	839083	Lemmermannia triangularis	(Chodat) C.Bock & Krienitz, 2013	839083	
 Tetrastrum glabrum	610932	exact	Tetrastrum glabrum	(Y.V.Roll) Ahlstrom & Tiffany, 1934	610932	Tetrastrum glabrum	(Y.V.Roll) Ahlstrom & Tiffany, 1934	610932	
 Tetrastrum hastiferum	708267	exact	Tetrastrum hastiferum	(Arnoldi) Korshikov, 1953				708267	
@@ -3435,7 +3434,7 @@ Quadricilia rotundata	118070	exact	Quadricilia rotundata	(Skuja) Vors, 1992	1180
 Rhizomonas	118025	exact	Rhizomonas	W.S.Kent, 1880	118025	Rhizomonas	W.S.Kent, 1880	118025	
 Rhizomonas setigera	118071	exact	Rhizomonas setigera	(Pavillard) Patterson, Nygaard, Steinberg & Turley, 1993	118073	Solenicola setigera	Pavillard, 1916	118073	
 Telonema	118028	exact	Telonema	Griessmann, 1913	118028	Telonema	Griessmann, 1913	118028	
-Telonema antarctica	118074	exact	Telonema antarctica	Thomsen ex Klaveness, Shalchian-Tabrizi, Thomsen, Eikrem & Jakobsen, 2005	118074	Telonema antarctica	Thomsen ex Klaveness, Shalchian-Tabrizi, Thomsen, Eikrem & Jakobsen, 2005	118074	
+Telonema antarctica	389491		Telonema antarcticum	Klaveness, Shalchian-Tabrizi, Thomsen, Eikrem & Jakobsen, 2005	389491	Telonema antarcticum	Klaveness, Shalchian-Tabrizi, Thomsen, Eikrem & Jakobsen, 2005	389491	manually edited
 Telonema subtile	118075	exact	Telonema subtile	Griessmann, 1913	118075	Telonema subtile	Griessmann, 1913	118075	
 Tetradimorpha	603297	exact	Tetradimorpha	Hsiung, 1927	603297	Tetradimorpha	Hsiung, 1927	603297	
 Tetradimorpha marina	708024	exact	Tetradimorpha marina	Fenchel et al., 1995	708024	Tetradimorpha marina	Fenchel et al., 1995	708024	
@@ -6486,7 +6485,6 @@ Tiarina fusus	247943	exact	Tiarina fusus	Bergh, 1881	247943	Tiarina fusus	Bergh,
 	985053		Pinnularia subcapitata f. subcapitata	Gregory, 1856	985053			985053	
 	673016		Pinnularia tirolensis var. julma	Krammer, 2000	673016			673016	
 	672225		Pinnularia subgibba var. undulata	Krammer, 1992	672225			672225	
-	985018		Pinnularia polyonca f. polyonca	(Br�bisson in K�tzing) W. Smith, 1856	985018			985018	
 	984861		Pinnularia divergentissima f. divergentissima	(Grunow in Van Heurck) Cleve, 1895	984861			984861	
 	984853		Pinnularia divergens f. divergens	W. Smith, 1853	984853			984853	
 	985062		Pinnularia viridis f. viridis	(Nitzsch) Ehrenberg, 1843	985062			985062	
