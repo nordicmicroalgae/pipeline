@@ -7,6 +7,8 @@ params:
   cache_taxa_worms: TRUE # Run on cached data from WoRMS
 ---
 
+# Setup
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(reticulate)
@@ -19,18 +21,15 @@ if(file.exists("code/dyntaxa_subscription_key.R")) {
 }
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 # Get current aphia ids for taxa list (NOMP + old checklist)
-```{r update_checklist, echo=FALSE, message=FALSE}
+
+```{r update_checklist, message=FALSE}
 source("code/01_update_used_aphia_id_list.R")
 ```
 
-# Create taxa_worms.txt, including higher taxonomy
+# Create taxa_worms.txt, including higher taxonomy, using
+https://github.com/nordicmicroalgae/taxa-worms
+
 ```{r get_taxa_file, message=FALSE, warning=FALSE}
 if(!params$cache_taxa_worms) {
   file.remove("worms_cache.db")
@@ -40,14 +39,16 @@ py_run_file("../taxa-worms/extract_from_worms_main.py")
 ```
 
 # Get all synonyms from WoRMS and find duplcated taxa, potential errors can be deleted
-```{r synonyms, echo=FALSE, message=FALSE}
+
+```{r synonyms, message=FALSE}
 source("code/02_get_worms_synonyms.R")
 
 kableExtra::kable(duplicates)
 ```
 
 # Remove duplicates manually from taxa file
-```{r clean_taxa, echo=FALSE}
+
+```{r clean_taxa}
 # Read taxa_worms file and remove unwanted taxa
 taxa_worms <- read_tsv("data_out/content/taxa.txt") %>%
   filter(!taxon_id %in% c(599656,
@@ -57,16 +58,20 @@ write_tsv(taxa_worms, "data_out/content/taxa.txt", na = "")
 ```
 
 # Match taxa with Dyntaxa
-```{r match_dyntaxa, echo=FALSE}
+
+```{r match_dyntaxa}
 source("code/03_match_worms_and_dyntaxa.R")
 ```
 
 # Export files to send to AlgaeBase
-```{r export_algaebase, echo=FALSE}
+
+```{r export_algaebase}
 source("code/04_export_algaebase.R")
 ```
 
-# Create 
+# Extract culture information from NORCCA using 
+https://github.com/nordicmicroalgae/norcca_compiler
+
 ```{r get_norcca, message=FALSE}
 setwd("../norcca_compiler/norcca_compiler")
 
@@ -86,12 +91,16 @@ write_delim(norcca, "data_in/norcca_strains.txt",
             na = "")
 ```
 
-```{r wrangle_norcca, echo=FALSE}
+# Reformat NORCCA list and add taxon_id
+
+```{r wrangle_norcca}
 source("code/05_wrangle_norcca.R")
 ```
 
-```{r wrangle_hab_list, echo=FALSE}
+# Reformat IOC HAB list and add taxon_id
+# Downloaded (Text file, tab delimited (TXT)) from
+https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist
+
+```{r wrangle_hab_list}
 source("code/06_wrangle_hab.R")
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
