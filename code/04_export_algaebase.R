@@ -2,7 +2,12 @@ library(tidyverse)
 library(writexl)
 
 # Read taxa_worms file
-taxa_worms <- read.table("data_out/content/taxa.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "latin-1")
+taxa_worms <- read.table("data_out/content/taxa.txt", 
+                         header=TRUE, 
+                         sep="\t", 
+                         fill = TRUE, 
+                         quote = "", 
+                         encoding = "latin-1")
 
 # Verify taxa_worms matches so that nothing unexpected appear
 unique(taxa_worms$kingdom)
