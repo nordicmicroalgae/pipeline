@@ -3,12 +3,20 @@ title: "update-nua-taxonomy"
 author: "Anders Torstensson"
 date: "`r Sys.Date()`"
 output: html_document
+params: 
+  cache_taxa_worms: TRUE # Run on cached data from WoRMS
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(reticulate)
 library(tidyverse)
+
+if(file.exists("code/dyntaxa_subscription_key.R")) {
+  source("code/dyntaxa_subscription_key.R")
+} else {
+  subscription_key <- rstudioapi::askForPassword(prompt = "Please enter your SLU Artdatabanken API key")
+}
 ```
 
 ## R Markdown
@@ -23,7 +31,11 @@ source("code/01_update_used_aphia_id_list.R")
 ```
 
 # Create taxa_worms.txt, including higher taxonomy
-```{r get_taxa_file, message=FALSE}
+```{r get_taxa_file, message=FALSE, warning=FALSE}
+if(params$cache_taxa_worms == FALSE) {
+  file.remove("worms_cache.db")
+}
+
 py_run_file("../taxa-worms/extract_from_worms_main.py")
 ```
 
@@ -43,12 +55,13 @@ source("code/04_export_algaebase.R")
 ```
 
 # Create 
-```{r get_norcca}
+```{r get_norcca, message=FALSE}
 setwd("../norcca_compiler/norcca_compiler")
 
 system("venv\\Scripts\\activate")
 
 system("pip install beautifulsoup4")
+system("pip install requests")
 
 system("python -m norcca_compiler --output norcca_strains.txt")
 

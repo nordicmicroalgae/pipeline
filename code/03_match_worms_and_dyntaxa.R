@@ -1,7 +1,15 @@
 library(tidyverse)
+library(SHARK4R)
+
+if(!exists(subscription_key)) {
+  source("code/dyntaxa_subscription_key.R")
+}
 
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_out/content/taxa.txt")
+
+# Match taxa with API
+dyntaxa <- match_taxon_name(taxa_worms$scientific_name, subscription_key)
 
 # Match taxa_worms with Dyntaxa through the web match interface, read .txt-file here
 dyntaxa_records <- read.table("data_in/dyntaxa_match.txt", 
@@ -11,21 +19,26 @@ dyntaxa_records <- read.table("data_in/dyntaxa_match.txt",
                               encoding = "latin1",
                               quote = "")
 
-# Remove the multiple choice that could not be solved and wrangle data
-dyntaxa_list <- dyntaxa_records %>%
-  filter(!Matchstatus == "Manuellt val måste göras") %>%
+# Select the manually selected taxa
+dyntaxa_matched <- dyntaxa_records %>%
+  filter(Matchstatus == "Manuellt val") %>%
   select(Sökterm, Taxon.id) %>%
-  filter(!is.na(Taxon.id)) %>%
-  rename(scientific_name = Sökterm,
-         dyntaxa_id = Taxon.id) %>%
-  distinct()
+  rename(search_pattern = Sökterm)
 
-# Join with taxa_worms
-dyntaxa_list <- taxa_worms %>%
-  select(taxon_id, scientific_name) %>%
+# Gather taxa information
+taxa <- taxa_worms %>%
+  select(scientific_name, taxon_id)
+
+# Combine API results with manually selected ids
+dyntaxa_list <- dyntaxa %>%
+  filter(!is.na(taxon_id)) %>%
   distinct() %>%
-  right_join(dyntaxa_list) %>%
-  filter(!is.na(taxon_id))
+  left_join(dyntaxa_matched) %>%
+  mutate(taxon_id = ifelse(is.na(Taxon.id) | taxon_id == Taxon.id, taxon_id, Taxon.id)) %>%
+  select(-Taxon.id, -best_match) %>%
+  rename(dyntaxa_id = taxon_id,
+         scientific_name = search_pattern) %>%
+  left_join(taxa)
 
 # Store file
 write_delim(dyntaxa_list, "data_out/content/facts_external_links_dyntaxa.txt", delim = "\t") 
