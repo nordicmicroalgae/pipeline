@@ -44,10 +44,16 @@ worms_links <- taxa_worms_accepted %>%
 date <- format(Sys.Date(),
                "%Y_%b_%d")
 
+# Summarise checklist
+checklist <- taxa_worms_accepted %>%
+  filter(rank %in% c("Species", "Subspecies", "Variety", "Forma")) %>%
+  arrange(scientific_name) %>%
+  rename(aphia_id = taxon_id)
+
 # Store files
 write_tsv(worms_synonyms, "data_out/content/synonyms.txt", na = "") 
 write_tsv(taxa_worms_accepted, "data_out/content/taxa.txt", na = "") 
 write_tsv(worms_links, "data_out/content/facts_external_links_worms.txt", na = "") 
 write_tsv(duplicates, "data_out/duplicated_scientific_name.txt", na = "") 
-write_tsv(taxa_worms_accepted, paste0("data_out/nordicmicroalgae_checklist_", date, ".txt"), na = "") 
-write_xlsx(taxa_worms_accepted, paste0("data_out/nordicmicroalgae_checklist_", date, ".xlsx"), format_headers = FALSE)
+write_tsv(checklist, paste0("data_out/nordicmicroalgae_checklist_", date, ".txt"), na = "") 
+write_xlsx(checklist, paste0("data_out/nordicmicroalgae_checklist_", date, ".xlsx"), format_headers = FALSE)
