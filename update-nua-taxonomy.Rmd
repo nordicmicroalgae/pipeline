@@ -25,7 +25,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-# Get current aphia ids for taxa
+# Get current aphia ids for taxa list (NOMP + old checklist)
 ```{r update_checklist, echo=FALSE, message=FALSE}
 source("code/01_update_used_aphia_id_list.R")
 ```
@@ -39,9 +39,21 @@ if(!params$cache_taxa_worms) {
 py_run_file("../taxa-worms/extract_from_worms_main.py")
 ```
 
-# Get all synonyms from WoRMS
+# Get all synonyms from WoRMS and find duplcated taxa, potential errors can be deleted
 ```{r synonyms, echo=FALSE, message=FALSE}
 source("code/02_get_worms_synonyms.R")
+
+kableExtra::kable(duplicates)
+```
+
+# Remove duplicates manually from taxa file
+```{r clean_taxa, echo=FALSE}
+# Read taxa_worms file and remove unwanted taxa
+taxa_worms <- read_tsv("data_out/content/taxa.txt") %>%
+  filter(!taxon_id %in% c(599656,
+                          582161))
+
+write_tsv(taxa_worms, "data_out/content/taxa.txt", na = "") 
 ```
 
 # Match taxa with Dyntaxa
@@ -81,15 +93,5 @@ source("code/05_wrangle_norcca.R")
 ```{r wrangle_hab_list, echo=FALSE}
 source("code/06_wrangle_hab.R")
 ```
-
-```{r clean_taxa, echo=FALSE}
-# Read taxa_worms file and remove unwanted taxa
-taxa_worms <- read_tsv("data_out/content/taxa.txt") %>%
-  filter(!taxon_id %in% c(599656,
-                          582161))
-
-write_tsv(taxa_worms, "data_out/content/taxa.txt", na = "") 
-```
-
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
