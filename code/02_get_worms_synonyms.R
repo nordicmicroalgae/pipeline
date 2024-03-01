@@ -8,6 +8,7 @@ taxa_worms <- read_tsv("data_out/taxa_worms.txt", locale = locale(encoding = "la
 # Get synonyms from WoRMS
 all_synonyms <- data.frame()
 
+# Loop for each AphiaID
 for(i in 1:length(taxa_worms$aphia_id)) {
   tryCatch({
     record <- wm_synonyms(taxa_worms$aphia_id[i])
@@ -24,9 +25,6 @@ worms_synonyms <- all_synonyms %>%
   rename(synonym_name = scientificname,
          author = authority,
          taxon_id = valid_AphiaID)
-
-# Store file
-write_delim(worms_synonyms, "data_out/content/synonyms.txt", delim = "\t", na = "") 
 
 # Remove all unaccepted names that appear when constructing the higher taxonomy
 taxa_worms_accepted <- taxa_worms %>%
@@ -46,9 +44,10 @@ worms_links <- taxa_worms_accepted %>%
 date <- format(Sys.Date(),
                "%Y_%b_%d")
 
-# Store file
+# Store files
+write_tsv(worms_synonyms, "data_out/content/synonyms.txt", na = "") 
 write_tsv(taxa_worms_accepted, "data_out/content/taxa.txt", na = "") 
 write_tsv(worms_links, "data_out/content/facts_external_links_worms.txt", na = "") 
 write_tsv(duplicates, "data_out/duplicated_scientific_name.txt", na = "") 
+write_tsv(taxa_worms_accepted, paste0("data_out/nordicmicroalgae_checklist_", date, ".txt"), na = "") 
 write_xlsx(taxa_worms_accepted, paste0("data_out/nordicmicroalgae_checklist_", date, ".xlsx"), format_headers = FALSE)
-write_delim(taxa_worms_accepted, paste0("data_out/nordicmicroalgae_checklist_", date, ".txt"), delim = "\t", na = "") 
