@@ -32,7 +32,7 @@ source("code/01_update_used_aphia_id_list.R")
 
 # Create taxa_worms.txt, including higher taxonomy
 ```{r get_taxa_file, message=FALSE, warning=FALSE}
-if(params$cache_taxa_worms == FALSE) {
+if(params$cache_taxa_worms) {
   file.remove("worms_cache.db")
 }
 
