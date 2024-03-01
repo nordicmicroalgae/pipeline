@@ -23,7 +23,7 @@ worms_synonyms <- all_synonyms %>%
   select(provider, scientificname, authority, valid_AphiaID) %>%
   rename(synonym_name = scientificname,
          author = authority,
-         AphiaID = valid_AphiaID)
+         taxon_id = valid_AphiaID)
 
 # Store file
 write_delim(worms_synonyms, "data_out/content/synonyms.txt", delim = "\t", na = "") 
