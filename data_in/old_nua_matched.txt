@@ -1,4 +1,4 @@
-ScientificName	AphiaID	Match type	ScientificName	Authority	AphiaID_accepted	ScientificName_accepted	Authority_accepted	used_aphia_id	comment
+﻿ScientificName	AphiaID	Match type	ScientificName	Authority	AphiaID_accepted	ScientificName_accepted	Authority_accepted	used_aphia_id	comment
 Chroococcus turgidus	146566	exact	Chroococcus turgidus	(Kützing) Nägeli, 1849	146566	Chroococcus turgidus	(Kützing) Nägeli, 1849	146566	
 Siphonema	603298	exact	Siphonema	Geitler	600988	Siphononema	Geitler, 1925	600988	
 Hydrococcus	206054	exact	Hydrococcus	Kützing, 1833	206054	Hydrococcus	Kützing, 1833	206054	
