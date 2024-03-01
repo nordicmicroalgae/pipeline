@@ -14,12 +14,6 @@ bvol_nomp <- read.table(file.path("data_in", bvol_filename$value[nrow(bvol_filen
                         encoding = "latin1",
                         fill = TRUE)
 
-# Read NORCCA culture list with AphiaID through WoRMS match web function
-# norcca <- read.table("data_in/norcca.txt", header=TRUE, sep="\t", fill = TRUE)
-
-# Read HAB list with AphiaID through WoRMS match web function
-# ioc_hab <- read.table("data_in/nordic_hab_karlson_et_al_2021.txt", header=TRUE, sep="\t", fill = TRUE)
-
 # Read a WoRMS-matched species list from old NuA
 old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
 
@@ -30,7 +24,7 @@ aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
 # Extract records from WoRMS based on AphiaID
 all_records <- data.frame()
 
-# Loop for each AphiaID
+# Loop for each AphiaID to get taxonomic records
 for(i in 1:length(aphia_id_combined)) {
   record <- wm_record(aphia_id_combined[i])
   
