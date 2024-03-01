@@ -27,4 +27,4 @@ nordic_hab <- hab_list %>%
          scientific_name = ScientificName)
 
 # Store file
-write_tsv(nordic_hab, "data_out/content/facts_hab_ioc.txt") 
+write_tsv(nordic_hab, "data_out/content/facts_external_links_hab_ioc.txt") 
