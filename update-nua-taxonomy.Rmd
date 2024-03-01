@@ -82,5 +82,14 @@ source("code/05_wrangle_norcca.R")
 source("code/06_wrangle_hab.R")
 ```
 
+```{r clean_taxa, echo=FALSE}
+# Read taxa_worms file and remove unwanted taxa
+taxa_worms <- read_tsv("data_out/content/taxa.txt") %>%
+  filter(!taxon_id %in% c(599656,
+                          582161))
+
+write_tsv(taxa_worms, "data_out/content/taxa.txt", na = "") 
+```
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
