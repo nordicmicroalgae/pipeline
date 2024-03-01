@@ -1,6 +1,6 @@
-Repo for updating content/species
+# Repo for updating content/species
 
-Required:
+## Required:
 
 https://github.com/nordicmicroalgae/taxa-worms
 https://github.com/nordicmicroalgae/norcca_compiler
