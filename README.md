@@ -5,7 +5,7 @@ The R Markdown document update-nua-taxonomy.Rmd calls a number of R and Python s
 
 ## To update the content:
 * Clone this repo and the other required repos, and place in the directory structure as outlined below.
-* Manually collect the latest NOMP biovolume list and store in update-nua-taxonomy/data_in/. The file can be accessed from the [Nordic Microalgae webpage](http://nordicmicroalgae.org/tools)
+* Manually download the latest NOMP biovolume list and store in update-nua-taxonomy/data_in/. The file can be accessed from the [Nordic Microalgae webpage](http://nordicmicroalgae.org/tools)
 * Manually download the latest IOC HAB list in .txt from this [link](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) and store in update-nua-taxonomy/data_in/
 * Run update-nua-taxonomy.Rmd
 * Check output for potential duplicated taxa or errors
