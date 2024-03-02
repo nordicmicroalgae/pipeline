@@ -6,10 +6,18 @@ if(!exists(subscription_key)) {
 }
 
 # Read taxa_worms file
-taxa_worms <- read_tsv("data_out/content/taxa.txt")
+taxa_worms <- read_tsv("data_out/content/taxa.txt",
+                       col_types = cols())
 
-# Match taxa with API
-dyntaxa <- match_taxon_name(taxa_worms$scientific_name, subscription_key)
+# Load stored file if running from cache
+if(file.exists("dyntaxa_cache.rda")) {
+  load(file = "dyntaxa_cache.rda")
+} else {
+  # Match taxa with API
+  dyntaxa <- match_taxon_name(taxa_worms$scientific_name, subscription_key)
+  
+  save(dyntaxa, file = "dyntaxa_cache.rda")
+}
 
 # Match taxa_worms with Dyntaxa through the web match interface, read .txt-file here
 dyntaxa_records <- read.table("data_in/dyntaxa_match.txt", 
@@ -39,6 +47,10 @@ dyntaxa_list <- dyntaxa %>%
   rename(dyntaxa_id = taxon_id,
          scientific_name = search_pattern) %>%
   left_join(taxa)
+
+# Print output
+print(paste(length(unique(dyntaxa_list$taxon_id)),
+            "taxa found in Dyntaxa"))
 
 # Store file
 write_delim(dyntaxa_list, "data_out/content/facts_external_links_dyntaxa.txt", delim = "\t") 

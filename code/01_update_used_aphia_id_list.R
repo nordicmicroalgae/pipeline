@@ -21,16 +21,22 @@ old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill
 aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, old_nua$AphiaID)))
 aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
 
-# Extract records from WoRMS based on AphiaID
-all_records <- data.frame()
-
-# Loop for each AphiaID to get taxonomic records
-for(i in 1:length(aphia_id_combined)) {
-  record <- wm_record(aphia_id_combined[i])
+# Load stored file if running from cache
+if(file.exists("all_records_cache.rda")) {
+  load(file = "all_records_cache.rda")
+} else {
+  # Extract records from WoRMS based on AphiaID
+  all_records <- data.frame()
   
-  all_records <- rbind(all_records, record)
-  
-  cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
+  # Loop for each AphiaID to get taxonomic records
+  for(i in 1:length(aphia_id_combined)) {
+    record <- wm_record(aphia_id_combined[i])
+    
+    all_records <- rbind(all_records, record)
+    
+    cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
+  }
+  save(all_records, file = "all_records_cache.rda")
 }
 
 # Translate unaccepted names, remove blank names (deleted/quaratine), remove flagellates (146222)

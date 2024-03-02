@@ -2,9 +2,12 @@
 title: "update-nua-taxonomy"
 author: "Anders Torstensson"
 date: "`r Sys.Date()`"
-output: html_document
+output: pdf_document
 params: 
-  cache_taxa_worms: TRUE # Run on cached data from WoRMS
+  cache_update_checklist: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_taxa_worms: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_synonyms: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_dyntaxa: FALSE # Run on cached data, FALSE if doing annual updates
 ---
 
 # Setup
@@ -23,56 +26,136 @@ if(file.exists("code/dyntaxa_subscription_key.R")) {
 
 # Get current aphia ids for taxa list (NOMP + old checklist)
 
-```{r update_checklist, message=FALSE}
+```{r update_checklist, include=FALSE}
+if(!params$cache_update_checklist) {
+  file.remove("all_records_cache.rda")
+}
+
+start.time <- Sys.time()
 source("code/01_update_used_aphia_id_list.R")
+end.time <- Sys.time()
+runtime_update_checklist <- round(end.time - start.time, 2)
 ```
 
-# Create taxa_worms.txt, including higher taxonomy, using
-https://github.com/nordicmicroalgae/taxa-worms
+```{r checklist_result, echo=FALSE}
+print(paste("AphiaID for", nrow(all_records), "taxa found"))
+```
 
-```{r get_taxa_file, message=FALSE, warning=FALSE}
+# Create taxa_worms.txt, including higher taxonomy
+using https://github.com/nordicmicroalgae/taxa-worms
+
+```{r get_taxa_file, include=FALSE}
 if(!params$cache_taxa_worms) {
   file.remove("worms_cache.db")
 }
 
+start.time <- Sys.time()
 py_run_file("../taxa-worms/extract_from_worms_main.py")
+end.time <- Sys.time()
+runtime_get_taxa_file <- round(end.time - start.time, 2)
 ```
 
 # Get all synonyms from WoRMS and find duplcated taxa, potential errors can be deleted
 
-```{r synonyms, message=FALSE}
-source("code/02_get_worms_synonyms.R")
+```{r synonyms, include=FALSE}
+if(!params$cache_synonyms) {
+  file.remove("synonyms_cache.rda")
+}
 
-kableExtra::kable(duplicates)
+start.time <- Sys.time()
+source("code/02_get_worms_synonyms.R")
+end.time <- Sys.time()
+runtime_synonyms <- round(end.time - start.time, 2)
 ```
 
-# Remove duplicates manually from taxa file
+```{r duplicates_output, echo=FALSE}
+# Print output
+print(paste(length(worms_synonyms$synonym_name), 
+            "synonyms found for", 
+            length(unique(worms_synonyms$taxon_id)),
+            "taxa"))
 
-```{r clean_taxa}
+# Print table
+duplicates %>%
+  select(-classification,
+         -url,
+         -genus,
+         -family,
+         -order,
+         -class,
+         -phylum,
+         -kingdom) %>%
+  knitr::kable(caption = "Duplicates before cleanup")
+```
+
+# Remove duplicates from taxa file manually
+
+```{r clean_taxa, echo=FALSE}
+# Select taxon_id to remove, e.g. same name for multiple taxonomic levels
+taxa_remove <- c(599656, # Glaucophyta Phylum (Division)
+                 582161) # Euglenozoa Infrakingdom
+
+# Print
+print(paste("Removing", length(taxa_remove), "duplicated taxa from taxa.txt"))
+
 # Read taxa_worms file and remove unwanted taxa
-taxa_worms <- read_tsv("data_out/content/taxa.txt") %>%
-  filter(!taxon_id %in% c(599656,
-                          582161))
+taxa_worms <- read_tsv("data_out/content/taxa.txt",
+                       col_types = cols()) %>%
+  filter(!taxon_id %in% taxa_remove)
 
+# Find duplicated taxa names
+duplicates <- taxa_worms %>%
+  filter(duplicated(scientific_name))
+
+# Print table
+duplicates %>%
+  select(-classification,
+         -url,
+         -genus,
+         -family,
+         -order,
+         -class,
+         -phylum,
+         -kingdom) %>%
+  knitr::kable(caption = "Duplicates after cleanup")
+
+# Print
+print(paste(nrow(taxa_worms), "taxa exported to taxa.txt"))
+
+# Store cleaned file
 write_tsv(taxa_worms, "data_out/content/taxa.txt", na = "") 
 ```
 
 # Match taxa with Dyntaxa
 
-```{r match_dyntaxa}
+```{r match_dyntaxa, echo=FALSE, message=FALSE}
+if(!params$cache_dyntaxa) {
+  file.remove("dyntaxa_cache.rda")
+}
+
+start.time <- Sys.time()
 source("code/03_match_worms_and_dyntaxa.R")
+end.time <- Sys.time()
+runtime_match_dyntaxa <- round(end.time - start.time, 2)
 ```
 
 # Export files to send to AlgaeBase
 
-```{r export_algaebase}
+```{r export_algaebase, echo=FALSE}
 source("code/04_export_algaebase.R")
+
+# Print
+print(paste(nrow(algaebase_species), "species exported to AlgaeBase"))
+print(paste(nrow(algaebase_genus), "genera exported to AlgaeBase"))
+print(paste(nrow(algaebase_higher_taxonomy), "higher taxa exported to AlgaeBase"))
 ```
 
-# Extract culture information from NORCCA using 
-https://github.com/nordicmicroalgae/norcca_compiler
+# Extract culture information from NORCCA 
+using https://github.com/nordicmicroalgae/norcca_compiler
 
-```{r get_norcca, message=FALSE}
+```{r get_norcca, include=FALSE, message=FALSE, warning=FALSE}
+start.time <- Sys.time()
+
 setwd("../norcca_compiler/norcca_compiler")
 
 system("venv\\Scripts\\activate")
@@ -89,18 +172,49 @@ setwd(here::here())
 write_delim(norcca, "data_in/norcca_strains.txt", 
             delim = "\t",
             na = "")
+
+print(paste(nrow(norcca), "strains extracted"))
+
+end.time <- Sys.time()
+runtime_get_norcca <- round(end.time - start.time, 2)
 ```
 
-# Reformat NORCCA list and add taxon_id
-
-```{r wrangle_norcca}
+```{r wrangle_norcca, echo=FALSE}
 source("code/05_wrangle_norcca.R")
 ```
 
 # Reformat IOC HAB list and add taxon_id
-# Downloaded (Text file, tab delimited (TXT)) from
+Downloaded (Text file, tab delimited) from
 https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist
 
-```{r wrangle_hab_list}
+```{r wrangle_hab_list, echo=FALSE}
 source("code/06_wrangle_hab.R")
 ```
+
+# Summarise runtimes
+```{r api_operation_summary, echo=FALSE}
+print(paste("Time taken for updating checklist:"))
+print(runtime_update_checklist)
+
+print(paste("Time taken for getting taxa.txt information:"))
+print(runtime_get_taxa_file)
+
+print(paste("Time taken for getting WoRMS synonyms:"))
+print(runtime_synonyms)
+
+print(paste("Time taken for getting Dyntaxa links:"))
+print(runtime_match_dyntaxa)
+
+print(paste("Time taken for getting NORCCA links:"))
+print(runtime_get_norcca)
+```
+
+### Reproducibility
+
+```{r reproducibility}
+# Date time
+Sys.time()
+# Here we store the session info for this script
+sessioninfo::session_info()
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

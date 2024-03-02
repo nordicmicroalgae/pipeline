@@ -14,7 +14,8 @@ hab_list <- read.table(file.path("data_in", hab_filename$value[nrow(hab_filename
                         fill = TRUE)
 
 # Read taxa_worms file
-taxa_worms <- read_tsv("data_out/content/taxa.txt")
+taxa_worms <- read_tsv("data_out/content/taxa.txt",
+                       col_types = cols())
 
 # Select nordic taxa and wrangle list
 nordic_hab <- hab_list %>%
@@ -25,6 +26,10 @@ nordic_hab <- hab_list %>%
                 AphiaID)) %>%
   rename(taxon_id = AphiaID,
          scientific_name = ScientificName)
+
+# Print output
+print(paste(length(unique(nordic_hab$taxon_id)),
+            "IOC HAB species found in database"))
 
 # Store file
 write_tsv(nordic_hab, "data_out/content/facts_external_links_hab_ioc.txt") 
