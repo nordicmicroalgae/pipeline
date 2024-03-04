@@ -23,12 +23,11 @@ https://github.com/nordicmicroalgae/norcca_compiler
 /
 ├─ norcca_compiler/
 │  └─ norcca_compiler/
-│     └─ norcca_compiler/
-│        ├─ __main__.py
-│        ├─ __init__.py
-│        ├─ cli.py
-│        ├─ compiler.py
-│        └─ loader.py
+│     ├─ __main__.py
+│     ├─ __init__.py
+│     ├─ cli.py
+│     ├─ compiler.py
+│     └─ loader.py
 ├─ taxa_worms/
 │  ├─ data_in/
 │  ├─ data_out/
@@ -40,14 +39,15 @@ https://github.com/nordicmicroalgae/norcca_compiler
 │  └─ extract_from_worms_main.py
 └─ update-nua-taxonomy/
    ├─ code/
-   │  ├─ 01_update_used_aphia_id_list.R
+   │  ├─ 01_get_current_aphia_ids.R
    │  ├─ 02_get_worms_synonyms.R
-   │  ├─ 03_match_worms_and_dyntaxa.R
+   │  ├─ 03_match_dyntaxa.R
    │  ├─ 04_export_algaebase.R
    │  ├─ 05_wrangle_norcca.R
    │  └─ 06_wrangle_hab.R
+   ├─ data_in/
    ├─ data_out/
    │  └─ content/
-   ├─ data_in/
+   ├─ update_history/
    └─ update-nua-taxonomy.Rmd
 ```
