@@ -9,9 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Anders Torstensson" />
+<meta name="author" content="Anders Torstensson, SMHI" />
 
-<meta name="date" content="2024-03-03" />
+<meta name="date" content="2024-03-04" />
 
 <title>Update Nordic Microalgae Taxonomy</title>
 
@@ -351,8 +351,8 @@ display: none;
 
 
 <h1 class="title toc-ignore">Update Nordic Microalgae Taxonomy</h1>
-<h4 class="author">Anders Torstensson</h4>
-<h4 class="date">2024-03-03</h4>
+<h4 class="author">Anders Torstensson, SMHI</h4>
+<h4 class="date">2024-03-04</h4>
 
 </div>
 
@@ -371,6 +371,7 @@ data_in/.</p>
 <p>A valid subscription key from <a href="https://api-portal.artdatabanken.se/" class="uri">https://api-portal.artdatabanken.se/</a> is required to
 match Dyntaxa records. The key can be stored in file or typed in when
 running the code.</p>
+<pre><code>## Warning: package &#39;snakecase&#39; was built under R version 4.3.3</code></pre>
 <pre><code>## [1] &quot;Warning: update_checklist records are loaded from CACHE&quot;</code></pre>
 <pre><code>## [1] &quot;Warning: taxa_worms records are loaded from CACHE&quot;</code></pre>
 <pre><code>## [1] &quot;Warning: synonyms are loaded from CACHE&quot;</code></pre>
@@ -389,7 +390,7 @@ running the code.</p>
 taxa</h1>
 <p>Unaccepted taxa are introduced when getting higher taxonomy in the
 previous chunk and are removed in this step</p>
-<pre><code>## [1] &quot;7799 synonyms found for 2367 taxa&quot;</code></pre>
+<pre><code>## [1] &quot;8339 synonyms found for 2631 taxa&quot;</code></pre>
 <table>
 <caption>Unaccepted taxa removed from taxa.txt</caption>
 <colgroup>
@@ -1131,6 +1132,18 @@ Lange-Bertalot &amp; Kopalová, 2014</td>
 <td align="left">Thaumatomonadidae</td>
 <td align="left">Hollande, 1952</td>
 </tr>
+<tr class="even">
+<td align="left">Warnowia parva</td>
+<td align="left">(Lohmann) Er.Lindemann, 1928</td>
+<td align="left">Species</td>
+<td align="right">233143</td>
+<td align="left">Warnowia</td>
+<td align="right">109491</td>
+<td align="left">unaccepted</td>
+<td align="right">1737580</td>
+<td align="left">Nematodinium parvum</td>
+<td align="left">(Lohmann) Moestrup, 2023</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1272,22 +1285,17 @@ Lange-Bertalot &amp; Kopalová, 2014</td>
 </tr>
 </tbody>
 </table>
-<pre><code>## [1] &quot;6778 taxa exported to taxa.txt&quot;</code></pre>
+<pre><code>## [1] &quot;6780 taxa exported to taxa.txt&quot;</code></pre>
 </div>
 <div id="match-taxa-with-dyntaxa" class="section level1">
 <h1>Match taxa with Dyntaxa</h1>
-<pre><code>## Warning in left_join(., taxa): Detected an unexpected many-to-many relationship between `x` and `y`.
-## ℹ Row 643 of `x` matches multiple rows in `y`.
-## ℹ Row 1533 of `y` matches multiple rows in `x`.
-## ℹ If a many-to-many relationship is expected, set `relationship =
-##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
 <pre><code>## [1] &quot;6321 taxa found in Dyntaxa&quot;</code></pre>
 </div>
 <div id="export-files-to-send-to-algaebase" class="section level1">
 <h1>Export files to send to AlgaeBase</h1>
-<pre><code>## [1] &quot;4701 species exported to AlgaeBase&quot;</code></pre>
+<pre><code>## [1] &quot;4702 species exported to AlgaeBase&quot;</code></pre>
 <pre><code>## [1] &quot;1100 genera exported to AlgaeBase&quot;</code></pre>
-<pre><code>## [1] &quot;977 higher taxa exported to AlgaeBase&quot;</code></pre>
+<pre><code>## [1] &quot;978 higher taxa exported to AlgaeBase&quot;</code></pre>
 </div>
 <div id="extract-culture-information-from-norcca" class="section level1">
 <h1>Extract culture information from NORCCA</h1>
@@ -1299,9 +1307,8 @@ Lange-Bertalot &amp; Kopalová, 2014</td>
 ## e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
-<pre><code>## Getting record 1 of 1</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: `Strain name`.</code></pre>
-<pre><code>## [1] &quot;Information from 0 strains extracted from NORCCA, matching 485 NuA taxa&quot;</code></pre>
+<pre><code>## Getting record 1 of 1 
+## [1] &quot;Information from 1567 strains extracted from NORCCA, matching 486 NuA taxa&quot;</code></pre>
 </div>
 <div id="reformat-ioc-hab-list-and-add-taxon_id" class="section level1">
 <h1>Reformat IOC HAB list and add taxon_id</h1>
@@ -1311,23 +1318,25 @@ Lange-Bertalot &amp; Kopalová, 2014</td>
 <div id="summarise-runtimes" class="section level1">
 <h1>Summarise runtimes</h1>
 <pre><code>## [1] &quot;Time taken for updating checklist:&quot;</code></pre>
-<pre><code>## Time difference of 1.11 secs</code></pre>
+<pre><code>## Time difference of 0.98 secs</code></pre>
 <pre><code>## [1] &quot;Time taken for getting taxa.txt information:&quot;</code></pre>
-<pre><code>## Time difference of 17.14 secs</code></pre>
+<pre><code>## Time difference of 5.29 secs</code></pre>
 <pre><code>## [1] &quot;Time taken for getting WoRMS synonyms:&quot;</code></pre>
-<pre><code>## Time difference of 1.27 secs</code></pre>
+<pre><code>## Time difference of 0.91 secs</code></pre>
 <pre><code>## [1] &quot;Time taken for getting Dyntaxa links:&quot;</code></pre>
-<pre><code>## Time difference of 1.14 secs</code></pre>
+<pre><code>## Time difference of 0.35 secs</code></pre>
 <pre><code>## [1] &quot;Time taken for getting NORCCA links:&quot;</code></pre>
-<pre><code>## Time difference of 16.39 secs</code></pre>
+<pre><code>## Time difference of 11.9 secs</code></pre>
 </div>
 <div id="create-zip-archive" class="section level1">
 <h1>Create zip-archive</h1>
 <p>Store all output in update_history/update_archive_YYYYMMDD.zip</p>
+<pre><code>## Warning in system2(zip, args, input = input, invisible = TRUE): &#39;&quot;zip&quot;&#39; not
+## found</code></pre>
 </div>
 <div id="reproducibility" class="section level1">
 <h1>Reproducibility</h1>
-<pre><code>## [1] &quot;2024-03-03 20:44:16 CET&quot;</code></pre>
+<pre><code>## [1] &quot;2024-03-04 13:27:43 CET&quot;</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.3.2 (2023-10-31 ucrt)
@@ -1337,111 +1346,110 @@ Lange-Bertalot &amp; Kopalová, 2014</td>
 ##  language (EN)
 ##  collate  Swedish_Sweden.utf8
 ##  ctype    Swedish_Sweden.utf8
-##  tz       Europe/Paris
-##  date     2024-03-03
+##  tz       Europe/Stockholm
+##  date     2024-03-04
 ##  pandoc   3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date (UTC) lib source
-##  bit           4.0.5   2022-11-15 [1] CRAN (R 4.1.3)
-##  bit64         4.0.5   2020-08-30 [1] CRAN (R 4.1.0)
-##  bslib         0.5.0   2023-06-09 [1] CRAN (R 4.1.0)
-##  cachem        1.0.7   2023-02-24 [1] CRAN (R 4.1.3)
-##  cellranger    1.1.0   2016-07-27 [1] CRAN (R 4.1.0)
-##  class         7.3-21  2023-01-23 [1] CRAN (R 4.1.3)
-##  classInt      0.4-9   2023-02-28 [1] CRAN (R 4.1.3)
-##  cli           3.6.1   2023-03-23 [1] CRAN (R 4.1.3)
-##  colorspace    2.1-0   2023-01-23 [1] CRAN (R 4.1.3)
-##  crayon        1.5.2   2022-09-29 [1] CRAN (R 4.1.3)
-##  crosstalk     1.2.0   2021-11-04 [1] CRAN (R 4.1.0)
-##  crul          1.4.0   2023-05-17 [1] CRAN (R 4.1.0)
-##  curl          5.0.0   2023-01-12 [1] CRAN (R 4.1.3)
-##  data.table    1.14.8  2023-02-17 [1] CRAN (R 4.1.3)
-##  DBI           1.1.3   2022-06-18 [1] CRAN (R 4.1.3)
-##  digest        0.6.31  2022-12-11 [1] CRAN (R 4.1.3)
-##  dplyr       * 1.1.2   2023-04-20 [1] CRAN (R 4.1.3)
-##  DT          * 0.28    2023-05-18 [1] CRAN (R 4.1.0)
-##  e1071         1.7-13  2023-02-01 [1] CRAN (R 4.1.0)
-##  evaluate      0.21    2023-05-05 [1] CRAN (R 4.1.0)
-##  fansi         1.0.4   2023-01-22 [1] CRAN (R 4.1.3)
-##  fastmap       1.1.1   2023-02-24 [1] CRAN (R 4.1.3)
-##  forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.1.3)
-##  generics      0.1.3   2022-07-05 [1] CRAN (R 4.1.3)
-##  ggplot2     * 3.4.2   2023-04-03 [1] CRAN (R 4.1.3)
-##  glue          1.6.2   2022-02-24 [1] CRAN (R 4.1.3)
-##  gtable        0.3.3   2023-03-21 [1] CRAN (R 4.1.3)
-##  here          1.0.1   2020-12-13 [1] CRAN (R 4.1.1)
-##  hms           1.1.3   2023-03-21 [1] CRAN (R 4.1.3)
-##  htmltools     0.5.5   2023-03-23 [1] CRAN (R 4.1.3)
-##  htmlwidgets   1.6.2   2023-03-17 [1] CRAN (R 4.1.3)
-##  httpcode      0.3.0   2020-04-10 [1] CRAN (R 4.1.0)
-##  httr        * 1.4.6   2023-05-08 [1] CRAN (R 4.1.0)
-##  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.1.0)
-##  jsonlite    * 1.8.4   2022-12-06 [1] CRAN (R 4.1.3)
-##  KernSmooth    2.23-20 2021-05-03 [1] CRAN (R 4.1.3)
-##  knitr       * 1.43    2023-05-25 [1] CRAN (R 4.1.0)
-##  lattice       0.21-8  2023-04-05 [1] CRAN (R 4.1.3)
-##  lazyeval      0.2.2   2019-03-15 [1] CRAN (R 4.1.0)
-##  leaflet     * 2.1.2   2023-03-10 [1] CRAN (R 4.1.3)
-##  lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.1.3)
-##  lubridate   * 1.9.2   2023-02-10 [1] CRAN (R 4.1.3)
-##  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.1.3)
-##  Matrix        1.5-4   2023-04-04 [1] CRAN (R 4.1.3)
-##  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.1.0)
-##  pillar        1.9.0   2023-03-22 [1] CRAN (R 4.1.3)
-##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.1.0)
-##  plotly      * 4.10.2  2023-06-03 [1] CRAN (R 4.1.0)
-##  png           0.1-8   2022-11-29 [1] CRAN (R 4.1.3)
-##  proxy         0.4-27  2022-06-09 [1] CRAN (R 4.1.3)
-##  purrr       * 1.0.1   2023-01-10 [1] CRAN (R 4.1.3)
-##  R6            2.5.1   2021-08-19 [1] CRAN (R 4.1.1)
-##  rappdirs      0.3.3   2021-01-31 [1] CRAN (R 4.1.0)
-##  Rcpp          1.0.10  2023-01-22 [1] CRAN (R 4.1.3)
-##  readr       * 2.1.4   2023-02-10 [1] CRAN (R 4.1.3)
-##  readxl      * 1.4.2   2023-02-09 [1] CRAN (R 4.1.3)
+##  bit           4.0.5   2022-11-15 [1] CRAN (R 4.3.2)
+##  bit64         4.0.5   2020-08-30 [1] CRAN (R 4.3.2)
+##  bslib         0.6.1   2023-11-28 [1] CRAN (R 4.3.2)
+##  cachem        1.0.8   2023-05-01 [1] CRAN (R 4.3.2)
+##  cellranger    1.1.0   2016-07-27 [1] CRAN (R 4.3.2)
+##  class         7.3-22  2023-05-03 [2] CRAN (R 4.3.2)
+##  classInt      0.4-10  2023-09-05 [1] CRAN (R 4.3.2)
+##  cli           3.6.2   2023-12-11 [1] CRAN (R 4.3.2)
+##  colorspace    2.1-0   2023-01-23 [1] CRAN (R 4.3.2)
+##  crayon        1.5.2   2022-09-29 [1] CRAN (R 4.3.2)
+##  crosstalk     1.2.1   2023-11-23 [1] CRAN (R 4.3.2)
+##  crul          1.4.0   2023-05-17 [1] CRAN (R 4.3.2)
+##  curl          5.2.0   2023-12-08 [1] CRAN (R 4.3.2)
+##  data.table    1.15.0  2024-01-30 [1] CRAN (R 4.3.2)
+##  DBI           1.2.2   2024-02-16 [1] CRAN (R 4.3.2)
+##  digest        0.6.34  2024-01-11 [1] CRAN (R 4.3.2)
+##  dplyr       * 1.1.4   2023-11-17 [1] CRAN (R 4.3.2)
+##  DT          * 0.32    2024-02-19 [1] CRAN (R 4.3.2)
+##  e1071         1.7-14  2023-12-06 [1] CRAN (R 4.3.2)
+##  evaluate      0.23    2023-11-01 [1] CRAN (R 4.3.2)
+##  fansi         1.0.6   2023-12-08 [1] CRAN (R 4.3.2)
+##  fastmap       1.1.1   2023-02-24 [1] CRAN (R 4.3.2)
+##  forcats     * 1.0.0   2023-01-29 [1] CRAN (R 4.3.2)
+##  generics      0.1.3   2022-07-05 [1] CRAN (R 4.3.2)
+##  ggplot2     * 3.4.4   2023-10-12 [1] CRAN (R 4.3.2)
+##  glue          1.7.0   2024-01-09 [1] CRAN (R 4.3.2)
+##  gtable        0.3.4   2023-08-21 [1] CRAN (R 4.3.2)
+##  here          1.0.1   2020-12-13 [1] CRAN (R 4.3.2)
+##  hms           1.1.3   2023-03-21 [1] CRAN (R 4.3.2)
+##  htmltools     0.5.7   2023-11-03 [1] CRAN (R 4.3.2)
+##  htmlwidgets   1.6.4   2023-12-06 [1] CRAN (R 4.3.2)
+##  httpcode      0.3.0   2020-04-10 [1] CRAN (R 4.3.2)
+##  httr        * 1.4.7   2023-08-15 [1] CRAN (R 4.3.2)
+##  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.3.2)
+##  jsonlite    * 1.8.8   2023-12-04 [1] CRAN (R 4.3.2)
+##  KernSmooth    2.23-22 2023-07-10 [2] CRAN (R 4.3.2)
+##  knitr       * 1.45    2023-10-30 [1] CRAN (R 4.3.2)
+##  lattice       0.21-9  2023-10-01 [2] CRAN (R 4.3.2)
+##  lazyeval      0.2.2   2019-03-15 [1] CRAN (R 4.3.2)
+##  leaflet     * 2.2.1   2023-11-13 [1] CRAN (R 4.3.2)
+##  lifecycle     1.0.4   2023-11-07 [1] CRAN (R 4.3.2)
+##  lubridate   * 1.9.3   2023-09-27 [1] CRAN (R 4.3.2)
+##  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.3.2)
+##  Matrix        1.6-1.1 2023-09-18 [2] CRAN (R 4.3.2)
+##  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.3.2)
+##  pillar        1.9.0   2023-03-22 [1] CRAN (R 4.3.2)
+##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.3.2)
+##  plotly      * 4.10.4  2024-01-13 [1] CRAN (R 4.3.2)
+##  png           0.1-8   2022-11-29 [1] CRAN (R 4.3.1)
+##  proxy         0.4-27  2022-06-09 [1] CRAN (R 4.3.2)
+##  purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.3.2)
+##  R6            2.5.1   2021-08-19 [1] CRAN (R 4.3.2)
+##  rappdirs      0.3.3   2021-01-31 [1] CRAN (R 4.3.2)
+##  Rcpp          1.0.12  2024-01-09 [1] CRAN (R 4.3.2)
+##  readr       * 2.1.5   2024-01-10 [1] CRAN (R 4.3.2)
+##  readxl      * 1.4.3   2023-07-06 [1] CRAN (R 4.3.2)
 ##  reticulate  * 1.35.0  2024-01-31 [1] CRAN (R 4.3.2)
-##  rlang         1.1.0   2023-03-14 [1] CRAN (R 4.1.3)
-##  rmarkdown     2.22    2023-06-01 [1] CRAN (R 4.1.0)
-##  rprojroot     2.0.3   2022-04-02 [1] CRAN (R 4.1.3)
-##  rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.1.3)
-##  sass          0.4.5   2023-01-24 [1] CRAN (R 4.1.3)
-##  scales        1.2.1   2022-08-20 [1] CRAN (R 4.1.3)
-##  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.1.3)
-##  sf          * 1.0-12  2023-03-19 [1] CRAN (R 4.1.3)
-##  SHARK4R     * 0.0.1   2023-12-08 [1] Github (sharksmhi/SHARK4R@9b6b910)
-##  snakecase     0.11.0  2019-05-25 [1] CRAN (R 4.1.2)
-##  stringi       1.7.12  2023-01-11 [1] CRAN (R 4.1.3)
-##  stringr     * 1.5.0   2022-12-02 [1] CRAN (R 4.1.3)
-##  tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.1.3)
-##  tidyr       * 1.3.0   2023-01-24 [1] CRAN (R 4.1.3)
-##  tidyselect    1.2.0   2022-10-10 [1] CRAN (R 4.1.3)
-##  tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.1.3)
-##  timechange    0.2.0   2023-01-11 [1] CRAN (R 4.1.3)
-##  triebeard     0.4.1   2023-03-04 [1] CRAN (R 4.1.3)
-##  tzdb          0.3.0   2022-03-28 [1] CRAN (R 4.1.3)
-##  units         0.8-1   2022-12-10 [1] CRAN (R 4.1.3)
-##  urltools      1.7.3   2019-04-14 [1] CRAN (R 4.1.0)
-##  utf8          1.2.3   2023-01-31 [1] CRAN (R 4.1.0)
-##  vctrs         0.6.4   2023-10-12 [1] CRAN (R 4.1.0)
-##  viridisLite   0.4.2   2023-05-02 [1] CRAN (R 4.1.0)
-##  vroom         1.6.1   2023-01-22 [1] CRAN (R 4.1.3)
-##  withr         2.5.0   2022-03-03 [1] CRAN (R 4.1.2)
-##  worrms      * 0.4.2   2020-07-08 [1] CRAN (R 4.1.0)
-##  writexl     * 1.4.2   2023-01-06 [1] CRAN (R 4.1.3)
-##  xfun          0.39    2023-04-20 [1] CRAN (R 4.1.3)
-##  yaml          2.3.7   2023-01-23 [1] CRAN (R 4.1.3)
+##  rlang         1.1.3   2024-01-10 [1] CRAN (R 4.3.2)
+##  rmarkdown     2.25    2023-09-18 [1] CRAN (R 4.3.2)
+##  rprojroot     2.0.4   2023-11-05 [1] CRAN (R 4.3.2)
+##  rstudioapi    0.15.0  2023-07-07 [1] CRAN (R 4.3.2)
+##  sass          0.4.8   2023-12-06 [1] CRAN (R 4.3.2)
+##  scales        1.3.0   2023-11-28 [1] CRAN (R 4.3.2)
+##  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.3.2)
+##  sf          * 1.0-15  2023-12-18 [1] CRAN (R 4.3.2)
+##  SHARK4R     * 0.0.1   2024-03-01 [1] Github (sharksmhi/SHARK4R@9b6b910)
+##  snakecase   * 0.11.1  2023-08-27 [1] CRAN (R 4.3.3)
+##  stringi       1.8.3   2023-12-11 [1] CRAN (R 4.3.2)
+##  stringr     * 1.5.1   2023-11-14 [1] CRAN (R 4.3.2)
+##  tibble      * 3.2.1   2023-03-20 [1] CRAN (R 4.3.2)
+##  tidyr       * 1.3.1   2024-01-24 [1] CRAN (R 4.3.2)
+##  tidyselect    1.2.0   2022-10-10 [1] CRAN (R 4.3.2)
+##  tidyverse   * 2.0.0   2023-02-22 [1] CRAN (R 4.3.2)
+##  timechange    0.3.0   2024-01-18 [1] CRAN (R 4.3.2)
+##  triebeard     0.4.1   2023-03-04 [1] CRAN (R 4.3.2)
+##  tzdb          0.4.0   2023-05-12 [1] CRAN (R 4.3.2)
+##  units         0.8-5   2023-11-28 [1] CRAN (R 4.3.2)
+##  urltools      1.7.3   2019-04-14 [1] CRAN (R 4.3.2)
+##  utf8          1.2.4   2023-10-22 [1] CRAN (R 4.3.2)
+##  vctrs         0.6.5   2023-12-01 [1] CRAN (R 4.3.2)
+##  viridisLite   0.4.2   2023-05-02 [1] CRAN (R 4.3.2)
+##  vroom         1.6.5   2023-12-05 [1] CRAN (R 4.3.2)
+##  withr         3.0.0   2024-01-16 [1] CRAN (R 4.3.2)
+##  worrms      * 0.4.3   2023-06-20 [1] CRAN (R 4.3.2)
+##  writexl     * 1.5.0   2024-02-09 [1] CRAN (R 4.3.2)
+##  xfun          0.42    2024-02-08 [1] CRAN (R 4.3.2)
+##  yaml          2.3.8   2023-12-11 [1] CRAN (R 4.3.2)
 ## 
-##  [1] C:/R/R-4.1.0/library
-##  [2] C:/R/R-4.3.2/library
+##  [1] C:/Users/a002440/AppData/Local/R/win-library/4.3
+##  [2] C:/Program Files/R/R-4.3.2/library
 ## 
 ## ─ Python configuration ───────────────────────────────────────────────────────
-##  python:         C:/Continuum/Miniconda/python.exe
-##  libpython:      C:/Continuum/Miniconda/python39.dll
-##  pythonhome:     C:/Continuum/Miniconda
-##  version:        3.9.5 (default, May 18 2021, 14:42:02) [MSC v.1916 64 bit (AMD64)]
+##  python:         C:/Python/python.exe
+##  libpython:      C:/Python/python312.dll
+##  pythonhome:     C:/Python
+##  version:        3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]
 ##  Architecture:   64bit
-##  numpy:          C:/Continuum/Miniconda/Lib/site-packages/numpy
-##  numpy_version:  1.21.1
+##  numpy:           [NOT FOUND]
 ##  
 ##  NOTE: Python version was forced by RETICULATE_PYTHON_FALLBACK
 ## 
