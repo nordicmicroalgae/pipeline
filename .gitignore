@@ -50,6 +50,7 @@ rsconnect/
 
 # Old files
 data_in/old/
+data_out/content/old/
 code/old/
 
 # Generated data
@@ -63,7 +64,3 @@ code/dyntaxa_subscription_key.R
 # Cache
 *.db
 *.rda
-
-# Report
-*.html
-*.pdf

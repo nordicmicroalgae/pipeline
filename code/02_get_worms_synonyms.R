@@ -38,13 +38,19 @@ taxa_worms_accepted <- taxa_worms %>%
   filter(!is.na(scientific_name)) %>%
   rename(taxon_id = aphia_id)
 
+# Remove all unaccepted names that appear when constructing the higher taxonomy
+taxa_worms_unaccepted <- taxa_worms %>%
+  filter(status == "unaccepted") %>%
+  rename(taxon_id = aphia_id)
+
 # Find duplicated taxa names
 duplicates <- taxa_worms_accepted %>%
   filter(duplicated(scientific_name))
 
 # Create separate file with worms links
 worms_links <- taxa_worms_accepted %>%
-  select(taxon_id, url)
+  mutate(aphia_id = taxon_id) %>%
+  select(taxon_id, aphia_id, url)
 
 # Find current date for checklist
 date <- format(Sys.Date(),
@@ -58,6 +64,7 @@ checklist <- taxa_worms_accepted %>%
 
 # Store files
 write_tsv(worms_synonyms, "data_out/content/synonyms.txt", na = "") 
+write_tsv(taxa_worms_unaccepted, "data_out/taxa_worms_unaccepted.txt", na = "") 
 write_tsv(taxa_worms_accepted, "data_out/content/taxa.txt", na = "") 
 write_tsv(worms_links, "data_out/content/facts_external_links_worms.txt", na = "") 
 write_tsv(duplicates, "data_out/duplicated_scientific_name.txt", na = "") 

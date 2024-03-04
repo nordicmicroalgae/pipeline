@@ -8,11 +8,11 @@ bvol_filename <- list.files("data_in") %>%
   arrange(value)
 
 # Read current NOMP list
-bvol_nomp <- read.table(file.path("data_in", bvol_filename$value[nrow(bvol_filename)]), 
-                        header=TRUE, 
-                        sep="\t", 
-                        encoding = "latin1",
-                        fill = TRUE)
+bvol_nomp <- read_tsv(file.path("data_in", bvol_filename$value[nrow(bvol_filename)]),
+                      locale = locale(encoding = "latin1")) %>%
+  select(where(~ !(all(is.na(.)))))
+
+names(bvol_nomp) <- gsub("\\n", "", names(bvol_nomp))
 
 # Read a WoRMS-matched species list from old NuA
 old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
@@ -55,5 +55,6 @@ translate <- all_records %>%
          aphia_id_accepted = valid_AphiaID)
 
 # Store files, use used_aphia_id_list.txt in https://github.com/nordicmicroalgae/taxa-worms to build taxa_worms.txt
-write_delim(translate, "data_out/translate_to_worms.txt", delim = "\t") 
-write_delim(all_records, "data_in/used_aphia_id_list.txt", delim = "\t") 
+write_tsv(translate, "data_out/translate_to_worms.txt")
+write_tsv(all_records, "data_in/used_aphia_id_list.txt")
+write_tsv(bvol_nomp, "data_out/content/facts_biovolumes_nomp.txt", na = "")

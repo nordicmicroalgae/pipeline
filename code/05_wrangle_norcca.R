@@ -1,4 +1,5 @@
 library(tidyverse)
+library(worrms)
 
 # Read NORCCA taxa lists
 norcca_worms <- read_tsv("data_in/norcca_extended_taxa_names_matched.txt",
@@ -71,7 +72,11 @@ norcca_combined <- norcca_strains %>%
          scientific_name = gsub(" sp.", "", scientific_name)) %>%
   select(-status, -AphiaID, -AphiaID_accepted) %>%
   rename(taxon_id = used_aphia_id) %>%
-  filter(taxon_id %in% taxa_worms$taxon_id)
+  filter(taxon_id %in% taxa_worms$taxon_id) %>%
+  mutate(`Strain name` = toupper(gsub('.*strain/', '', `Strain Link`)))
+
+# Make snakecase headers
+names(norcca_combined) <- snakecase::to_snake_case(names(norcca_combined))
 
 # Print output
 print(paste("Information from",

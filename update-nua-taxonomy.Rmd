@@ -1,18 +1,27 @@
 ---
-title: "update-nua-taxonomy"
-author: "Anders Torstensson"
+title: "Update Nordic Microalgae Taxonomy"
+author: "Anders Torstensson, SMHI"
 date: "`r Sys.Date()`"
-output: pdf_document
+output: html_document
 params: 
   cache_update_checklist: FALSE # Run on cached data, FALSE if doing annual updates
   cache_taxa_worms: FALSE # Run on cached data, FALSE if doing annual updates
   cache_synonyms: FALSE # Run on cached data, FALSE if doing annual updates
   cache_dyntaxa: FALSE # Run on cached data, FALSE if doing annual updates
+knit: (function(inputFile, encoding) {
+                        rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=paste0("update_history/update_report_",
+                        format(Sys.Date(), "%Y%m%d"),
+                        ".html")) })
 ---
 
-# Setup
+This Rmarkdown file calls necessary R and Python code for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Links to required Python code is provided below. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for NuA content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
 
-```{r setup, include=FALSE}
+# Setup
+A valid subscription key from https://api-portal.artdatabanken.se/ is required to match Dyntaxa records. The key can be stored in file or typed in when running the code.
+
+```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(reticulate)
 library(tidyverse)
@@ -21,6 +30,22 @@ if(file.exists("code/dyntaxa_subscription_key.R")) {
   source("code/dyntaxa_subscription_key.R")
 } else {
   subscription_key <- rstudioapi::askForPassword(prompt = "Please enter your SLU Artdatabanken API key")
+}
+
+if(params$cache_update_checklist) {
+  print(paste("Warning: update_checklist records are loaded from CACHE"))
+}
+
+if(params$cache_taxa_worms) {
+  print(paste("Warning: taxa_worms records are loaded from CACHE"))
+}
+
+if(params$cache_synonyms) {
+  print(paste("Warning: synonyms are loaded from CACHE"))
+}
+
+if(params$cache_dyntaxa) {
+  print(paste("Warning: dyntaxa records are loaded from CACHE"))
 }
 ```
 
@@ -32,7 +57,7 @@ if(!params$cache_update_checklist) {
 }
 
 start.time <- Sys.time()
-source("code/01_update_used_aphia_id_list.R")
+source("code/01_get_current_aphia_ids.R")
 end.time <- Sys.time()
 runtime_update_checklist <- round(end.time - start.time, 2)
 ```
@@ -55,7 +80,8 @@ end.time <- Sys.time()
 runtime_get_taxa_file <- round(end.time - start.time, 2)
 ```
 
-# Get all synonyms from WoRMS and find duplcated taxa, potential errors can be deleted
+# Get all synonyms from WoRMS and find unaccepted and duplicated taxa
+Unaccepted taxa are introduced when getting higher taxonomy in the previous chunk and are removed in this step
 
 ```{r synonyms, include=FALSE}
 if(!params$cache_synonyms) {
@@ -68,13 +94,31 @@ end.time <- Sys.time()
 runtime_synonyms <- round(end.time - start.time, 2)
 ```
 
-```{r duplicates_output, echo=FALSE}
+```{r unaccepted_taxa, echo=FALSE}
 # Print output
 print(paste(length(worms_synonyms$synonym_name), 
             "synonyms found for", 
             length(unique(worms_synonyms$taxon_id)),
             "taxa"))
 
+# Print table
+taxa_worms_unaccepted %>%
+  select(-classification,
+         -url,
+         -genus,
+         -family,
+         -order,
+         -class,
+         -phylum,
+         -kingdom) %>%
+  arrange(scientific_name) %>%
+  knitr::kable(caption = "Unaccepted taxa removed from taxa.txt")
+```
+
+# Find and remove duplicates from taxa file manually
+Potential duplicate errors could be deleted in this chunk
+
+```{r clean_duplicate_taxa, echo=FALSE}
 # Print table
 duplicates %>%
   select(-classification,
@@ -86,11 +130,7 @@ duplicates %>%
          -phylum,
          -kingdom) %>%
   knitr::kable(caption = "Duplicates before cleanup")
-```
 
-# Remove duplicates from taxa file manually
-
-```{r clean_taxa, echo=FALSE}
 # Select taxon_id to remove, e.g. same name for multiple taxonomic levels
 taxa_remove <- c(599656, # Glaucophyta Phylum (Division)
                  582161) # Euglenozoa Infrakingdom
@@ -134,7 +174,7 @@ if(!params$cache_dyntaxa) {
 }
 
 start.time <- Sys.time()
-source("code/03_match_worms_and_dyntaxa.R")
+source("code/03_match_dyntaxa.R")
 end.time <- Sys.time()
 runtime_match_dyntaxa <- round(end.time - start.time, 2)
 ```
@@ -209,12 +249,39 @@ print(paste("Time taken for getting NORCCA links:"))
 print(runtime_get_norcca)
 ```
 
-### Reproducibility
+# Create zip-archive
+Store all output in update_history/update_archive_YYYYMMDD.zip
 
-```{r reproducibility}
+```{r update_archive, echo=FALSE}
+zip(zipfile = paste0('update_history/update_archive_', 
+                     format(Sys.Date(), "%Y%m%d")
+                     ), 
+    files = c('data_out/content/facts_biovolumes_nomp.txt',
+              'data_out/content/facts_external_links_dyntaxa.txt',
+              'data_out/content/facts_external_links_hab_ioc.txt',
+              'data_out/content/facts_external_links_norcca.txt',
+              'data_out/content/facts_external_links_worms.txt',
+              'data_out/content/synonyms.txt',
+              'data_out/content/taxa.txt',
+              'data_out/nordic_microalgae_genus.xlsx',
+              'data_out/nordic_microalgae_higher_taxonomy.xlsx',
+              'data_out/nordic_microalgae_species.xlsx',
+              'data_out/duplicated_scientific_name.txt',
+              'data_out/taxa_worms_unaccepted.txt',
+              'data_out/taxa_worms.txt',
+              'data_out/translate_to_worms.txt',
+              paste0("data_out/nordicmicroalgae_checklist_", date, ".txt"),
+              paste0("data_out/nordicmicroalgae_checklist_", date, ".xlsx")
+              )
+    )
+```
+
+
+# Reproducibility
+
+```{r reproducibility, echo=FALSE}
 # Date time
 Sys.time()
 # Here we store the session info for this script
 sessioninfo::session_info()
 ```
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
