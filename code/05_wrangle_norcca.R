@@ -73,14 +73,14 @@ norcca_combined <- norcca_strains %>%
   select(-status, -AphiaID, -AphiaID_accepted) %>%
   rename(taxon_id = used_aphia_id) %>%
   filter(taxon_id %in% taxa_worms$taxon_id) %>%
-  mutate(`Strain name` = toupper(gsub('.*strain/', '', `Strain Link`)))
+  mutate(url_slug = gsub('.*strain/', '', `Strain Link`))
 
 # Make snakecase headers
 names(norcca_combined) <- snakecase::to_snake_case(names(norcca_combined))
 
 # Print output
 print(paste("Information from",
-            length(unique(norcca_combined$`Strain name`)),
+            length(unique(norcca_combined$strain_name)),
             "strains extracted from NORCCA, matching",
             length(unique(norcca_combined$scientific_name)),
             "NuA taxa"))

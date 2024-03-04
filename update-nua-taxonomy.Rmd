@@ -23,9 +23,16 @@ A valid subscription key from https://api-portal.artdatabanken.se/ is required t
 
 ```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# Load required libraries
 library(reticulate)
+library(snakecase)
+library(worrms)
+library(writexl)
+library(SHARK4R)
 library(tidyverse)
 
+# Print if records are cached
 if(file.exists("code/dyntaxa_subscription_key.R")) {
   source("code/dyntaxa_subscription_key.R")
 } else {
@@ -196,7 +203,7 @@ using https://github.com/nordicmicroalgae/norcca_compiler
 ```{r get_norcca, include=FALSE, message=FALSE, warning=FALSE}
 start.time <- Sys.time()
 
-setwd("../norcca_compiler/norcca_compiler")
+setwd("../norcca_compiler")
 
 system("venv\\Scripts\\activate")
 
