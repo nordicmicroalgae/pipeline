@@ -1,7 +1,7 @@
 library(tidyverse)
 library(SHARK4R)
 
-if(!exists(subscription_key)) {
+if(!exists('subscription_key')) {
   source("code/dyntaxa_subscription_key.R")
 }
 

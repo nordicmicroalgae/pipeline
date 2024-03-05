@@ -58,7 +58,8 @@ data_out/*.txt
 data_out/*.xlsx
 data_out/content/*.txt
 
-# Key
+# API keys
+code/algaebase_subscription_key.R
 code/dyntaxa_subscription_key.R
 
 # Cache

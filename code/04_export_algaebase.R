@@ -1,5 +1,16 @@
 library(tidyverse)
 library(writexl)
+library(algaeClassify)
+
+# Source modified functions from the algaeClassify package
+source("code/fun/algaebase_genus_search.r") # Edited function from algaeClassify, with added id
+source("code/fun/algaebase_species_search.r") # Edited function from algaeClassify, with added id
+source("code/fun/algaebase_search_df.r") # Edited function from algaeClassify, with added id
+
+# Load API key
+if(!exists('ALGAEBASE_APIKEY')) {
+  source("code/algaebase_subscription_key.R")
+}
 
 # Read taxa_worms file
 taxa_worms <- read.table("data_out/content/taxa.txt", 
@@ -50,3 +61,13 @@ algaebase_higher_taxonomy <- taxa_worms %>%
 write_xlsx(algaebase_species, "data_out/nordic_microalgae_species.xlsx")
 write_xlsx(algaebase_genus, "data_out/nordic_microalgae_genus.xlsx")
 write_xlsx(algaebase_higher_taxonomy, "data_out/nordic_microalgae_higher_taxonomy.xlsx")
+
+# Prepare names for AlgaeBase API query
+algaebase_species_api <- taxa_worms %>%
+  filter(rank %in% c("Species", "Variety", "Forma", "Subspecies")) %>%
+  select(scientific_name, rank, taxon_id) %>%
+  genus_species_extract(phyto.name = 'scientific_name')
+
+# Call the Algaebase API and add taxon_id
+algaebase_results <- algaebase_search_df(algaebase_species_api, apikey = ALGAEBASE_APIKEY) %>% 
+  left_join(algaebase_species_api)
