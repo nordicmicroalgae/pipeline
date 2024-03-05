@@ -198,7 +198,10 @@ runtime_match_dyntaxa <- round(end.time - start.time, 2)
 # Export files to send to AlgaeBase
 
 ```{r export_algaebase, echo=FALSE, include=FALSE}
+start.time <- Sys.time()
 source("code/04_export_algaebase.R")
+end.time <- Sys.time()
+runtime_algaebase <- round(end.time - start.time, 2)
 ```
 
 ```{r summary_algaebase, echo=FALSE}
@@ -260,6 +263,9 @@ print(runtime_synonyms)
 
 print(paste("Time taken for getting Dyntaxa links:"))
 print(runtime_match_dyntaxa)
+
+print(paste("Time taken for getting AlgaeBase links:"))
+print(runtime_algaebase)
 
 print(paste("Time taken for getting NORCCA links:"))
 print(runtime_get_norcca)
