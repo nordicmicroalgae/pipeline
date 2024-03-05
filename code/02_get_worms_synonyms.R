@@ -34,7 +34,7 @@ worms_synonyms <- all_synonyms %>%
 
 # Remove all unaccepted names that appear when constructing the higher taxonomy
 taxa_worms_accepted <- taxa_worms %>%
-  filter(!status == "unaccepted") %>%
+  filter(!status == "unaccepted" | aphia_id == 115104) %>%
   filter(!is.na(scientific_name)) %>%
   rename(taxon_id = aphia_id)
 
