@@ -32,12 +32,20 @@ library(writexl)
 library(SHARK4R)
 library(tidyverse)
 library(zip)
+library(algaeClassify)
 
 # Print if records are cached
 if(file.exists("code/dyntaxa_subscription_key.R")) {
   source("code/dyntaxa_subscription_key.R")
 } else {
   subscription_key <- rstudioapi::askForPassword(prompt = "Please enter your SLU Artdatabanken API key")
+}
+
+# Print if records are cached
+if(file.exists("code/algaebase_subscription_key.R")) {
+  source("code/algaebase_subscription_key.R")
+} else {
+  ALGAEBASE_APIKEY <- rstudioapi::askForPassword(prompt = "Please enter your AlgaeBase API key")
 }
 
 if(params$cache_update_checklist) {
@@ -189,13 +197,13 @@ runtime_match_dyntaxa <- round(end.time - start.time, 2)
 
 # Export files to send to AlgaeBase
 
-```{r export_algaebase, echo=FALSE}
+```{r export_algaebase, echo=FALSE, include=FALSE}
 source("code/04_export_algaebase.R")
+```
 
+```{r summary_algaebase, echo=FALSE}
 # Print
-print(paste(nrow(algaebase_species), "species exported to AlgaeBase"))
-print(paste(nrow(algaebase_genus), "genera exported to AlgaeBase"))
-print(paste(nrow(algaebase_higher_taxonomy), "higher taxa exported to AlgaeBase"))
+print(paste(nrow(algaebase_results), "species and genera found in AlgaeBase"))
 ```
 
 # Extract culture information from NORCCA 
