@@ -64,9 +64,10 @@ write_xlsx(algaebase_higher_taxonomy, "data_out/nordic_microalgae_higher_taxonom
 
 # Prepare names for AlgaeBase API query
 algaebase_species_api <- taxa_worms %>%
-  filter(rank %in% c("Species", "Variety", "Forma", "Subspecies", "genus")) %>%
+  filter(rank %in% c("Species", "Variety", "Forma", "Subspecies", "Genus")) %>%
   select(scientific_name, rank, taxon_id) %>%
-  genus_species_extract(phyto.name = 'scientific_name')
+  genus_species_extract(phyto.name = 'scientific_name') %>%
+  filter(!duplicated(scientific_name))
 
 # Load stored file if running from cache
 if(file.exists("algaebase_cache.rda")) {
@@ -80,18 +81,24 @@ if(file.exists("algaebase_cache.rda")) {
   save(algaebase_results, file = "algaebase_cache.rda")
 }
 
+# Join and wrangle
 algaebase_results <- algaebase_results %>% 
-  left_join(algaebase_species_api) %>%
+  rename(scientific_name = input.name) %>%
+  distinct() %>%
+  left_join(select(algaebase_species_api, 
+                   -genus,
+                   -species)
+            , by = 'scientific_name') %>%
   mutate(url = ifelse(taxon.rank=="genus",
                       paste0("https://www.algaebase.org/search/genus/detail/?genus_id=", id),
                       paste0("https://www.algaebase.org/search/species/detail/?species_id=", id)
   )
   ) %>%
-  select(taxon_id, id, scientific_name, input.name, kingdom, phylum, class, order, family, genus, species, taxon.rank, url) %>%
-  rename(input_name = input.name,
-         ab_id = id,
+  select(taxon_id, id, scientific_name, kingdom, phylum, class, order, family, genus, species, taxon.rank, url) %>%
+  rename(ab_id = id,
          taxon_rank = taxon.rank) %>%
-  filter(!is.na(ab_id))
+  filter(!is.na(ab_id))%>%
+  filter(!is.na(taxon_id))
 
 # Store file
 write_tsv(algaebase_results, "data_out/content/facts_external_links_algaebase.txt", na = "")
