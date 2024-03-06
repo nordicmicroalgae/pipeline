@@ -64,7 +64,7 @@ write_xlsx(algaebase_higher_taxonomy, "data_out/nordic_microalgae_higher_taxonom
 
 # Prepare names for AlgaeBase API query
 algaebase_species_api <- taxa_worms %>%
-  filter(rank %in% c("Species", "Variety", "Forma", "Subspecies")) %>%
+  filter(rank %in% c("Species", "Variety", "Forma", "Subspecies", "genus")) %>%
   select(scientific_name, rank, taxon_id) %>%
   genus_species_extract(phyto.name = 'scientific_name')
 
