@@ -76,21 +76,22 @@ if(file.exists("algaebase_cache.rda")) {
   algaebase_results <- algaebase_search_df(algaebase_species_api, 
                                            apikey = ALGAEBASE_APIKEY,
                                            genus.name = "genus",
-                                           species.name = "species") %>% 
-    left_join(algaebase_species_api) %>%
-    mutate(url = ifelse(taxon.rank=="genus",
-                        paste0("https://www.algaebase.org/search/genus/detail/?genus_id=", id),
-                        paste0("https://www.algaebase.org/search/species/detail/?species_id=", id)
-    )
-    ) %>%
-    select(taxon_id, id, scientific_name, input.name, kingdom, phylum, class, order, family, genus, species, taxon.rank, url) %>%
-    rename(input_name = input.name,
-           ab_id = id,
-           taxon_rank = taxon.rank) %>%
-    filter(!is.na(ab_id))
-  
+                                           species.name = "species") 
   save(algaebase_results, file = "algaebase_cache.rda")
 }
+
+algaebase_results <- algaebase_results %>% 
+  left_join(algaebase_species_api) %>%
+  mutate(url = ifelse(taxon.rank=="genus",
+                      paste0("https://www.algaebase.org/search/genus/detail/?genus_id=", id),
+                      paste0("https://www.algaebase.org/search/species/detail/?species_id=", id)
+  )
+  ) %>%
+  select(taxon_id, id, scientific_name, input.name, kingdom, phylum, class, order, family, genus, species, taxon.rank, url) %>%
+  rename(input_name = input.name,
+         ab_id = id,
+         taxon_rank = taxon.rank) %>%
+  filter(!is.na(ab_id))
 
 # Store file
 write_tsv(algaebase_results, "data_out/content/facts_external_links_algaebase.txt", na = "")
