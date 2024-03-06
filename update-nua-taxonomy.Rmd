@@ -203,7 +203,7 @@ runtime_match_dyntaxa <- round(end.time - start.time, 2)
 # Export files to send to AlgaeBase
 
 ```{r export_algaebase, echo=FALSE, include=FALSE}
-if(!params$cache_taxa_worms) {
+if(!params$cache_algaebase) {
   file.remove("algaebase_cache.rda")
 }
 
