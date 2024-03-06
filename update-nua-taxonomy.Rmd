@@ -7,6 +7,7 @@ params:
   cache_update_checklist: FALSE # Run on cached data, FALSE if doing annual updates
   cache_taxa_worms: FALSE # Run on cached data, FALSE if doing annual updates
   cache_synonyms: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_algaebase: FALSE # Run on cached data, FALSE if doing annual updates
   cache_dyntaxa: FALSE # Run on cached data, FALSE if doing annual updates
 knit: (function(inputFile, encoding) {
                         rmarkdown::render(inputFile,
@@ -58,6 +59,10 @@ if(params$cache_taxa_worms) {
 
 if(params$cache_synonyms) {
   print(paste("Warning: synonyms are loaded from CACHE"))
+}
+
+if(params$cache_algaebase) {
+  print(paste("Warning: AlgaeBase records are loaded from CACHE"))
 }
 
 if(params$cache_dyntaxa) {
@@ -198,6 +203,10 @@ runtime_match_dyntaxa <- round(end.time - start.time, 2)
 # Export files to send to AlgaeBase
 
 ```{r export_algaebase, echo=FALSE, include=FALSE}
+if(!params$cache_taxa_worms) {
+  file.remove("algaebase_cache.rda")
+}
+
 start.time <- Sys.time()
 source("code/04_export_algaebase.R")
 end.time <- Sys.time()
