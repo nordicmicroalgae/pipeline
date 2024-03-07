@@ -5,6 +5,9 @@ library(writexl)
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_out/taxa_worms.txt", locale = locale(encoding = "latin1"))
 
+# Read whitelist for forcing the addition of an unaccepted taxa
+whitelist <- read_tsv("data_in/whitelist.txt")
+
 # Get synonyms from WoRMS
 all_synonyms <- data.frame()
 
@@ -34,7 +37,7 @@ worms_synonyms <- all_synonyms %>%
 
 # Remove all unaccepted names that appear when constructing the higher taxonomy
 taxa_worms_accepted <- taxa_worms %>%
-  filter(!status == "unaccepted" | aphia_id == 115104) %>%
+  filter(!status == "unaccepted" | aphia_id %in% whitelist$taxon_id) %>%
   filter(!is.na(scientific_name)) %>%
   rename(taxon_id = aphia_id)
 

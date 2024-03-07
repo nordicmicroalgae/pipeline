@@ -17,6 +17,9 @@ names(bvol_nomp) <- gsub("\\n", "", names(bvol_nomp))
 # Read a WoRMS-matched species list from old NuA
 old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
 
+# Read blacklist for removing unwanted
+blacklist <- read_tsv("data_in/blacklist.txt")
+
 # Combine unqiue AphiaIDs from NOMP, NORCCA, IOC-HAB and the old NuA species list
 aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, old_nua$AphiaID)))
 aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
@@ -43,7 +46,7 @@ if(file.exists("all_records_cache.rda")) {
 all_records <- all_records %>%
   mutate(used_aphia_id = ifelse(status == "unaccepted", valid_AphiaID, AphiaID)) %>%
   filter(!is.na(scientificname)) %>%
-  filter(!AphiaID == 146222)
+  filter(!AphiaID %in% blacklist$taxon_id)
 
 # Summarise translated unaccepted names
 translate <- all_records %>%
