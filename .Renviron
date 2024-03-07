@@ -1,2 +1,2 @@
-ALGAEBASE_APIKEY = ""
-DYNTAXA_APIKEY = ""
+ALGAEBASE_APIKEY = "" # Enter your api key here
+DYNTAXA_APIKEY = "" # Enter your api key here
