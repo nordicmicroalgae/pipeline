@@ -2,7 +2,7 @@ library(tidyverse)
 library(SHARK4R)
 
 if(!exists('subscription_key')) {
-  source("code/dyntaxa_subscription_key.R")
+  subscription_key <- Sys.getenv("DYNTAXA_APIKEY")
 }
 
 # Read taxa_worms file

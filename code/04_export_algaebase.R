@@ -9,7 +9,7 @@ source("code/fun/algaebase_search_df.r") # Edited function from algaeClassify, w
 
 # Load API key
 if(!exists('ALGAEBASE_APIKEY')) {
-  source("code/algaebase_subscription_key.R")
+  ALGAEBASE_APIKEY <- Sys.getenv("ALGAEBASE_APIKEY")
 }
 
 # Read taxa_worms file

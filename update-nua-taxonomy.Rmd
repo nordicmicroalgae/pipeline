@@ -35,17 +35,16 @@ library(tidyverse)
 library(zip)
 library(algaeClassify)
 
+subscription_key <- Sys.getenv("DYNTAXA_APIKEY")
+ALGAEBASE_APIKEY <- Sys.getenv("ALGAEBASE_APIKEY")
+
 # Print if records are cached
-if(file.exists("code/dyntaxa_subscription_key.R")) {
-  source("code/dyntaxa_subscription_key.R")
-} else {
+if(subscription_key == "") {
   subscription_key <- rstudioapi::askForPassword(prompt = "Please enter your SLU Artdatabanken API key")
 }
 
 # Print if records are cached
-if(file.exists("code/algaebase_subscription_key.R")) {
-  source("code/algaebase_subscription_key.R")
-} else {
+if(ALGAEBASE_APIKEY == "") {
   ALGAEBASE_APIKEY <- rstudioapi::askForPassword(prompt = "Please enter your AlgaeBase API key")
 }
 
