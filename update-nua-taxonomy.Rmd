@@ -20,7 +20,7 @@ knit: (function(inputFile, encoding) {
 This Rmarkdown file calls necessary R and Python code for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Links to required Python code is provided below. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for NuA content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
 
 # Setup
-A valid subscription key from https://api-portal.artdatabanken.se/ is required to match Dyntaxa records. The key can be stored in file or typed in when running the code.
+Valid subscription keys from [Dyntaxa](https://api-portal.artdatabanken.se/) and [AlgaeBase](https://www.algaebase.org/) are required to match Dyntaxa and AlgaeBase records. The keys can be stored in .Renviron or typed in when running the code.
 
 ```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
