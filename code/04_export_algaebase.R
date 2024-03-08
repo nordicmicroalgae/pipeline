@@ -67,7 +67,9 @@ algaebase_species_api <- taxa_worms %>%
   filter(rank %in% c("Species", "Variety", "Forma", "Subspecies", "Genus")) %>%
   select(scientific_name, rank, taxon_id) %>%
   genus_species_extract(phyto.name = 'scientific_name') %>%
-  filter(!duplicated(scientific_name))
+  filter(!duplicated(scientific_name)) %>%
+  mutate(input.name = str_trim(paste(genus, species))) %>%
+  mutate(species = na_if(species, ""))
 
 # Load stored file if running from cache
 if(file.exists("algaebase_cache.rda")) {
@@ -83,12 +85,12 @@ if(file.exists("algaebase_cache.rda")) {
 
 # Join and wrangle
 algaebase_results <- algaebase_results %>% 
-  rename(scientific_name = input.name) %>%
+  # rename(scientific_name = input.name) %>%
   distinct() %>%
   left_join(select(algaebase_species_api, 
                    -genus,
                    -species)
-            , by = 'scientific_name') %>%
+            , by = 'input.name') %>%
   mutate(url = ifelse(taxon.rank=="genus",
                       paste0("https://www.algaebase.org/search/genus/detail/?genus_id=", id),
                       paste0("https://www.algaebase.org/search/species/detail/?species_id=", id)
@@ -97,8 +99,9 @@ algaebase_results <- algaebase_results %>%
   select(taxon_id, id, scientific_name, kingdom, phylum, class, order, family, genus, species, taxon.rank, url) %>%
   rename(ab_id = id,
          taxon_rank = taxon.rank) %>%
-  filter(!is.na(ab_id))%>%
-  filter(!is.na(taxon_id))
+  filter(!is.na(ab_id)) %>%
+  filter(!is.na(taxon_id)) %>%
+  distinct(taxon_id, ab_id, .keep_all = TRUE)
 
 # Store file
 write_tsv(algaebase_results, "data_out/content/facts_external_links_algaebase.txt", na = "")
