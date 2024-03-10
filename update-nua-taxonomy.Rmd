@@ -7,8 +7,12 @@ params:
   cache_update_checklist: FALSE # Run on cached data, FALSE if doing annual updates
   cache_taxa_worms: FALSE # Run on cached data, FALSE if doing annual updates
   cache_synonyms: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_algaebase: FALSE # Run on cached data, FALSE if doing annual updates
   cache_dyntaxa: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_algaebase: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_norcca: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_itis: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_ncbi: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_gbif: FALSE # Run on cached data, FALSE if doing annual updates
 knit: (function(inputFile, encoding) {
                         rmarkdown::render(inputFile,
                         encoding=encoding, 
@@ -25,15 +29,19 @@ Valid subscription keys from [Dyntaxa](https://api-portal.artdatabanken.se/) and
 ```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+knit.time <- Sys.time()
+
 # Load required libraries
 library(reticulate)
 library(snakecase)
 library(worrms)
 library(writexl)
+library(readxl)
 library(SHARK4R)
 library(tidyverse)
 library(zip)
 library(algaeClassify)
+library(rgbif)
 
 subscription_key <- Sys.getenv("DYNTAXA_APIKEY")
 ALGAEBASE_APIKEY <- Sys.getenv("ALGAEBASE_APIKEY")
@@ -48,24 +56,14 @@ if(ALGAEBASE_APIKEY == "") {
   ALGAEBASE_APIKEY <- rstudioapi::askForPassword(prompt = "Please enter your AlgaeBase API key")
 }
 
-if(params$cache_update_checklist) {
-  print(paste("Warning: update_checklist records are loaded from CACHE"))
-}
+# Define cache types
+cache_types <- c("update_checklist", "taxa_worms", "synonyms", "dyntaxa", "algaebase", "norcca", "itis", "ncbi", "gbif")
 
-if(params$cache_taxa_worms) {
-  print(paste("Warning: taxa_worms records are loaded from CACHE"))
-}
-
-if(params$cache_synonyms) {
-  print(paste("Warning: synonyms are loaded from CACHE"))
-}
-
-if(params$cache_algaebase) {
-  print(paste("Warning: AlgaeBase records are loaded from CACHE"))
-}
-
-if(params$cache_dyntaxa) {
-  print(paste("Warning: dyntaxa records are loaded from CACHE"))
+# Iterate over cache types
+for (cache_type in cache_types) {
+  if (params[[paste0("cache_", cache_type)]]) {
+    print(paste("Warning:", toupper(cache_type), "records are loaded from CACHE"))
+  }
 }
 ```
 
@@ -152,8 +150,7 @@ duplicates %>%
   knitr::kable(caption = "Duplicates before cleanup")
 
 # Select taxon_id to remove, e.g. same name for multiple taxonomic levels
-taxa_remove <- c(599656, # Glaucophyta Phylum (Division)
-                 582161) # Euglenozoa Infrakingdom
+taxa_remove <- c()
 
 # Print
 print(paste("Removing", length(taxa_remove), "duplicated taxa from taxa.txt"))
@@ -194,7 +191,7 @@ if(!params$cache_dyntaxa) {
 }
 
 start.time <- Sys.time()
-source("code/03_match_dyntaxa.R")
+source("code/03_get_dyntaxa_links.R")
 end.time <- Sys.time()
 runtime_match_dyntaxa <- round(end.time - start.time, 2)
 ```
@@ -207,7 +204,7 @@ if(!params$cache_algaebase) {
 }
 
 start.time <- Sys.time()
-source("code/04_export_algaebase.R")
+source("code/04_get_algaebase_links.R")
 end.time <- Sys.time()
 runtime_algaebase <- round(end.time - start.time, 2)
 ```
@@ -241,70 +238,146 @@ write_delim(norcca, "data_in/norcca_strains.txt",
             na = "")
 
 print(paste(nrow(norcca), "strains extracted"))
-
-end.time <- Sys.time()
-runtime_get_norcca <- round(end.time - start.time, 2)
 ```
 
 ```{r wrangle_norcca, echo=FALSE}
-source("code/05_wrangle_norcca.R")
+if(!params$cache_norcca) {
+  file.remove("norcca_cache.rda")
+}
+
+source("code/05_match_norcca_names.R")
+end.time <- Sys.time()
+runtime_get_norcca <- round(end.time - start.time, 2)
 ```
 
 # Reformat IOC HAB list and add taxon_id
 Downloaded (Text file, tab delimited) from
 https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist
 
-```{r wrangle_hab_list, echo=FALSE}
-source("code/06_wrangle_hab.R")
+```{r wrangle_hab_list, echo=FALSE, include=FALSE}
+source("code/06_get_hab_links.R")
+```
+
+```{r summary_hab, echo=FALSE}
+# Print
+print(paste(nrow(nordic_hab), "IOC HAB species found in database"))
+```
+
+# Get ITIS links
+```{r get_itis, echo=FALSE, include=FALSE}
+if(!params$cache_itis) {
+  file.remove("itis_cache.rda")
+}
+
+start.time <- Sys.time()
+source("code/07_get_itis_links.R")
+end.time <- Sys.time()
+runtime_itis <- round(end.time - start.time, 2)
+```
+
+```{r summary_itis, echo=FALSE}
+# Print
+print(paste(nrow(itis_list), "taxa found in ITIS database"))
+```
+
+# Get NCBI and ENA links
+```{r get_ncbi, echo=FALSE, include=FALSE}
+if(!params$cache_ncbi) {
+  file.remove("ncbi_cache.rda")
+}
+
+start.time <- Sys.time()
+source("code/08_get_ncbi_links.R")
+end.time <- Sys.time()
+runtime_ncbi <- round(end.time - start.time, 2)
+```
+
+```{r summary_ncbi, echo=FALSE}
+# Print
+print(paste(nrow(ncbi_list), "taxa found in NCBI/ENA database"))
+```
+
+# Get GBIF links
+```{r get_gbif, echo=FALSE, include=FALSE}
+if(!params$cache_gbif) {
+  file.remove("gbif_cache.rda")
+}
+
+start.time <- Sys.time()
+source("code/09_get_gbif_links.R")
+end.time <- Sys.time()
+runtime_gbif <- round(end.time - start.time, 2)
+
+runtime_knit <- round(end.time - knit.time, 2)
+```
+
+```{r summary_gbif, echo=FALSE}
+# Print
+print(paste(nrow(gbif_list), "taxa found in GBIF"))
 ```
 
 # Summarise runtimes
 ```{r api_operation_summary, echo=FALSE}
-print(paste("Time taken for updating checklist:"))
+print(paste("Time taken for running the entire script:"))
+print(runtime_knit)
+
+print(paste("Chunk time taken for updating checklist:"))
 print(runtime_update_checklist)
 
-print(paste("Time taken for getting taxa.txt information:"))
+print(paste("Chunk time taken for getting taxa.txt information:"))
 print(runtime_get_taxa_file)
 
-print(paste("Time taken for getting WoRMS synonyms:"))
+print(paste("Chunk time taken for getting WoRMS synonyms:"))
 print(runtime_synonyms)
 
-print(paste("Time taken for getting Dyntaxa links:"))
+print(paste("Chunk time taken for getting Dyntaxa links:"))
 print(runtime_match_dyntaxa)
 
-print(paste("Time taken for getting AlgaeBase links:"))
+print(paste("Chunk time taken for getting AlgaeBase links:"))
 print(runtime_algaebase)
 
-print(paste("Time taken for getting NORCCA links:"))
+print(paste("Chunk time taken for getting NORCCA links:"))
 print(runtime_get_norcca)
+
+print(paste("Chunk time taken for getting ITIS links:"))
+print(runtime_itis)
+
+print(paste("Chunk time taken for getting NCBI links:"))
+print(runtime_ncbi)
+
+print(paste("Chunk time taken for getting GBIF links:"))
+print(runtime_gbif)
 ```
 
 # Create zip-archive
-Store all output in update_history/update_archive_YYYYMMDD.zip
+Store all output in update_history/update_archive_`r format(knit.time, "%Y%m%d")`.zip
 
 ```{r update_archive, echo=FALSE}
 zip::zip(zipfile = paste0('update_history/update_archive_', 
-                     format(Sys.Date(), "%Y%m%d"),
-                     ".zip"
-                     ), 
-    files = c('data_out/content/facts_biovolumes_nomp.txt',
-              'data_out/content/facts_external_links_dyntaxa.txt',
-              'data_out/content/facts_external_links_hab_ioc.txt',
-              'data_out/content/facts_external_links_norcca.txt',
-              'data_out/content/facts_external_links_worms.txt',
-              'data_out/content/synonyms.txt',
-              'data_out/content/taxa.txt',
-              'data_out/nordic_microalgae_genus.xlsx',
-              'data_out/nordic_microalgae_higher_taxonomy.xlsx',
-              'data_out/nordic_microalgae_species.xlsx',
-              'data_out/duplicated_scientific_name.txt',
-              'data_out/taxa_worms_unaccepted.txt',
-              'data_out/taxa_worms.txt',
-              'data_out/translate_to_worms.txt',
-              paste0("data_out/nordicmicroalgae_checklist_", date, ".txt"),
-              paste0("data_out/nordicmicroalgae_checklist_", date, ".xlsx")
-              )
-    )
+                          format(knit.time, "%Y%m%d"),
+                          ".zip"
+), 
+files = c('data_out/content/facts_biovolumes_nomp.txt',
+          'data_out/content/facts_external_links_algaebase.txt',
+          'data_out/content/facts_external_links_dyntaxa.txt',
+          'data_out/content/facts_external_links_ena.txt',
+          'data_out/content/facts_external_links_gbif.txt',
+          'data_out/content/facts_external_links_hab_ioc.txt',
+          'data_out/content/facts_external_links_itis.txt',
+          'data_out/content/facts_external_links_ncbi.txt',
+          'data_out/content/facts_external_links_norcca.txt',
+          'data_out/content/facts_external_links_worms.txt',
+          'data_out/content/facts_hab_ioc.txt',
+          'data_out/content/synonyms.txt',
+          'data_out/content/taxa.txt',
+          'data_out/duplicated_scientific_name.txt',
+          'data_out/taxa_worms_unaccepted.txt',
+          'data_out/taxa_worms.txt',
+          'data_out/translate_to_worms.txt',
+          paste0("data_out/nordicmicroalgae_checklist_", date, ".txt"),
+          paste0("data_out/nordicmicroalgae_checklist_", date, ".xlsx")
+)
+)
 ```
 
 
