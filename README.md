@@ -1,6 +1,6 @@
 # Repo for updating Nordic Microalgae content/species
 
-The R Markdown document update-nua-taxonomy.Rmd calls a number of R and Python scripts to interact with APIs and webpages from [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [NORCCA](https://norcca.scrol.net/) in order to update the [species content](https://github.com/nordicmicroalgae/content/tree/master/species) of Nordic Microalgae. In order to run the full update, additional repos from [https://github.com/nordicmicroalgae](https://github.com/nordicmicroalgae) are required and placed in the directory structure outlined below. 
+The R Markdown document update-nua-taxonomy.Rmd calls a number of R and Python scripts to interact with APIs and webpages from [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](www.gbif.org/), [NORCCA](https://norcca.scrol.net/) in order to update the [species content](https://github.com/nordicmicroalgae/content/tree/master/species) of Nordic Microalgae. In order to run the full update, additional repos from [https://github.com/nordicmicroalgae](https://github.com/nordicmicroalgae) are required and placed in the directory structure outlined below. 
 
 The R package [SHARK4R](https://github.com/sharksmhi/SHARK4R/) is required for some API queries. API queries towards AlgaeBase are based on functions from the [algaeClassify](https://github.com/cran/algaeClassify) package (Patil et al. 2023). Store your API keys to Dyntaxa and AlgaeBase in update-nua-taxonomy/.Renviron.
 
@@ -29,35 +29,15 @@ https://github.com/nordicmicroalgae/norcca_compiler
 /
 ├─ norcca_compiler/
 │  └─ norcca_compiler/
-│     ├─ __main__.py
-│     ├─ __init__.py
-│     ├─ cli.py
-│     ├─ compiler.py
-│     └─ loader.py
 ├─ taxa_worms/
 │  ├─ data_in/
 │  ├─ data_out/
-│  ├─ wormsextractor/
-│  │  ├─ __init__.py
-│  │  ├─ worms_extract_taxa.py
-│  │  ├─ worms_rest_client.py
-│  │  └─ worms_sqlite_cache.py
-│  └─ extract_from_worms_main.py
+│  └─ wormsextractor/
 └─ update-nua-taxonomy/
    ├─ code/
-   │  ├─ fun/
-   │  │  ├─ algaebase_genus_search.R
-   │  │  ├─ algaebase_search_df.R
-   │  │  └─ algaebase_species_search.R
-   │  ├─ 01_get_current_aphia_ids.R
-   │  ├─ 02_get_worms_synonyms.R
-   │  ├─ 03_match_dyntaxa.R
-   │  ├─ 04_export_algaebase.R
-   │  ├─ 05_wrangle_norcca.R
-   │  └─ 06_wrangle_hab.R
+   │  └─ fun/
    ├─ data_in/
    ├─ data_out/
    │  └─ content/
-   ├─ update_history/
-   └─ update-nua-taxonomy.Rmd
+   └─ update_history/
 ```
