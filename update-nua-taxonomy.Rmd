@@ -149,33 +149,6 @@ duplicates %>%
          -kingdom) %>%
   knitr::kable(caption = "Duplicates before cleanup")
 
-# Select taxon_id to remove, e.g. same name for multiple taxonomic levels
-taxa_remove <- c()
-
-# Print
-print(paste("Removing", length(taxa_remove), "duplicated taxa from taxa.txt"))
-
-# Read taxa_worms file and remove unwanted taxa
-taxa_worms <- read_tsv("data_out/content/taxa.txt",
-                       col_types = cols()) %>%
-  filter(!taxon_id %in% taxa_remove)
-
-# Find duplicated taxa names
-duplicates <- taxa_worms %>%
-  filter(duplicated(scientific_name))
-
-# Print table
-duplicates %>%
-  select(-classification,
-         -url,
-         -genus,
-         -family,
-         -order,
-         -class,
-         -phylum,
-         -kingdom) %>%
-  knitr::kable(caption = "Duplicates after cleanup")
-
 # Print
 print(paste(nrow(taxa_worms), "taxa exported to taxa.txt"))
 
