@@ -1,21 +1,29 @@
 library(tidyverse)
 library(worrms)
+library(readxl)
 
 # Find the latest bvol file
 bvol_filename <- list.files("data_in") %>%
   as_tibble() %>%
   filter(agrepl("bvol", value)) %>%
+  filter(agrepl(".xlsx", value)) %>%
+  filter(!agrepl("~$", value)) %>%
   arrange(value)
 
 # Read current NOMP list
-bvol_nomp <- read_tsv(file.path("data_in", bvol_filename$value[nrow(bvol_filename)]),
-                      locale = locale(encoding = "latin1")) %>%
-  select(where(~ !(all(is.na(.)))))
+bvol_nomp <- read_excel(file.path("data_in", bvol_filename$value[nrow(bvol_filename)])) %>%
+  mutate(Calculated_volume_µm3 = round(Calculated_volume_µm3, 6),
+         `Calculated_Carbon_pg/counting_unit` = round(`Calculated_Carbon_pg/counting_unit`, 6))
 
+names(bvol_nomp) <- gsub("\\r\\n", "", names(bvol_nomp))
 names(bvol_nomp) <- gsub("\\n", "", names(bvol_nomp))
 
 # Read a WoRMS-matched species list from old NuA
 old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
+
+# Read HAB list from Karlson et al 2021 https://doi.org/10.1016/j.hal.2021.101989
+nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc.txt",
+                               col_types = cols())
 
 # Read blacklist for removing unwanted
 additions <- read_tsv("data_in/additions_to_old_nua.txt")
@@ -24,7 +32,7 @@ additions <- read_tsv("data_in/additions_to_old_nua.txt")
 blacklist <- read_tsv("data_in/blacklist.txt")
 
 # Combine unqiue AphiaIDs from NOMP, NORCCA, IOC-HAB and the old NuA species list
-aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, old_nua$AphiaID, additions$AphiaID)))
+aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, old_nua$AphiaID, additions$AphiaID, nordic_hab_karlson$taxon_id)))
 aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
 
 # Load stored file if running from cache
@@ -44,6 +52,14 @@ if(file.exists("all_records_cache.rda")) {
   }
   save(all_records, file = "all_records_cache.rda")
 }
+
+# Update taxon_id for NOMP list
+bvol_nomp <- all_records %>% 
+  select(AphiaID, status, valid_AphiaID, valid_name) %>%
+  right_join(bvol_nomp) %>%
+  mutate(taxon_id = ifelse(status == "unaccepted", valid_AphiaID, AphiaID)) %>%
+  relocate(taxon_id) %>%
+  filter(!is.na(taxon_id))
 
 # Translate unaccepted names, remove blank names (deleted/quaratine), remove flagellates (146222)
 all_records <- all_records %>%
