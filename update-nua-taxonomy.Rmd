@@ -151,9 +151,6 @@ duplicates %>%
 
 # Print
 print(paste(nrow(taxa_worms), "taxa exported to taxa.txt"))
-
-# Store cleaned file
-write_tsv(taxa_worms, "data_out/content/taxa.txt", na = "") 
 ```
 
 # Match taxa with Dyntaxa

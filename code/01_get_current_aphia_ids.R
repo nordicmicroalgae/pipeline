@@ -59,7 +59,8 @@ bvol_nomp <- all_records %>%
   right_join(bvol_nomp) %>%
   mutate(taxon_id = ifelse(status == "unaccepted", valid_AphiaID, AphiaID)) %>%
   relocate(taxon_id) %>%
-  filter(!is.na(taxon_id))
+  filter(!is.na(taxon_id)) %>%
+  filter(!AphiaID %in% blacklist$taxon_id)
 
 # Translate unaccepted names, remove blank names (deleted/quaratine), remove flagellates (146222)
 all_records <- all_records %>%
