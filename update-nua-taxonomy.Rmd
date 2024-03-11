@@ -23,6 +23,10 @@ knit: (function(inputFile, encoding) {
 
 This Rmarkdown file calls necessary R and Python code for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Links to required Python code is provided below. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for NuA content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
 
+* Additional taxa can be included in additions_to_old_nua.txt
+* Unwanted taxa, e.g. Flagellates, can be included in blacklist.txt
+* The inclusion of an unaccepted can be forced by adding the taxa to whitelist.txt
+
 # Setup
 Valid subscription keys from [Dyntaxa](https://api-portal.artdatabanken.se/) and [AlgaeBase](https://www.algaebase.org/) are required to match Dyntaxa and AlgaeBase records. The keys can be stored in .Renviron or typed in when running the code.
 
@@ -67,7 +71,7 @@ for (cache_type in cache_types) {
 }
 ```
 
-# Get current aphia ids for taxa list (NOMP + old checklist)
+# Get current aphia ids for taxa list (NOMP + old checklist + Karlson HAB list)
 
 ```{r update_checklist, include=FALSE}
 if(!params$cache_update_checklist) {
@@ -134,7 +138,7 @@ taxa_worms_unaccepted %>%
 ```
 
 # Find and remove duplicates from taxa file manually
-Potential duplicate errors could be deleted in this chunk
+Potential duplicate errors could be removed in blacklist
 
 ```{r clean_duplicate_taxa, echo=FALSE}
 # Print table
