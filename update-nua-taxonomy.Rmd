@@ -147,10 +147,10 @@ duplicates %>%
          -class,
          -phylum,
          -kingdom) %>%
-  knitr::kable(caption = "Duplicates before cleanup")
+  knitr::kable(caption = "Duplicate taxa names")
 
 # Print
-print(paste(nrow(taxa_worms), "taxa exported to taxa.txt"))
+print(paste(nrow(taxa_worms_accepted), "taxa exported to taxa.txt"))
 ```
 
 # Match taxa with Dyntaxa
