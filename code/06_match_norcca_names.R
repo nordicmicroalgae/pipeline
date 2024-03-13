@@ -1,5 +1,13 @@
 library(tidyverse)
 library(worrms)
+library(rvest)
+
+# Define which origin countries to keep
+nordic_countries <- c("Sweden", "Denmark", "Norway", 
+                      "Finland", "Iceland", "Faeroe Islands", 
+                      "Poland", "Lithuania", "Latvia", 
+                      "Estonia", "Germany", "United Kingdom", 
+                      "England", "Ireland", "Scotland")
 
 # Read NORCCA taxa lists
 norcca_worms <- read_tsv("data_in/norcca_extended_taxa_names_matched.txt",
@@ -111,6 +119,27 @@ norcca_combined <- norcca_strains %>%
 
 # Make snakecase headers
 names(norcca_combined) <- snakecase::to_snake_case(names(norcca_combined))
+
+# Create an empty column
+norcca_combined$nordic <- NA
+
+# Scrape origin information from strain page
+for (i in 1:nrow(norcca_combined)) {
+  html <- read_html(norcca_combined$strain_link[i])
+  
+  field_items <- html  %>%
+    html_elements(css = ".field__item") %>% 
+    html_text()
+  
+  norcca_combined$nordic[i] <- any(nordic_countries %in% field_items)
+  
+  message("Scraping strain page ", i, " of ", nrow(norcca_combined))
+}
+
+# Remove strains that are not defined as nordic countries
+norcca_combined <- norcca_combined %>%
+  filter(nordic) %>%
+  select(-nordic)
 
 # Print output
 print(paste("Information from",
