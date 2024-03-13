@@ -11,33 +11,6 @@ whitelist <- read_tsv("data_in/whitelist.txt")
 # Read blacklist for removing unwanted
 blacklist <- read_tsv("data_in/blacklist.txt")
 
-# Get synonyms from WoRMS
-all_synonyms <- data.frame()
-
-# Load stored file if running from cache
-if(file.exists("synonyms_cache.rda")) {
-  load(file = "synonyms_cache.rda")
-} else {
-  # Loop for each AphiaID
-  for(i in 1:length(taxa_worms$aphia_id)) {
-    tryCatch({
-      record <- wm_synonyms(taxa_worms$aphia_id[i])
-      
-      all_synonyms <- rbind(all_synonyms, record)
-    }, error=function(e){})
-    cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$aphia_id),'\n')
-  }
-  save(all_synonyms, file = "synonyms_cache.rda")
-}
-
-# Wrangle synonyms
-worms_synonyms <- all_synonyms %>%
-  mutate(provider = "worms") %>%
-  select(provider, scientificname, authority, valid_AphiaID) %>%
-  rename(synonym_name = scientificname,
-         author = authority,
-         taxon_id = valid_AphiaID)
-
 # Remove all unaccepted names that appear when constructing the higher taxonomy
 taxa_worms_accepted <- taxa_worms %>%
   filter(!status == "unaccepted" | aphia_id %in% whitelist$taxon_id) %>%
@@ -70,7 +43,6 @@ checklist <- taxa_worms_accepted %>%
   rename(aphia_id = taxon_id)
 
 # Store files
-write_tsv(worms_synonyms, "data_out/content/synonyms.txt", na = "") 
 write_tsv(taxa_worms_unaccepted, "data_out/taxa_worms_unaccepted.txt", na = "") 
 write_tsv(taxa_worms_accepted, "data_out/content/taxa.txt", na = "") 
 write_tsv(worms_links, "data_out/content/facts_external_links_worms.txt", na = "") 
