@@ -1,0 +1,11 @@
+group_name	included_taxa	rank
+Protozoa	Protozoa	Kingdom
+Diatoms	Bacillariophyta	Phylum
+Dinoflagellates	Myzozoa	Phylum
+Cyanobacteria	Cyanobacteria	Phylum
+Ciliates	Ciliophora	Phylum
+exclude_from_others	Fungi	Kingdom
+exclude_from_others	Bacteria	Kingdom
+exclude_from_others	Cercozoa	Phylum
+exclude_from_others	Foraminifera	Phylum
+exclude_from_others	Oomycota	Phylum

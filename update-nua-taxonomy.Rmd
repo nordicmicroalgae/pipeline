@@ -290,6 +290,12 @@ runtime_knit <- round(end.time - knit.time, 2)
 print(paste(nrow(gbif_list), "taxa found in GBIF"))
 ```
 
+# Update filters.yaml for backend
+Filters for Quick View may need to be updated
+```{r update_filters, echo=FALSE}
+source("code/10_update_filters.R")
+```
+
 # Summarise runtimes
 ```{r api_operation_summary, echo=FALSE}
 print(paste("Time taken for running the entire script:"))
@@ -331,7 +337,8 @@ zip::zip(zipfile = paste0('update_history/update_archive_',
                           format(knit.time, "%Y%m%d"),
                           ".zip"
 ), 
-files = c('data_out/content/facts_biovolumes_nomp.txt',
+files = c('data_out/backend/taxa/config/filters.yaml',
+          'data_out/content/facts_biovolumes_nomp.txt',
           'data_out/content/facts_external_links_algaebase.txt',
           'data_out/content/facts_external_links_dyntaxa.txt',
           'data_out/content/facts_external_links_ena.txt',
