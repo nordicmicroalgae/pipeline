@@ -105,7 +105,7 @@ runtime_get_taxa_file <- round(end.time - start.time, 2)
 # Find unaccepted and duplicated taxa
 Unaccepted taxa are introduced when getting higher taxonomy in the previous chunk and are removed in this step
 
-```{r synonyms, include=FALSE}
+```{r filter_taxa_worms, include=FALSE}
 source("code/02_filter_taxa_worms.R")
 ```
 
