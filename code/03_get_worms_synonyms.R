@@ -32,3 +32,5 @@ worms_synonyms <- all_synonyms %>%
   rename(synonym_name = scientificname,
          author = authority,
          taxon_id = valid_AphiaID)
+
+write_tsv(worms_synonyms, "data_out/content/synonyms.txt", na = "") 
