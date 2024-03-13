@@ -102,18 +102,11 @@ end.time <- Sys.time()
 runtime_get_taxa_file <- round(end.time - start.time, 2)
 ```
 
-# Get all synonyms from WoRMS and find unaccepted and duplicated taxa
+# Find unaccepted and duplicated taxa
 Unaccepted taxa are introduced when getting higher taxonomy in the previous chunk and are removed in this step
 
 ```{r synonyms, include=FALSE}
-if(!params$cache_synonyms) {
-  file.remove("synonyms_cache.rda")
-}
-
-start.time <- Sys.time()
-source("code/02_get_worms_synonyms.R")
-end.time <- Sys.time()
-runtime_synonyms <- round(end.time - start.time, 2)
+source("code/02_filter_taxa_worms.R")
 ```
 
 ```{r unaccepted_taxa, echo=FALSE}
@@ -137,7 +130,7 @@ taxa_worms_unaccepted %>%
   knitr::kable(caption = "Unaccepted taxa removed from taxa.txt")
 ```
 
-# Find and remove duplicates from taxa file manually
+# Find and remove duplicates from taxa file
 Potential duplicate errors could be removed in blacklist
 
 ```{r clean_duplicate_taxa, echo=FALSE}
@@ -157,6 +150,19 @@ duplicates %>%
 print(paste(nrow(taxa_worms_accepted), "taxa exported to taxa.txt"))
 ```
 
+# Get all synonyms from WoRMS
+
+```{r synonyms, include=FALSE}
+if(!params$cache_synonyms) {
+  file.remove("synonyms_cache.rda")
+}
+
+start.time <- Sys.time()
+source("code/03_get_worms_synonyms.R")
+end.time <- Sys.time()
+runtime_synonyms <- round(end.time - start.time, 2)
+```
+
 # Match taxa with Dyntaxa
 
 ```{r match_dyntaxa, echo=FALSE, message=FALSE}
@@ -165,7 +171,7 @@ if(!params$cache_dyntaxa) {
 }
 
 start.time <- Sys.time()
-source("code/03_get_dyntaxa_links.R")
+source("code/04_get_dyntaxa_links.R")
 end.time <- Sys.time()
 runtime_match_dyntaxa <- round(end.time - start.time, 2)
 ```
@@ -178,7 +184,7 @@ if(!params$cache_algaebase) {
 }
 
 start.time <- Sys.time()
-source("code/04_get_algaebase_links.R")
+source("code/05_get_algaebase_links.R")
 end.time <- Sys.time()
 runtime_algaebase <- round(end.time - start.time, 2)
 ```
@@ -214,12 +220,12 @@ write_delim(norcca, "data_in/norcca_strains.txt",
 print(paste(nrow(norcca), "strains extracted"))
 ```
 
-```{r wrangle_norcca, echo=FALSE}
+```{r wrangle_norcca, echo=FALSE, message=FALSE}
 if(!params$cache_norcca) {
   file.remove("norcca_cache.rda")
 }
 
-source("code/05_match_norcca_names.R")
+source("code/06_match_norcca_names.R")
 end.time <- Sys.time()
 runtime_get_norcca <- round(end.time - start.time, 2)
 ```
@@ -229,7 +235,7 @@ Downloaded (Text file, tab delimited) from
 https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist
 
 ```{r wrangle_hab_list, echo=FALSE, include=FALSE}
-source("code/06_get_hab_links.R")
+source("code/07_get_hab_links.R")
 ```
 
 ```{r summary_hab, echo=FALSE}
@@ -244,7 +250,7 @@ if(!params$cache_itis) {
 }
 
 start.time <- Sys.time()
-source("code/07_get_itis_links.R")
+source("code/08_get_itis_links.R")
 end.time <- Sys.time()
 runtime_itis <- round(end.time - start.time, 2)
 ```
@@ -261,7 +267,7 @@ if(!params$cache_ncbi) {
 }
 
 start.time <- Sys.time()
-source("code/08_get_ncbi_links.R")
+source("code/09_get_ncbi_links.R")
 end.time <- Sys.time()
 runtime_ncbi <- round(end.time - start.time, 2)
 ```
@@ -278,7 +284,7 @@ if(!params$cache_gbif) {
 }
 
 start.time <- Sys.time()
-source("code/09_get_gbif_links.R")
+source("code/10_get_gbif_links.R")
 end.time <- Sys.time()
 runtime_gbif <- round(end.time - start.time, 2)
 
@@ -293,7 +299,7 @@ print(paste(nrow(gbif_list), "taxa found in GBIF"))
 # Update filters.yaml for backend
 Filters for Quick View may need to be updated
 ```{r update_filters, echo=FALSE}
-source("code/10_update_filters.R")
+source("code/11_update_filters.R")
 ```
 
 # Summarise runtimes
