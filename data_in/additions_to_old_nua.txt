@@ -1,3 +1,6 @@
 AphiaID	scientific_name	comment
 846290	Azadinium caudatum var. margalefii	from Maria Karlberg
 699637	Chamaepinnularia hassiaca	Previously Chamaepinnularia soehrensis var. hassiaca
+843863	Aulacoseira pseudodistans	Added from SLU, added by WoRMS 20240314
+625460	Pseudokephyrion taeniatum	Image with missing ID, added by WoRMS 20240314
+974573	Cyclotella bodanica var. borealis	Added from SLU, synonym to Cyclotella bodanica var. lemanensis f. bor in Dyntaxa
