@@ -10,13 +10,13 @@ taxa_worms <- read_tsv("data_out/content/taxa.txt",
                        col_types = cols())
 
 # Load stored file if running from cache
-if(file.exists("dyntaxa_cache.rda")) {
-  load(file = "dyntaxa_cache.rda")
+if(file.exists("cache/dyntaxa_cache.rda")) {
+  load(file = "cache/dyntaxa_cache.rda")
 } else {
   # Match taxa with API
   dyntaxa <- match_taxon_name(taxa_worms$scientific_name, subscription_key)
   
-  save(dyntaxa, file = "dyntaxa_cache.rda")
+  save(dyntaxa, file = "cache/dyntaxa_cache.rda")
 }
 
 # Match taxa_worms with Dyntaxa through the web match interface, read .txt-file here

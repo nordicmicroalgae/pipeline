@@ -8,14 +8,14 @@ taxa_worms <- read_tsv("data_out/content/taxa.txt",
 
 # Get GBIF id
 # Load stored file if running from cache
-if(file.exists("gbif_cache.rda")) {
-  load(file = "gbif_cache.rda")
+if(file.exists("cache/gbif_cache.rda")) {
+  load(file = "cache/gbif_cache.rda")
 } else {
   gbif_records <- taxa_worms %>%
     rename(name = scientific_name_authority) %>%
     name_backbone_checklist()
   
-  save(gbif_records, file = "gbif_cache.rda")
+  save(gbif_records, file = "cache/gbif_cache.rda")
 }
 
 # Add taxon_id and filter NA

@@ -32,8 +32,8 @@ norcca_updated <- data.frame()
 
 # Loop for each AphiaID to get taxonomic records
 # Load stored file if running from cache
-if(file.exists("norcca_cache.rda")) {
-  load(file = "norcca_cache.rda")
+if(file.exists("cache/norcca_cache.rda")) {
+  load(file = "cache/norcca_cache.rda")
 } else { 
   for(i in 1:length(aphia_id)) {
     tryCatch({
@@ -43,7 +43,7 @@ if(file.exists("norcca_cache.rda")) {
     }, error=function(e){}
     )
   }
-  save(norcca_updated, file = "norcca_cache.rda")
+  save(norcca_updated, file = "cache/norcca_cache.rda")
 }
 
 # Update AphiaID if id is unaccepted
@@ -54,6 +54,7 @@ norcca_worms <- norcca_updated %>%
                     -AphiaID_accepted), 
              by = "AphiaID") %>%
   mutate(taxon_id = ifelse(status == "unaccepted", valid_AphiaID, AphiaID)) %>%
+  mutate(taxon_id = ifelse(status == "deleted", valid_AphiaID, taxon_id)) %>%
   select(-valid_AphiaID, -status, -AphiaID)
 
 # Find taxa without AphiaID
@@ -99,6 +100,7 @@ missing_info <- identified_taxa %>%
   select(Species, valid_name, status, AphiaID, valid_AphiaID) %>%
   rename(scientific_name = Species) %>%
   mutate(taxon_id = ifelse(status == "unaccepted", valid_AphiaID, AphiaID)) %>%
+  mutate(taxon_id = ifelse(status == "deleted", valid_AphiaID, taxon_id)) %>%
   select(-valid_AphiaID, -AphiaID, -status) %>%
   distinct()
 

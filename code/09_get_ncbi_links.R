@@ -9,8 +9,8 @@ taxa_worms <- read_tsv("data_out/content/taxa.txt",
 ncbi_records <- data.frame()
 
 # Load stored file if running from cache
-if(file.exists("ncbi_cache.rda")) {
-  load(file = "ncbi_cache.rda")
+if(file.exists("cache/ncbi_cache.rda")) {
+  load(file = "cache/ncbi_cache.rda")
 } else {
   # Loop for each AphiaID
   for(i in 1:length(taxa_worms$taxon_id)) {
@@ -24,7 +24,7 @@ if(file.exists("ncbi_cache.rda")) {
     }, error=function(e){})
     cat('Getting NCBI records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
   }
-  save(ncbi_records, file = "ncbi_cache.rda")
+  save(ncbi_records, file = "cache/ncbi_cache.rda")
 }
 
 # Add URL

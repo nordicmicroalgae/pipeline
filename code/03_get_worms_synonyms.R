@@ -10,8 +10,8 @@ taxa_worms <- read_tsv("data_out/content/taxa.txt",
 all_synonyms <- data.frame()
 
 # Load stored file if running from cache
-if(file.exists("synonyms_cache.rda")) {
-  load(file = "synonyms_cache.rda")
+if(file.exists("cache/synonyms_cache.rda")) {
+  load(file = "cache/synonyms_cache.rda")
 } else {
   # Loop for each AphiaID
   for(i in 1:length(taxa_worms$taxon_id)) {
@@ -22,7 +22,7 @@ if(file.exists("synonyms_cache.rda")) {
     }, error=function(e){})
     cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
   }
-  save(all_synonyms, file = "synonyms_cache.rda")
+  save(all_synonyms, file = "cache/synonyms_cache.rda")
 }
 
 # Wrangle synonyms

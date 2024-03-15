@@ -72,15 +72,15 @@ algaebase_species_api <- taxa_worms %>%
   mutate(species = na_if(species, ""))
 
 # Load stored file if running from cache
-if(file.exists("algaebase_cache.rda")) {
-  load(file = "algaebase_cache.rda")
+if(file.exists("cache/algaebase_cache.rda")) {
+  load(file = "cache/algaebase_cache.rda")
 } else {
   # Call the Algaebase API and add taxon_id
   algaebase_results <- algaebase_search_df(algaebase_species_api, 
                                            apikey = ALGAEBASE_APIKEY,
                                            genus.name = "genus",
                                            species.name = "species") 
-  save(algaebase_results, file = "algaebase_cache.rda")
+  save(algaebase_results, file = "cache/algaebase_cache.rda")
 }
 
 # Join and wrangle

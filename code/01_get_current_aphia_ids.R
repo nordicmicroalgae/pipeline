@@ -37,8 +37,8 @@ aphia_id_combined <- as.numeric(unique(c(bvol_nomp$AphiaID, old_nua$AphiaID, add
 aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
 
 # Load stored file if running from cache
-if(file.exists("all_records_cache.rda")) {
-  load(file = "all_records_cache.rda")
+if(file.exists("cache/all_records_cache.rda")) {
+  load(file = "cache/all_records_cache.rda")
 } else {
   # Extract records from WoRMS based on AphiaID
   all_records <- data.frame()
@@ -51,7 +51,7 @@ if(file.exists("all_records_cache.rda")) {
     
     cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
   }
-  save(all_records, file = "all_records_cache.rda")
+  save(all_records, file = "cache/all_records_cache.rda")
 }
 
 # Update taxon_id for NOMP list

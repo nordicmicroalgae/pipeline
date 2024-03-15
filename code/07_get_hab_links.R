@@ -44,6 +44,7 @@ nordic_hab_karlson_updated <- karlson_records %>%
   rename(taxon_id = AphiaID) %>%
   right_join(nordic_hab_karlson, by = "taxon_id") %>%
   mutate(taxon_id = ifelse(status == "unaccepted", valid_AphiaID, taxon_id)) %>%
+  mutate(taxon_id = ifelse(status == "deleted", valid_AphiaID, taxon_id)) %>%
   select(-valid_AphiaID, -status)
   
 # Select nordic taxa and wrangle list

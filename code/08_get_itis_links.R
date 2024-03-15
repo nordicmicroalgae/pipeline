@@ -9,8 +9,8 @@ taxa_worms <- read_tsv("data_out/content/taxa.txt",
 itis_records <- data.frame()
 
 # Load stored file if running from cache
-if(file.exists("itis_cache.rda")) {
-  load(file = "itis_cache.rda")
+if(file.exists("cache/itis_cache.rda")) {
+  load(file = "cache/itis_cache.rda")
 } else {
   # Loop for each AphiaID
   for(i in 1:length(taxa_worms$taxon_id)) {
@@ -24,7 +24,7 @@ if(file.exists("itis_cache.rda")) {
     }, error=function(e){})
     cat('Getting ITIS records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
   }
-  save(itis_records, file = "itis_cache.rda")
+  save(itis_records, file = "cache/itis_cache.rda")
 }
 
 # Add URL

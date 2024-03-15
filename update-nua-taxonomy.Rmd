@@ -77,7 +77,7 @@ for (cache_type in cache_types) {
 
 ```{r update_checklist, include=FALSE}
 if(!params$cache_update_checklist) {
-  file.remove("all_records_cache.rda")
+  file.remove("cache/all_records_cache.rda")
 }
 
 start.time <- Sys.time()
@@ -94,7 +94,9 @@ print(paste("AphiaID for", nrow(all_records), "taxa found"))
 using https://github.com/nordicmicroalgae/taxa-worms
 
 ```{r get_taxa_file, include=FALSE}
-if(!params$cache_taxa_worms) {
+if(params$cache_taxa_worms) {
+  file.copy("cache/worms_cache.db", "worms_cache.db")
+} else {
   file.remove("worms_cache.db")
 }
 
@@ -102,6 +104,8 @@ start.time <- Sys.time()
 py_run_file("../taxa-worms/extract_from_worms_main.py")
 end.time <- Sys.time()
 runtime_get_taxa_file <- round(end.time - start.time, 2)
+
+file.copy("worms_cache.db", "cache/worms_cache.db")
 ```
 
 # Find unaccepted and duplicated taxa
@@ -150,7 +154,7 @@ print(paste(nrow(taxa_worms_accepted), "taxa exported to taxa.txt"))
 
 ```{r get_synonyms, include=FALSE}
 if(!params$cache_synonyms) {
-  file.remove("synonyms_cache.rda")
+  file.remove("cache/synonyms_cache.rda")
 }
 
 start.time <- Sys.time()
@@ -169,7 +173,7 @@ print(paste(length(worms_synonyms$synonym_name),
 
 ```{r get_dyntaxa, echo=FALSE, message=FALSE}
 if(!params$cache_dyntaxa) {
-  file.remove("dyntaxa_cache.rda")
+  file.remove("cache/dyntaxa_cache.rda")
 }
 
 start.time <- Sys.time()
@@ -182,7 +186,7 @@ runtime_match_dyntaxa <- round(end.time - start.time, 2)
 
 ```{r get_algaebase, echo=FALSE, include=FALSE}
 if(!params$cache_algaebase) {
-  file.remove("algaebase_cache.rda")
+  file.remove("cache/algaebase_cache.rda")
 }
 
 start.time <- Sys.time()
@@ -224,7 +228,7 @@ print(paste(nrow(norcca), "strains extracted"))
 
 ```{r wrangle_norcca, echo=FALSE}
 if(!params$cache_norcca) {
-  file.remove("norcca_cache.rda")
+  file.remove("cache/norcca_cache.rda")
 }
 
 source("code/06_match_norcca_names.R")
@@ -248,7 +252,7 @@ print(paste(nrow(nordic_hab), "IOC HAB species found in database"))
 # Get ITIS links
 ```{r get_itis, echo=FALSE, include=FALSE}
 if(!params$cache_itis) {
-  file.remove("itis_cache.rda")
+  file.remove("cache/itis_cache.rda")
 }
 
 start.time <- Sys.time()
@@ -265,7 +269,7 @@ print(paste(nrow(itis_list), "taxa found in ITIS database"))
 # Get NCBI and ENA links
 ```{r get_ncbi, echo=FALSE, include=FALSE}
 if(!params$cache_ncbi) {
-  file.remove("ncbi_cache.rda")
+  file.remove("cache/ncbi_cache.rda")
 }
 
 start.time <- Sys.time()
@@ -282,7 +286,7 @@ print(paste(nrow(ncbi_list), "taxa found in NCBI/ENA database"))
 # Get GBIF links
 ```{r get_gbif, echo=FALSE, include=FALSE}
 if(!params$cache_gbif) {
-  file.remove("gbif_cache.rda")
+  file.remove("cache/gbif_cache.rda")
 }
 
 start.time <- Sys.time()
