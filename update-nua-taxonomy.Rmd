@@ -112,12 +112,6 @@ source("code/02_filter_taxa_worms.R")
 ```
 
 ```{r unaccepted_taxa, echo=FALSE}
-# Print output
-print(paste(length(worms_synonyms$synonym_name), 
-            "synonyms found for", 
-            length(unique(worms_synonyms$taxon_id)),
-            "taxa"))
-
 # Print table
 taxa_worms_unaccepted %>%
   select(-classification,
@@ -135,7 +129,7 @@ taxa_worms_unaccepted %>%
 # Find and remove duplicates from taxa file
 Potential duplicate errors could be removed in blacklist
 
-```{r clean_duplicate_taxa, echo=FALSE}
+```{r duplicate_taxa, echo=FALSE}
 # Print table
 duplicates %>%
   select(-classification,
@@ -154,7 +148,7 @@ print(paste(nrow(taxa_worms_accepted), "taxa exported to taxa.txt"))
 
 # Get all synonyms from WoRMS
 
-```{r synonyms, include=FALSE}
+```{r get_synonyms, include=FALSE}
 if(!params$cache_synonyms) {
   file.remove("synonyms_cache.rda")
 }
@@ -163,11 +157,17 @@ start.time <- Sys.time()
 source("code/03_get_worms_synonyms.R")
 end.time <- Sys.time()
 runtime_synonyms <- round(end.time - start.time, 2)
+
+# Print output
+print(paste(length(worms_synonyms$synonym_name), 
+            "synonyms found for", 
+            length(unique(worms_synonyms$taxon_id)),
+            "taxa"))
 ```
 
 # Match taxa with Dyntaxa
 
-```{r match_dyntaxa, echo=FALSE, message=FALSE}
+```{r get_dyntaxa, echo=FALSE, message=FALSE}
 if(!params$cache_dyntaxa) {
   file.remove("dyntaxa_cache.rda")
 }
@@ -180,7 +180,7 @@ runtime_match_dyntaxa <- round(end.time - start.time, 2)
 
 # Export files to send to AlgaeBase
 
-```{r export_algaebase, echo=FALSE, include=FALSE}
+```{r get_algaebase, echo=FALSE, include=FALSE}
 if(!params$cache_algaebase) {
   file.remove("algaebase_cache.rda")
 }
@@ -222,7 +222,7 @@ write_delim(norcca, "data_in/norcca_strains.txt",
 print(paste(nrow(norcca), "strains extracted"))
 ```
 
-```{r wrangle_norcca, echo=FALSE, message=FALSE}
+```{r wrangle_norcca, echo=FALSE}
 if(!params$cache_norcca) {
   file.remove("norcca_cache.rda")
 }
@@ -236,7 +236,7 @@ runtime_get_norcca <- round(end.time - start.time, 2)
 Downloaded (Text file, tab delimited) from
 https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist
 
-```{r wrangle_hab_list, echo=FALSE, include=FALSE}
+```{r get_hab, echo=FALSE, include=FALSE}
 source("code/07_get_hab_links.R")
 ```
 

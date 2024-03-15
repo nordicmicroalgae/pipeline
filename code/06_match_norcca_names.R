@@ -133,7 +133,7 @@ for (i in 1:nrow(norcca_combined)) {
   
   norcca_combined$nordic[i] <- any(nordic_countries %in% field_items)
   
-  message("Scraping strain page ", i, " of ", nrow(norcca_combined))
+  # message("Scraping strain page ", i, " of ", nrow(norcca_combined))
 }
 
 # Remove strains that are not defined as nordic countries

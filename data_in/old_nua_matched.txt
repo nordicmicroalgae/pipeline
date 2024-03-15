@@ -404,7 +404,7 @@ Platypleura	105519	exact	Platypleura	Thomsen	105519	Platypleura	Thomsen	105519
 Pleurasiga reynoldsii	105601	exact	Pleurasiga reynoldsii	Throndsen, 1970	105601	Pleurasiga reynoldsii	Throndsen, 1970	105601	
 Codosiga botrytis	105633	exact	Codosiga botrytis	Kent, 1880	105633	Codosiga botrytis	Kent, 1880	105633	
 Discocelis	118013	exact	Discocelis	Vørs, 1988	118013	Discocelis	Vørs, 1988	118013	
-Bicosoeca	103987	exact	Bicosoeca	H.J.Clark, 1868	103987	Bicosoeca	H.J.Clark, 1868	103987	
+Bicosoeca	601409	exact	Bicosoeca	H.J.Clark, 1868	601409	Bicosoeca	H.J.Clark, 1868	601409	manually corrected
 Bicosoeca socialis	659898	exact	Bicosoeca socialis	Lauterborn, 1894	659898	Bicosoeca socialis	Lauterborn, 1894	659898	
 Bicosoeca sect. Stephanocodon	ambiguous								
 Florenciella	178627	exact	Florenciella	Eikrem, Romari, Latasa, Le Gall, Throndsen & Vaulot, 2004	178627	Florenciella	Eikrem, Romari, Latasa, Le Gall, Throndsen & Vaulot, 2004	178627	

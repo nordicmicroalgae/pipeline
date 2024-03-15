@@ -14,13 +14,13 @@ if(file.exists("synonyms_cache.rda")) {
   load(file = "synonyms_cache.rda")
 } else {
   # Loop for each AphiaID
-  for(i in 1:length(taxa_worms$aphia_id)) {
+  for(i in 1:length(taxa_worms$taxon_id)) {
     tryCatch({
-      record <- wm_synonyms(taxa_worms$aphia_id[i])
+      record <- wm_synonyms(taxa_worms$taxon_id[i])
       
       all_synonyms <- rbind(all_synonyms, record)
     }, error=function(e){})
-    cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$aphia_id),'\n')
+    cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
   }
   save(all_synonyms, file = "synonyms_cache.rda")
 }
