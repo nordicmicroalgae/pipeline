@@ -30,7 +30,10 @@ vignettes/*.pdf
 
 # knitr and R markdown default cache directories
 *_cache/
-/cache/
+cache/*
+!cache/.gitkeep
+*.db
+cache/*.rda
 
 # Temporary files created by R markdown
 *.utf8.md
@@ -65,7 +68,3 @@ data_in/used_aphia_id_list.txt
 # API keys
 code/algaebase_subscription_key.R
 code/dyntaxa_subscription_key.R
-
-# Cache
-*.db
-*.rda
