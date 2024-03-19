@@ -8,21 +8,21 @@ The R package [SHARK4R](https://github.com/sharksmhi/SHARK4R/) is required for s
 Patil, V.P., Seltmann, T., Salmaso, N., Anneville, O., Lajeunesse, M., Straile, D., 2023. algaeClassify (ver 2.0.1, October 2023): U.S. Geological Survey software release, https://doi.org/10.5066/F7S46Q3F
 
 ## To update the content:
-* Clone this repo and other required repos, and place in the directory structure as outlined below.
+* Clone this repo and other required repos, and place in the directory structure as outlined below
 * Download the latest NOMP biovolume list (in .xlsx) and store in /update-nua-taxonomy/data_in/. The file can be accessed from the [Nordic Microalgae webpage](http://nordicmicroalgae.org/tools)
 * Download the latest complete IOC HAB list in .txt from this [link](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) and store in /update-nua-taxonomy/data_in/
 * Additional taxa that exist in WoRMS can be manually added to the database in /update-nua-taxonomy/data_in/additions_to_old_nua.txt
-* Run /update-nua-taxonomy.Rmd. The entire script will take 6-7 hours to run if lists are not loaded from cache.
+* Run /update-nua-taxonomy.Rmd. The API calls will take 6-7 hours to run if lists are not loaded from cache
 * Check output for potential duplicated taxa or errors, they are listed in the .html report in /update-nua-taxonomy/update_history/
-  * Taxa may be filtered using /update-nua-taxonomy/data_in/blacklist.txt and /update-nua-taxonomy/data_in/whitelist.txt
+  * Taxa may be filtered using /update-nua-taxonomy/data_in/blacklist.txt and /update-nua-taxonomy/data_in/whitelist.txt, if needed
 * Push updated lists from /update-nua-taxonomy/data_out/content to https://github.com/nordicmicroalgae/content/
+* Run the syncdb app as a superuser from the admin pages, see logs for potential problems
+* Check if any images become assinged as taxon = 'none' in the admin page after importing new taxa lists, and assign them to their current names.
 * Verify updated Quick-View filters in /update-nua-taxonomy/data_out/backend/taxa/config and push to https://github.com/nordicmicroalgae/backend
   * Corrections can be made in /update-nua-taxonomy/data_in/plankton_groups.txt, where major groups can be defined for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under exclude_from_others
 * Upload a new version of the checklist to data.smhi.se
 
-Remember to check images with taxon = 'none' in the admin tool after importing new taxa lists, and assign them to their new names.
-
-## Required:
+## Required repos:
 
 https://github.com/nordicmicroalgae/taxa-worms
 
