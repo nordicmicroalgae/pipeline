@@ -71,3 +71,7 @@ src/R/dyntaxa_subscription_key.R
 
 # Update history
 update_history/*.zip
+
+# Python virtualenvs and cache
+venv
+__pycache__
