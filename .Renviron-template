@@ -1,2 +1,2 @@
-ALGAEBASE_APIKEY = "" # Enter your api key here
-DYNTAXA_APIKEY = "" # Enter your api key here
+ALGAEBASE_APIKEY = "" # Enter your api key here and rename to .Renviron
+DYNTAXA_APIKEY = "" # Enter your api key here and rename to .Renviron
