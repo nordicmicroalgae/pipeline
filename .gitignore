@@ -66,10 +66,6 @@ data_out/backend/taxa/config/*.yaml
 data_in/norcca_strains.txt
 data_in/used_aphia_id_list.txt
 
-# API keys
-src/R/algaebase_subscription_key.R
-src/R/dyntaxa_subscription_key.R
-
 # Update history
 update_history/*.zip
 
