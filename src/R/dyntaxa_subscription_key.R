@@ -1,1 +1,0 @@
-subscription_key <- "dc2829d279e24f3d981db3f27b371c07"
