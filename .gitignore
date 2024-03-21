@@ -68,3 +68,6 @@ data_in/used_aphia_id_list.txt
 # API keys
 code/algaebase_subscription_key.R
 code/dyntaxa_subscription_key.R
+
+# Update history
+update_history/*.zip
