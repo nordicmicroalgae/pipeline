@@ -3,9 +3,9 @@ library(writexl)
 library(algaeClassify)
 
 # Source modified functions from the algaeClassify package
-source("code/fun/algaebase_genus_search.r") # Edited function from algaeClassify, with added id
-source("code/fun/algaebase_species_search.r") # Edited function from algaeClassify, with added id
-source("code/fun/algaebase_search_df.r") # Edited function from algaeClassify, with added id
+source("src/R/fun/algaebase_genus_search.r") # Edited function from algaeClassify, with added id
+source("src/R/fun/algaebase_species_search.r") # Edited function from algaeClassify, with added id
+source("src/R/fun/algaebase_search_df.r") # Edited function from algaeClassify, with added id
 
 # Load API key
 if(!exists('ALGAEBASE_APIKEY')) {
