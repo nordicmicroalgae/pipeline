@@ -24,20 +24,20 @@ Patil, V.P., Seltmann, T., Salmaso, N., Anneville, O., Lajeunesse, M., Straile, 
 
 ## Directory structure
 ```
-/
-└─ update-nua-taxonomy/
-   ├─ cache/
-   ├─ data_in/
-   ├─ data_out/
-   │  ├─ content/
-   │  └─ backend/
-   │     └─ taxa/
-   │        └─ config/
-   ├─ src/
-   │  ├─ python/
-   │  |  ├─ norcca_compiler/
-   │  |  └─ wormsextractor/
-   │  └─ R/
-   │     └─ fun/
-   └─ update_history/
+/update-nua-taxonomy/
+ ├─ cache/
+ ├─ data_in/
+ ├─ data_out/
+ │  ├─ content/
+ │  └─ backend/
+ │     └─ taxa/
+ │        └─ config/
+ ├─ src/
+ │  ├─ python/
+ │  |  ├─ norcca_compiler/
+ │  |  └─ wormsextractor/
+ │  └─ R/
+ │     └─ fun/
+ └─ update_history/
+
 ```
