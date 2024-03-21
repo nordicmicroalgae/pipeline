@@ -13,11 +13,17 @@ taxa_worms <- read_tsv("data_out/content/taxa.txt",
 if(file.exists("cache/dyntaxa_cache.rda")) {
   load(file = "cache/dyntaxa_cache.rda")
 } else {
-  # Match taxa with API
-  dyntaxa <- match_taxon_name(taxa_worms$scientific_name, subscription_key)
-  
-  save(dyntaxa, file = "cache/dyntaxa_cache.rda")
+  dyntaxa <- data.frame() 
 }
+
+taxa_worms <- taxa_worms %>%
+  filter(!scientific_name %in% dyntaxa$search_pattern)
+
+# Match taxa with API
+dyntaxa <- rbind(match_taxon_name(taxa_worms$scientific_name, subscription_key),
+                 dyntaxa)
+
+save(dyntaxa, file = "cache/dyntaxa_cache.rda")
 
 # Match taxa_worms with Dyntaxa through the web match interface, read .txt-file here
 dyntaxa_records <- read.table("data_in/dyntaxa_match.txt", 

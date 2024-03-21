@@ -27,23 +27,26 @@ norcca_worms <- norcca_worms %>%
 # Get all aphia_id
 aphia_id <- unique(norcca_worms$AphiaID)
 
-# Extract records from WoRMS based on AphiaID
-norcca_updated <- data.frame()
-
 # Loop for each AphiaID to get taxonomic records
 # Load stored file if running from cache
 if(file.exists("cache/norcca_cache.rda")) {
   load(file = "cache/norcca_cache.rda")
 } else { 
-  for(i in 1:length(aphia_id)) {
-    tryCatch({
-      record <- wm_record(aphia_id[i])
-      
-      norcca_updated <- rbind(norcca_updated, record)
-    }, error=function(e){}
-    )
-  }
-  save(norcca_updated, file = "cache/norcca_cache.rda")
+  norcca_updated <- data.frame()
+}
+
+# Skip cached items
+aphia_id <- aphia_id[!aphia_id %in% norcca_updated$AphiaID]
+
+for(i in 1:length(aphia_id)) {
+  tryCatch({
+    record <- wm_record(aphia_id[i])
+    
+    norcca_updated <- rbind(norcca_updated, record)
+    
+    save(norcca_updated, file = "cache/norcca_cache.rda")
+  }, error=function(e){}
+  )
 }
 
 # Update AphiaID if id is unaccepted

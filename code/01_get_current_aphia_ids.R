@@ -40,17 +40,19 @@ aphia_id_combined <- aphia_id_combined[!is.na(aphia_id_combined)]
 if(file.exists("cache/all_records_cache.rda")) {
   load(file = "cache/all_records_cache.rda")
 } else {
-  # Extract records from WoRMS based on AphiaID
   all_records <- data.frame()
+}
+
+# Skip cached items
+aphia_id_combined <- aphia_id_combined[!aphia_id_combined %in% all_records$AphiaID]
+
+# Extract records from WoRMS based on AphiaID
+for(i in 1:length(aphia_id_combined)) {
+  record <- wm_record(aphia_id_combined[i])
   
-  # Loop for each AphiaID to get taxonomic records
-  for(i in 1:length(aphia_id_combined)) {
-    record <- wm_record(aphia_id_combined[i])
-    
-    all_records <- rbind(all_records, record)
-    
-    cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
-  }
+  all_records <- rbind(all_records, record)
+  
+  cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
   save(all_records, file = "cache/all_records_cache.rda")
 }
 

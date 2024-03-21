@@ -5,27 +5,33 @@ library(worrms)
 taxa_worms <- read_tsv("data_out/content/taxa.txt",
                        col_types = cols())
 
-# Get NCBI id from WoRMS
-ncbi_records <- data.frame()
-
 # Load stored file if running from cache
 if(file.exists("cache/ncbi_cache.rda")) {
   load(file = "cache/ncbi_cache.rda")
 } else {
-  # Loop for each AphiaID
-  for(i in 1:length(taxa_worms$taxon_id)) {
-    tryCatch({
-      record <- data.frame(taxon_id = taxa_worms$taxon_id[i],
-                           ncbi_id = wm_external(taxa_worms$taxon_id[i],
-                                                 type = "ncbi")
-      )
-      
-      ncbi_records <- rbind(ncbi_records, record)
-    }, error=function(e){})
-    cat('Getting NCBI records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
-  }
-  save(ncbi_records, file = "cache/ncbi_cache.rda")
+  ncbi_records <- data.frame()
 }
+
+# Remove cached items
+taxa_worms <- taxa_worms %>%
+  filter(!taxon_id %in% ncbi_records$taxon_id)
+
+# Loop for each AphiaID
+for(i in 1:length(taxa_worms$taxon_id)) {
+  tryCatch({
+    record <- data.frame(taxon_id = taxa_worms$taxon_id[i],
+                         ncbi_id = wm_external(taxa_worms$taxon_id[i],
+                                               type = "ncbi")
+    )
+    
+    ncbi_records <- rbind(ncbi_records, record)
+    
+    # Store cached items
+    save(ncbi_records, file = "cache/ncbi_cache.rda")
+  }, error=function(e){})
+  cat('Getting NCBI records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
+}
+
 
 # Add URL
 ncbi_list <- ncbi_records %>%

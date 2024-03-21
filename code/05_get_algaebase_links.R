@@ -75,13 +75,22 @@ algaebase_species_api <- taxa_worms %>%
 if(file.exists("cache/algaebase_cache.rda")) {
   load(file = "cache/algaebase_cache.rda")
 } else {
-  # Call the Algaebase API and add taxon_id
-  algaebase_results <- algaebase_search_df(algaebase_species_api, 
-                                           apikey = ALGAEBASE_APIKEY,
-                                           genus.name = "genus",
-                                           species.name = "species") 
-  save(algaebase_results, file = "cache/algaebase_cache.rda")
+  algaebase_results <- data.frame()
 }
+
+# Remove cached items
+algaebase_species_api <- algaebase_species_api %>%
+  filter(!input.name %in% algaebase_results$input.name)
+
+# Call the Algaebase API and add taxon_id
+algaebase_results <- rbind(algaebase_results,
+                           algaebase_search_df(algaebase_species_api, 
+                                         apikey = ALGAEBASE_APIKEY,
+                                         genus.name = "genus",
+                                         species.name = "species")
+                           )
+
+save(algaebase_results, file = "cache/algaebase_cache.rda")
 
 # Join and wrangle
 algaebase_results <- algaebase_results %>% 

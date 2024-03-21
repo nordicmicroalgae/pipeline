@@ -5,26 +5,31 @@ library(worrms)
 taxa_worms <- read_tsv("data_out/content/taxa.txt",
                        col_types = cols())
 
-# Get ITIS id from WoRMS
-itis_records <- data.frame()
-
 # Load stored file if running from cache
 if(file.exists("cache/itis_cache.rda")) {
   load(file = "cache/itis_cache.rda")
 } else {
-  # Loop for each AphiaID
-  for(i in 1:length(taxa_worms$taxon_id)) {
-    tryCatch({
-      record <- data.frame(taxon_id = taxa_worms$taxon_id[i],
-                           itis_id = wm_external(taxa_worms$taxon_id[i],
-                            type = "tsn")
-                           )
-      
-      itis_records <- rbind(itis_records, record)
-    }, error=function(e){})
-    cat('Getting ITIS records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
-  }
-  save(itis_records, file = "cache/itis_cache.rda")
+  itis_records <- data.frame()
+}
+
+# Remove cached items
+taxa_worms <- taxa_worms %>%
+  filter(!taxon_id %in% itis_records$taxon_id)
+
+# Loop for each AphiaID
+for(i in 1:length(taxa_worms$taxon_id)) {
+  tryCatch({
+    record <- data.frame(taxon_id = taxa_worms$taxon_id[i],
+                         itis_id = wm_external(taxa_worms$taxon_id[i],
+                                               type = "tsn")
+    )
+    
+    itis_records <- rbind(itis_records, record)
+    
+    # Store cached items
+    save(itis_records, file = "cache/itis_cache.rda")
+  }, error=function(e){})
+  cat('Getting ITIS records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
 }
 
 # Add URL
