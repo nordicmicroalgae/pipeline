@@ -59,7 +59,7 @@ Microspora	144202	exact	Microspora	Thuret, 1850	144202	Microspora	Thuret, 1850	1
 Chaetophora	143931	exact	Chaetophora	Schrank, 1783	143931	Chaetophora	Schrank, 1783	143931	
 Stromatella	143939	exact	Stromatella	Kornmann & Sahling, 1985	836601	Neostromatella	M.J.Wynne, G.Furnari & R.Nielsen, 2014	836601	
 Uronema	143943							143943	
-Uronema marinus	555270		Uronema marinum	Womersley, 1984	555270	Uronema marinum	Womersley, 1984	555270	manually corrected
+Uronema marinus	172341		Uronema marinum	Dujardin, 1841	172341	Uronema marinum	Dujardin, 1841	172341	manually corrected
 Chaetonema	600757	exact	Chaetonema	Nowakowski, 1876	600757	Chaetonema	Nowakowski, 1876	600757	
 Oedogonium calcareum	616392	exact	Oedogonium calcareum	Cleve & Wittrock, 1900	616392	Oedogonium calcareum	Cleve & Wittrock, 1900	616392	
 Oedogonium richterianum	649790	exact	Oedogonium richterianum	Lemmermann ex Hirn, 1900	649790	Oedogonium richterianum	Lemmermann ex Hirn, 1900	649790	

@@ -4,3 +4,16 @@ AphiaID	scientific_name	comment
 843863	Aulacoseira pseudodistans	Added from SLU, added by WoRMS 20240314
 625460	Pseudokephyrion taeniatum	Image with missing ID, added by WoRMS 20240314
 974573	Cyclotella bodanica var. borealis	Added from SLU, synonym to Cyclotella bodanica var. lemanensis f. bor in Dyntaxa
+341370	Stephanoeca diplocostata var. paucicostata	From Kuylenstierna
+109791	Gymnodinium elongatum	From Kuylenstierna
+1361943	Protoperidinium oblongum var. latidorsale	From Kuylenstierna
+162998	Chaetoceros anastomosans var. externus	From Kuylenstierna
+626371	Scrippsiella mexicana	From olf Checklist 1998
+418523	Coscinodiscus kuetzingii	From olf Checklist 1998
+426530	Cyclotrichium ovatum	From olf Checklist 1998
+426531	Cyclotrichium sphaericum	From olf Checklist 1998
+409634	Holophrya	From olf Checklist 1998
+427374	Urotricha pelagica	From olf Checklist 1998
+235828	Calyptrosphaera	From olf Checklist 1998
+696473	Syracosphaera mediterranea var. binodata	From olf Checklist 1998
+145790	Rhodella violacea	From olf Checklist 1998
