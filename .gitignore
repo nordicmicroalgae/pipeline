@@ -54,7 +54,7 @@ rsconnect/
 # Old files
 data_in/old/
 data_out/content/old/
-code/old/
+src/R/old/
 
 # Generated data
 data_out/*.txt
@@ -66,8 +66,8 @@ data_in/norcca_strains.txt
 data_in/used_aphia_id_list.txt
 
 # API keys
-code/algaebase_subscription_key.R
-code/dyntaxa_subscription_key.R
+src/R/algaebase_subscription_key.R
+src/R/dyntaxa_subscription_key.R
 
 # Update history
 update_history/*.zip

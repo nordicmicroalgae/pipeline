@@ -96,7 +96,7 @@ using https://github.com/nordicmicroalgae/taxa-worms
 
 ```{r get_taxa_file, include=FALSE}
 if(!params$cache_taxa_worms) {
-  file.remove("worms_cache.db")
+  file.remove("cache/worms_cache.db")
 }
 
 start.time <- Sys.time()
@@ -213,9 +213,8 @@ strains_compiler <- norcca_compiler$StrainsCompiler()
 
 strains_compiler$compile()
 
-data <- strains_compiler$rows
-
-norcca <- do.call(rbind, lapply(data, function(x) as.data.frame(t(unlist(x)))))
+norcca <- do.call(rbind, lapply(strains_compiler$rows, 
+                                function(x) as.data.frame(t(unlist(x)))))
 
 write_delim(norcca, "data_in/norcca_strains.txt", 
             delim = "\t",
