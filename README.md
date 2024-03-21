@@ -22,30 +22,22 @@ Patil, V.P., Seltmann, T., Salmaso, N., Anneville, O., Lajeunesse, M., Straile, 
   * Corrections can be made in /update-nua-taxonomy/data_in/plankton_groups.txt, where major groups can be defined for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under exclude_from_others
 * Upload a new version of the checklist to data.smhi.se
 
-## Required repos:
-
-https://github.com/nordicmicroalgae/taxa-worms
-
-https://github.com/nordicmicroalgae/norcca_compiler
-
 ## Directory structure
 ```
 /
-├─ norcca_compiler/
-│  └─ norcca_compiler/
-├─ taxa_worms/
-│  ├─ data_in/
-│  ├─ data_out/
-│  └─ wormsextractor/
 └─ update-nua-taxonomy/
    ├─ cache/
-   ├─ code/
-   │  └─ fun/
    ├─ data_in/
    ├─ data_out/
    │  ├─ content/
    │  └─ backend/
    │     └─ taxa/
    │        └─ config/
+   ├─ src/
+   │  ├─ python/
+   │  |  ├─ norcca_compiler/
+   │  |  └─ wormsextractor/
+   │  └─ R/
+   │     └─ fun/
    └─ update_history/
 ```
