@@ -21,7 +21,7 @@ knit: (function(inputFile, encoding) {
                         ".html")) })
 ---
 
-This Rmarkdown file calls necessary R and Python code for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Links to required Python code is provided below. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for NuA content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
+This Rmarkdown file calls necessary R and Python code for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for NuA content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
 
 * Additional taxa can be included in additions_to_old_nua.txt
 * Unwanted taxa, e.g. Flagellates, can be included in blacklist.txt
@@ -91,8 +91,7 @@ runtime_update_checklist <- round(end.time - start.time, 2)
 print(paste("AphiaID for", nrow(all_records), "taxa found"))
 ```
 
-# Create taxa_worms.txt, including higher taxonomy
-using https://github.com/nordicmicroalgae/taxa-worms
+# Get WoRMS records, including higher taxonomy
 
 ```{r get_taxa_file, include=FALSE}
 if(!params$cache_taxa_worms) {
@@ -183,7 +182,7 @@ end.time <- Sys.time()
 runtime_match_dyntaxa <- round(end.time - start.time, 2)
 ```
 
-# Export files to send to AlgaeBase
+# Get AlgaeBase links
 
 ```{r get_algaebase, echo=FALSE, include=FALSE}
 if(!params$cache_algaebase) {
@@ -201,8 +200,7 @@ runtime_algaebase <- round(end.time - start.time, 2)
 print(paste(nrow(algaebase_results), "species and genera found in AlgaeBase"))
 ```
 
-# Extract culture information from NORCCA 
-using https://github.com/nordicmicroalgae/norcca_compiler
+# Extract culture information from NORCCA
 
 ```{r get_norcca, include=FALSE, message=FALSE, warning=FALSE}
 start.time <- Sys.time()
@@ -222,6 +220,8 @@ write_delim(norcca, "data_in/norcca_strains.txt",
 
 print(paste(nrow(norcca), "strains extracted"))
 ```
+
+# Add taxon_id to NORCCA strains and filter strains from Northern Europe
 
 ```{r wrangle_norcca, echo=FALSE}
 if(!params$cache_norcca) {
@@ -280,7 +280,7 @@ runtime_ncbi <- round(end.time - start.time, 2)
 print(paste(nrow(ncbi_list), "taxa found in NCBI/ENA database"))
 ```
 
-# Get GBIF links
+# Get GBIF links and number of records
 ```{r get_gbif, echo=FALSE, include=FALSE}
 if(!params$cache_gbif) {
   file.remove("cache/gbif_cache.rda")
@@ -369,7 +369,6 @@ files = c('data_out/backend/taxa/config/filters.yaml',
 )
 )
 ```
-
 
 # Reproducibility
 
