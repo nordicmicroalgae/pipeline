@@ -14,7 +14,7 @@ hab_list <- read.table(file.path("data_in", hab_filename$value[nrow(hab_filename
                         fill = TRUE)
 
 # Read HAB list from Karlson et al 2021 https://doi.org/10.1016/j.hal.2021.101989
-nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc.txt",
+nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc_karlson_et_al_2021.txt",
                        col_types = cols())
 
 # Read taxa_worms file
@@ -63,4 +63,4 @@ print(paste(length(unique(nordic_hab$taxon_id)),
 
 # Store files
 write_tsv(nordic_hab, "data_out/content/facts_external_links_hab_ioc.txt")
-write_tsv(nordic_hab_karlson_updated, "data_out/content/facts_hab_ioc.txt") 
+write_tsv(nordic_hab_karlson_updated, "data_out/content/facts_hab_ioc_karlson_et_al_2021.txt") 
