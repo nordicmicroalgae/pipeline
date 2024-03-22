@@ -23,7 +23,7 @@ names(bvol_nomp) <- gsub("\\n", "", names(bvol_nomp))
 old_nua <- read.table("data_in/database_export_old_nua.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
 
 # Read HAB list from Karlson et al 2021 https://doi.org/10.1016/j.hal.2021.101989
-nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc.txt",
+nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc_karlson_et_al_2021.txt",
                                col_types = cols())
 
 # Read blacklist for removing unwanted
