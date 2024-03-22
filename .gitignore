@@ -68,6 +68,7 @@ data_in/used_aphia_id_list.txt
 
 # Update history
 update_history/*.zip
+update_history/*.html
 
 # Python virtualenvs and cache
 venv
