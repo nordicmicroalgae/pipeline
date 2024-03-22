@@ -20,7 +20,7 @@ names(bvol_nomp) <- gsub("\\r\\n", "", names(bvol_nomp))
 names(bvol_nomp) <- gsub("\\n", "", names(bvol_nomp))
 
 # Read a WoRMS-matched species list from old NuA
-old_nua <- read.table("data_in/old_nua_matched.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
+old_nua <- read.table("data_in/database_export_old_nua.txt", header=TRUE, sep="\t", fill = TRUE, quote = "", encoding = "UTF-8")
 
 # Read HAB list from Karlson et al 2021 https://doi.org/10.1016/j.hal.2021.101989
 nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc.txt",
