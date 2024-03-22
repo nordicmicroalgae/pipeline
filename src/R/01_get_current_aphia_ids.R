@@ -47,13 +47,15 @@ if(file.exists("cache/all_records_cache.rda")) {
 aphia_id_combined <- aphia_id_combined[!aphia_id_combined %in% all_records$AphiaID]
 
 # Extract records from WoRMS based on AphiaID
-for(i in 1:length(aphia_id_combined)) {
-  record <- wm_record(aphia_id_combined[i])
-  
-  all_records <- rbind(all_records, record)
-  
-  cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
-  save(all_records, file = "cache/all_records_cache.rda")
+if(length(aphia_id_combined) > 0) {
+  for(i in 1:length(aphia_id_combined)) {
+    record <- wm_record(aphia_id_combined[i])
+    
+    all_records <- rbind(all_records, record)
+    
+    cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
+    save(all_records, file = "cache/all_records_cache.rda")
+  }
 }
 
 # Update taxon_id for NOMP list

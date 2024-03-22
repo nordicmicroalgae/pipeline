@@ -19,16 +19,18 @@ taxa_worms <- taxa_worms %>%
   filter(!taxon_id %in% all_synonyms$valid_AphiaID)
 
 # Loop for each AphiaID
-for(i in 1:length(taxa_worms$taxon_id)) {
-  tryCatch({
-    record <- wm_synonyms(taxa_worms$taxon_id[i])
-    
-    all_synonyms <- rbind(all_synonyms, record)
-    
-    # Store cached item
-    save(all_synonyms, file = "cache/synonyms_cache.rda")
-  }, error=function(e){})
-  cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
+if (nrow(taxa_worms) > 0) {
+  for(i in 1:length(taxa_worms$taxon_id)) {
+    tryCatch({
+      record <- wm_synonyms(taxa_worms$taxon_id[i])
+      
+      all_synonyms <- rbind(all_synonyms, record)
+      
+      # Store cached item
+      save(all_synonyms, file = "cache/synonyms_cache.rda")
+    }, error=function(e){})
+    cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
+  }
 }
 
 # Wrangle synonyms
