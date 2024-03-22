@@ -1,4 +1,4 @@
-# Repo for updating Nordic Microalgae content/species
+# Update Nordic Microalgae taxonomic backbone
 
 The R Markdown document update-nua-taxonomy.Rmd calls a number of R and Python scripts to interact with APIs and webpages from [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/) in order to update the [species content](https://github.com/nordicmicroalgae/content/tree/master/species) of Nordic Microalgae.
 
@@ -21,23 +21,3 @@ Patil, V.P., Seltmann, T., Salmaso, N., Anneville, O., Lajeunesse, M., Straile, 
 * Verify updated Quick-View filters in /data_out/backend/taxa/config and push to https://github.com/nordicmicroalgae/backend
   * Corrections can be made in /data_in/plankton_groups.txt, where major groups can be defined for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under exclude_from_others
 * Upload a new version of the checklist to data.smhi.se (optional)
-
-## Directory structure
-```
-/pipeline/
- ├─ cache/
- ├─ data_in/
- ├─ data_out/
- │  ├─ content/
- │  └─ backend/
- │     └─ taxa/
- │        └─ config/
- ├─ src/
- │  ├─ python/
- │  |  ├─ norcca_compiler/
- │  |  └─ wormsextractor/
- │  └─ R/
- │     └─ fun/
- └─ update_history/
-
-```
