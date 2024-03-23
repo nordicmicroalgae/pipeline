@@ -28,7 +28,9 @@ if (nrow(taxa_worms) > 0) {
       
       # Store cached item
       save(all_synonyms, file = "cache/synonyms_cache.rda")
-    }, error=function(e){})
+    }, error=function(e){
+      cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+    })
     cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
   }
 }

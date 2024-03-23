@@ -33,9 +33,11 @@ for(i in 1:length(aphia_id)) {
     record <- wm_record(aphia_id[i])
     
     karlson_records <- rbind(karlson_records, record)
-  }, error=function(e){})
-  
-  cat('Getting record', i, 'of', length(aphia_id),'\n')
+    
+    cat('Getting record', i, 'of', length(aphia_id),'\n')
+  }, error=function(e){
+    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+  })
 }
 
 # Update AphiaID if id is unaccepted

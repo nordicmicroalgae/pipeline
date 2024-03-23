@@ -45,7 +45,9 @@ for(i in 1:length(aphia_id)) {
     norcca_updated <- rbind(norcca_updated, record)
     
     save(norcca_updated, file = "cache/norcca_cache.rda")
-  }, error=function(e){}
+  }, error=function(e){
+    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+  }
   )
 }
 
@@ -77,7 +79,9 @@ for(i in 1:nrow(missing_id)) {
   missing_i$AphiaID = wm_name2id(missing_i$scientific_name)
   
   identified_taxa <- rbind(identified_taxa, missing_i)
-  }, error=function(e){})
+  }, error=function(e){
+    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+  })
 }
 
 # Find all AphiaIDs
@@ -92,9 +96,11 @@ for(i in 1:length(aphia_id)) {
   record <- wm_record(aphia_id[i])
   
   missing_records <- rbind(missing_records, record)
-  }, error=function(e){})
   
   cat('Getting record', i, 'of', length(aphia_id),'\n')
+  }, error=function(e){
+    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+  })
 }
 
 # Keep only necessary info
