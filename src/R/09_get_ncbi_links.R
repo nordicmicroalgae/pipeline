@@ -28,7 +28,12 @@ for(i in 1:length(taxa_worms$taxon_id)) {
     
     # Store cached items
     save(ncbi_records, file = "cache/ncbi_cache.rda")
-  }, error=function(e){})
+    
+    # Introduce a delay of .5 seconds between iterations
+    Sys.sleep(.5)
+  }, error=function(e){
+    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+  })
   cat('Getting NCBI records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
 }
 
