@@ -15,18 +15,16 @@ if(file.exists("cache/synonyms_cache.rda")) {
 }
 
 # Remove cached items
-taxa_worms <- taxa_worms %>%
+taxa_worms_missing <- taxa_worms %>%
   filter(!taxon_id %in% all_synonyms$valid_AphiaID)
 
 # Loop for each AphiaID
-if (nrow(taxa_worms) > 0) {
-  for(i in 1:length(taxa_worms$taxon_id)) {
-    
-    cat('Getting synonyms for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
-    
+if (nrow(taxa_worms_missing) > 0) {
+  for(i in 1:length(taxa_worms_missing$taxon_id)) {
     # Define record and set it to NULL initially
-    record <- data.frame(AphiaID = taxa_worms$taxon_id[i])
-    tryCatch({record <- wm_synonyms(taxa_worms$taxon_id[i])}, 
+    record <- data.frame(AphiaID = taxa_worms_missing$taxon_id[i])
+    cat('Getting synonyms for taxa', i, 'of', length(taxa_worms_missing$taxon_id),'\n')
+    tryCatch({record <- wm_synonyms(taxa_worms_missing$taxon_id[i])}, 
              error=function(e){
                cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
              })

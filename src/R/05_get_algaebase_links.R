@@ -79,12 +79,12 @@ if(file.exists("cache/algaebase_cache.rda")) {
 }
 
 # Remove cached items
-algaebase_species_api <- algaebase_species_api %>%
+algaebase_species_api_missing <- algaebase_species_api %>%
   filter(!input.name %in% algaebase_results$input.name)
 
 # Call the Algaebase API and add taxon_id
 algaebase_results <- rbind(algaebase_results,
-                           algaebase_search_df(algaebase_species_api, 
+                           algaebase_search_df(algaebase_species_api_missing, 
                                          apikey = ALGAEBASE_APIKEY,
                                          genus.name = "genus",
                                          species.name = "species")
