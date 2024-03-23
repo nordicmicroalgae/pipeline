@@ -74,6 +74,7 @@ all_records <- all_records %>%
   mutate(used_aphia_id = ifelse(status == "deleted", valid_AphiaID, used_aphia_id)) %>%
   mutate(scientificname = ifelse(status == "deleted", valid_name, scientificname)) %>%
   filter(!is.na(scientificname)) %>%
+  filter(!is.na(used_aphia_id)) %>%
   filter(!AphiaID %in% blacklist$taxon_id)
 
 # Summarise translated unaccepted names
@@ -86,6 +87,6 @@ translate <- all_records %>%
          aphia_id_accepted = valid_AphiaID)
 
 # Store files, use used_aphia_id_list.txt in https://github.com/nordicmicroalgae/taxa-worms to build taxa_worms.txt
-write_tsv(translate, "data_out/translate_to_worms.txt")
-write_tsv(all_records, "data_in/used_aphia_id_list.txt")
+write_tsv(translate, "data_out/translate_to_worms.txt", na = "")
+write_tsv(all_records, "data_in/used_aphia_id_list.txt", na = "")
 write_tsv(bvol_nomp, "data_out/content/facts_biovolumes_nomp.txt", na = "")
