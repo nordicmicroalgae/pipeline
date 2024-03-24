@@ -22,11 +22,24 @@ taxa_worms_missing <- taxa_worms %>%
 if (nrow(taxa_worms_missing > 0)) {
   gbif_missing_records <- taxa_worms_missing %>%
     rename(name = scientific_name_authority) %>%
-    name_backbone_checklist()
+    name_backbone_checklist() %>%
+    mutate(n_nordic_occurrences = NA)
+  
+  # Get number of occurrences
+  for (i in 1:nrow(gbif_missing_records)) {
+    # From scandinavian records
+    gbif_missing_records$n_nordic_occurrences[i] <- occ_count(taxonKey=gbif_missing_records$usageKey[i], 
+                                                      decimalLatitude='54.6, 70', 
+                                                      decimalLongitude='0, 19.9')
+    
+    # Print progress
+    cat('Getting record', i, 'of', nrow(gbif_missing_records), ":", gbif_missing_records$scientificName[i],
+        "-", gbif_missing_records$n_nordic_occurrences[i], "occurences", '\n')
+  }
   
   # Bind with cached items
-  gbif_records <- rbind(gbif_records,
-                        gbif_missing_records)
+  gbif_records <- bind_rows(gbif_records,
+                            gbif_missing_records)
 }
 
 # Store cached items
@@ -38,23 +51,10 @@ gbif_list <- taxa_worms %>%
   right_join(gbif_records, by = c("scientific_name_authority" = "verbatim_name")) %>%
   filter(!is.na(taxon_id)) %>%
   filter(!is.na(usageKey)) %>%
+  filter(taxon_id %in% taxa_worms$taxon_id) %>%
   mutate(url = paste0("www.gbif.org/species/", usageKey)) %>%
-  select(taxon_id, scientific_name_authority, usageKey, url) %>%
-  rename(usage_key = usageKey) %>%
-  mutate(n_nordic_occurrences = NA)
-  
-# Get number of occurrences
-for (i in 1:nrow(gbif_list)) {
-  # From scandinavian records
-  gbif_list$n_nordic_occurrences[i] <- occ_count(taxonKey=gbif_list$usage_key[i], 
-                                                 decimalLatitude='54.6, 70', 
-                                                 decimalLongitude='0, 19.9')
-  
-  # Print progress
-  cat('Getting record', i, 'of', nrow(gbif_list), ":", gbif_list$scientific_name_authority[i],
-      "-", gbif_list$n_nordic_occurrences[i], "occurences", '\n')
-}
-
+  select(taxon_id, scientific_name_authority, usageKey, url, n_nordic_occurrences) %>%
+  rename(usage_key = usageKey)
 
 # Change between heatmap and points based on number of occurrences
 gbif_list <- gbif_list %>%

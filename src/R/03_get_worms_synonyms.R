@@ -22,11 +22,11 @@ taxa_worms_missing <- taxa_worms %>%
 if (nrow(taxa_worms_missing) > 0) {
   for(i in 1:length(taxa_worms_missing$taxon_id)) {
     # Define record and set it to NULL initially
-    record <- data.frame(AphiaID = taxa_worms_missing$taxon_id[i])
+    record <- data.frame(valid_AphiaID = taxa_worms_missing$taxon_id[i])
     cat('Getting synonyms for taxa', i, 'of', length(taxa_worms_missing$taxon_id),'\n')
     tryCatch({record <- wm_synonyms(taxa_worms_missing$taxon_id[i])}, 
              error=function(e){
-               cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+               cat("Error occurred in AphiaID", taxa_worms_missing$taxon_id[i], ":", conditionMessage(e), "\n")
              })
     all_synonyms <- bind_rows(all_synonyms, record)
     

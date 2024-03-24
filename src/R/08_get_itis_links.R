@@ -13,19 +13,19 @@ if(file.exists("cache/itis_cache.rda")) {
 }
 
 # Remove cached items
-taxa_worms <- taxa_worms %>%
+taxa_worms_missing <- taxa_worms %>%
   filter(!taxon_id %in% itis_records$taxon_id)
 
 # Loop for each AphiaID
-for(i in 1:length(taxa_worms$taxon_id)) {
-  cat('Getting ITIS records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
-  record <- data.frame(taxon_id = taxa_worms$taxon_id[i])
+for(i in 1:length(taxa_worms_missing$taxon_id)) {
+  cat('Getting ITIS records for taxa', i, 'of', length(taxa_worms_missing$taxon_id),'\n')
+  record <- data.frame(taxon_id = taxa_worms_missing$taxon_id[i])
   tryCatch({
-    record <- data.frame(taxon_id = taxa_worms$taxon_id[i],
-                         itis_id = wm_external(taxa_worms$taxon_id[i],
+    record <- data.frame(taxon_id = taxa_worms_missing$taxon_id[i],
+                         itis_id = wm_external(taxa_worms_missing$taxon_id[i],
                                                type = "tsn")
     )  }, error=function(e){
-      cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+      cat("Error occurred in AphiaID", taxa_worms_missing$taxon_id[i], ":", conditionMessage(e), "\n")
       
       # Introduce a delay of .5 seconds between iterations
       Sys.sleep(.5)
@@ -42,6 +42,7 @@ for(i in 1:length(taxa_worms$taxon_id)) {
 
 # Add URL
 itis_list <- itis_records %>%
+  filter(taxon_id %in% taxa_worms$taxon_id) %>%
   filter(!is.na(taxon_id)) %>%
   filter(!is.na(itis_id)) %>%
   mutate(url = paste0("http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&search_value=", itis_id))

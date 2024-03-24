@@ -13,19 +13,19 @@ if(file.exists("cache/ncbi_cache.rda")) {
 }
 
 # Remove cached items
-taxa_worms <- taxa_worms %>%
+taxa_worms_missing <- taxa_worms %>%
   filter(!taxon_id %in% ncbi_records$taxon_id)
 
 # Loop for each AphiaID
-for(i in 1:length(taxa_worms$taxon_id)) {
-  cat('Getting NCBI records for taxa', i, 'of', length(taxa_worms$taxon_id),'\n')
-  record <- data.frame(taxon_id = taxa_worms$taxon_id[i])
+for(i in 1:length(taxa_worms_missing$taxon_id)) {
+  cat('Getting NCBI records for taxa', i, 'of', length(taxa_worms_missing$taxon_id),'\n')
+  record <- data.frame(taxon_id = taxa_worms_missing$taxon_id[i])
   tryCatch({
-    record <- data.frame(taxon_id = taxa_worms$taxon_id[i],
-                         ncbi_id = wm_external(taxa_worms$taxon_id[i],
+    record <- data.frame(taxon_id = taxa_worms_missing$taxon_id[i],
+                         ncbi_id = wm_external(taxa_worms_missing$taxon_id[i],
                                                type = "ncbi")
     )  }, error=function(e){
-      cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+      cat("Error occurred in AphiaID", taxa_worms_missing$taxon_id[i], ":", conditionMessage(e), "\n")
       
       # Introduce a delay of .5 seconds between iterations
       Sys.sleep(.5)
@@ -42,12 +42,14 @@ for(i in 1:length(taxa_worms$taxon_id)) {
 
 # Add URL
 ncbi_list <- ncbi_records %>%
+  filter(taxon_id %in% taxa_worms$taxon_id) %>%
   filter(!is.na(taxon_id)) %>%
   filter(!is.na(ncbi_id)) %>%
   mutate(url = paste0("https://www.ncbi.nlm.nih.gov/datasets/taxonomy/", ncbi_id))
 
 # Add URL
 ena_list <- ncbi_records %>%
+  filter(taxon_id %in% taxa_worms$taxon_id) %>%
   filter(!is.na(taxon_id)) %>%
   filter(!is.na(ncbi_id)) %>%
   mutate(url = paste0("www.ebi.ac.uk/ena/browser/view/", ncbi_id))

@@ -1,5 +1,6 @@
 library(tidyverse)
 library(worrms)
+library(snakecase)
 library(rvest)
 
 # Define which origin countries to keep
@@ -27,7 +28,6 @@ norcca_worms <- norcca_worms %>%
 # Get all aphia_id
 aphia_id <- unique(norcca_worms$AphiaID)
 
-# Loop for each AphiaID to get taxonomic records
 # Load stored file if running from cache
 if(file.exists("cache/norcca_cache.rda")) {
   load(file = "cache/norcca_cache.rda")
@@ -38,6 +38,7 @@ if(file.exists("cache/norcca_cache.rda")) {
 # Skip cached items
 aphia_id <- aphia_id[!aphia_id %in% norcca_updated$AphiaID]
 
+# Loop for each AphiaID to get taxonomic records
 for(i in 1:length(aphia_id)) {
   tryCatch({
     record <- wm_record(aphia_id[i])
@@ -99,7 +100,7 @@ for(i in 1:length(aphia_id)) {
   
   cat('Getting record', i, 'of', length(aphia_id),'\n')
   }, error=function(e){
-    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+    cat("Error occurred in AphiaID", aphia_id[i], ":", conditionMessage(e), "\n")
   })
 }
 
@@ -134,30 +135,51 @@ names(norcca_combined) <- snakecase::to_snake_case(names(norcca_combined))
 # Create an empty column
 norcca_combined$nordic <- NA
 
-# Scrape origin information from strain page
-for (i in 1:nrow(norcca_combined)) {
-  html <- read_html(norcca_combined$strain_link[i])
-  
-  field_items <- html  %>%
-    html_elements(css = ".field__item") %>% 
-    html_text()
-  
-  norcca_combined$nordic[i] <- any(nordic_countries %in% field_items)
-  
-  # message("Scraping strain page ", i, " of ", nrow(norcca_combined))
+# Load stored file if running from cache
+if(file.exists("cache/norcca_nordic_cache.rda")) {
+  load(file = "cache/norcca_nordic_cache.rda")
+} else { 
+  norcca_nordic <- data.frame()
 }
 
+norcca_combined_missing <- norcca_combined %>%
+  filter(!strain_link %in% norcca_nordic$strain_link)
+
+# Scrape origin information from strain page
+if (nrow(norcca_combined_missing) > 0) {
+  for (i in 1:nrow(norcca_combined_missing)) {
+    message("Scraping strain page ", i, " of ", nrow(norcca_combined_missing))
+    
+    html <- read_html(norcca_combined_missing$strain_link[i])
+    
+    field_items <- html  %>%
+      html_elements(css = ".field__item") %>% 
+      html_text()
+    
+    norcca_combined_missing$nordic[i] <- any(nordic_countries %in% field_items)
+  }
+}
+
+# Bind with cached items
+norcca_nordic <- rbind(norcca_nordic,
+                       norcca_combined_missing) %>%
+  filter(!is.na(nordic)) %>%
+  distinct()
+
+save(norcca_nordic, file = "cache/norcca_nordic_cache.rda")
+
 # Remove strains that are not defined as nordic countries
-norcca_combined <- norcca_combined %>%
+norcca_nordic <- norcca_nordic %>%
   filter(nordic) %>%
+  filter(taxon_id %in% taxa_worms$taxon_id) %>%
   select(-nordic)
 
 # Print output
 print(paste("Information from",
-            length(unique(norcca_combined$strain_name)),
+            length(unique(norcca_nordic$strain_name)),
             "strains extracted from NORCCA, matching",
-            length(unique(norcca_combined$scientific_name)),
+            length(unique(norcca_nordic$scientific_name)),
             "NuA taxa"))
 
 # Store file
-write_tsv(norcca_combined, "data_out/content/facts_external_links_norcca.txt", na = "")
+write_tsv(norcca_nordic, "data_out/content/facts_external_links_norcca.txt", na = "")

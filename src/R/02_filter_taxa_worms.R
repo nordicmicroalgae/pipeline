@@ -1,6 +1,8 @@
 library(tidyverse)
-library(worrms)
 library(writexl)
+
+# Source function to extract all parent ids from taxa list
+source("src/R/fun/get_all_parents.R")
 
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_out/taxa_worms.txt", locale = locale(encoding = "latin1"))
@@ -18,7 +20,46 @@ taxa_worms_accepted <- taxa_worms %>%
   rename(taxon_id = aphia_id) %>%
   filter(!taxon_id %in% blacklist$taxon_id)
 
-# Remove all unaccepted names that appear when constructing the higher taxonomy
+# Removing unaccepted taxa will break the tree, find all broken links
+broken_tree <- taxa_worms_accepted %>%
+  filter(!parent_id %in% taxon_id & !is.na(parent_id))
+
+# Initialize a vector to store the first parent_id for each taxon_id
+first_parent_ids <- vector("numeric", length = nrow(broken_tree))
+first_parent_names <- vector("character", length = nrow(broken_tree))
+
+# Iterate over each row of broken_tree
+for (i in 1:nrow(broken_tree)) {
+  # Get all parent_ids for the current taxon_id
+  parent_ids <- get_all_parents(broken_tree$taxon_id[i], taxa_worms)
+  
+  # Find the first parent_id that exists in taxa_worms_accepted$taxon_id
+  first_parent <- parent_ids[which(parent_ids %in% taxa_worms_accepted$taxon_id)[1]]
+  
+  # Get the name corresponding to the first_parent_id
+  first_parent_name <- taxa_worms$scientific_name[taxa_worms$aphia_id == first_parent]
+  
+  # Assign the first parent_id to the vector
+  first_parent_ids[i] <- first_parent
+  first_parent_names[i] <- first_parent_name
+}
+
+# Add the first_parent_ids and first_parent_names vectors as new columns to df
+broken_tree$first_parent_id <- first_parent_ids
+broken_tree$first_parent_names <- first_parent_names
+
+# Select relevant columns
+broken_tree <- broken_tree %>%
+  select(taxon_id, first_parent_id, first_parent_names) 
+
+# Redirect tree to the closest accepted taxa
+taxa_worms_accepted <- taxa_worms_accepted %>%
+  left_join(broken_tree) %>%
+  mutate(parent_id = ifelse(is.na(first_parent_id), parent_id, first_parent_id),
+         parent_name = ifelse(is.na(first_parent_id), parent_name, first_parent_names)) %>%
+  select(-first_parent_id, -first_parent_names)
+
+# Find all unaccepted names that has been removed
 taxa_worms_unaccepted <- taxa_worms %>%
   filter(status == "unaccepted") %>%
   rename(taxon_id = aphia_id)

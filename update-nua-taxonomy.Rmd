@@ -4,15 +4,15 @@ author: "Anders Torstensson, SMHI"
 date: "`r Sys.Date()`"
 output: html_document
 params: 
-  cache_update_checklist: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_taxa_worms: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_synonyms: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_dyntaxa: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_algaebase: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_norcca: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_itis: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_ncbi: FALSE # Run on cached data, FALSE if doing annual updates
-  cache_gbif: FALSE # Run on cached data, FALSE if doing annual updates
+  cache_update_checklist: FALSE
+  cache_taxa_worms: FALSE
+  cache_synonyms: FALSE
+  cache_dyntaxa: FALSE
+  cache_algaebase: FALSE
+  cache_norcca: FALSE
+  cache_itis: FALSE
+  cache_ncbi: FALSE
+  cache_gbif: FALSE
 knit: (function(inputFile, encoding) {
                         rmarkdown::render(inputFile,
                         encoding=encoding, 
@@ -21,14 +21,14 @@ knit: (function(inputFile, encoding) {
                         ".html")) })
 ---
 
-This Rmarkdown file calls necessary R and Python code for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for NuA content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
+This Rmarkdown file calls necessary R and Python code for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for an anual update of the NuA species content content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
 
 * Additional taxa can be included in additions_to_old_nua.txt
 * Unwanted taxa, e.g. Flagellates, can be included in blacklist.txt
-* The inclusion of an unaccepted can be forced by adding the taxa to whitelist.txt
+* The inclusion of unaccepted taxa can be forced by adding the AphiaID to whitelist.txt
 
 # Setup
-Valid subscription keys from [Dyntaxa](https://api-portal.artdatabanken.se/) and [AlgaeBase](https://www.algaebase.org/) are required to match Dyntaxa and AlgaeBase records. The keys can be stored in .Renviron or typed in when running the code.
+Valid subscription keys from [Dyntaxa](https://api-portal.artdatabanken.se/) and [AlgaeBase](https://www.algaebase.org/) are required to match Dyntaxa and AlgaeBase records. The keys can be stored in .Renviron or typed in when running the setup chunk.
 
 ```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -74,7 +74,7 @@ for (cache_type in cache_types) {
 }
 ```
 
-# Get current aphia ids for taxa list (NOMP + old checklist + Karlson HAB list)
+# Get current aphia ids for taxa list (NOMP + old checklist + Karlson HAB list + manual additions)
 
 ```{r update_checklist, include=FALSE}
 if(!params$cache_update_checklist) {
@@ -109,7 +109,7 @@ runtime_get_taxa_file <- round(end.time - start.time, 2)
 ```
 
 # Find unaccepted and duplicated taxa
-Unaccepted taxa are introduced when getting higher taxonomy in the previous chunk and are removed in this step
+Unaccepted taxa are introduced when getting higher taxonomy in the previous chunk and are removed in this step. Parents are redirected to their closest relative.
 
 ```{r filter_taxa_worms, include=FALSE}
 source("src/R/02_filter_taxa_worms.R")
@@ -226,6 +226,7 @@ print(paste(nrow(norcca), "strains extracted"))
 ```{r wrangle_norcca, echo=FALSE}
 if(!params$cache_norcca) {
   file.remove("cache/norcca_cache.rda")
+  file.remove("cache/norcca_nordic_cache.rda")
 }
 
 source("src/R/06_match_norcca_names.R")

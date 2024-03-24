@@ -42,6 +42,12 @@ if(file.exists("cache/all_records_cache.rda")) {
 } else {
   all_records <- data.frame()
 }
+ 
+# Remove unwanted taxa
+if (nrow(all_records) > 0) {
+  all_records <- all_records %>%
+    filter(AphiaID %in% aphia_id_combined)
+}
 
 # Skip cached items
 aphia_id_combined <- aphia_id_combined[!aphia_id_combined %in% all_records$AphiaID]

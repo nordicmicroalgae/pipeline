@@ -20,47 +20,28 @@ taxa_worms <- read.table("data_out/content/taxa.txt",
                          quote = "", 
                          encoding = "latin-1")
 
-# Verify taxa_worms matches so that nothing unexpected appear
-unique(taxa_worms$kingdom)
-
-# Verify taxa_worms matches so that nothing unexpected appear
-Protozoa <- taxa_worms %>%
-  filter(kingdom == "Protozoa")
-
-# Verify taxa_worms matches so that nothing unexpected appear
-Animalia <- taxa_worms %>%
-  filter(kingdom == "Animalia")
-
-# Verify taxa_worms matches so that nothing unexpected appear
-Fungi <- taxa_worms %>%
-  filter(kingdom == "Fungi")
-
-# Verify taxa_worms matches so that nothing unexpected appear
-Plantae <- taxa_worms %>%
-  filter(kingdom == "Plantae")
-
-# Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
-algaebase_species <- taxa_worms %>%
-  filter(rank %in% c("Species", "Variety", "Forma", "Subspecies")) %>%
-  mutate(scientific_name_author = paste(scientific_name, authority)) %>%
-  select(scientific_name_author, rank, taxon_id)
-
-# Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
-algaebase_genus <- taxa_worms %>%
-  filter(rank == "Genus") %>%
-  mutate(scientific_name_author = paste(scientific_name, authority)) %>%
-  select(scientific_name_author, rank, taxon_id)
-
-# Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
-algaebase_higher_taxonomy <- taxa_worms %>%
-  filter(!rank %in% c("Species", "Variety", "Forma", "Subspecies", "Genus")) %>%
-  mutate(scientific_name_author = paste(scientific_name, authority)) %>%
-  select(scientific_name_author, rank, taxon_id)
-
-# Store files as .xlsx
-write_xlsx(algaebase_species, "data_out/nordic_microalgae_species.xlsx")
-write_xlsx(algaebase_genus, "data_out/nordic_microalgae_genus.xlsx")
-write_xlsx(algaebase_higher_taxonomy, "data_out/nordic_microalgae_higher_taxonomy.xlsx")
+# # Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
+# algaebase_species <- taxa_worms %>%
+#   filter(rank %in% c("Species", "Variety", "Forma", "Subspecies")) %>%
+#   mutate(scientific_name_author = paste(scientific_name, authority)) %>%
+#   select(scientific_name_author, rank, taxon_id)
+# 
+# # Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
+# algaebase_genus <- taxa_worms %>%
+#   filter(rank == "Genus") %>%
+#   mutate(scientific_name_author = paste(scientific_name, authority)) %>%
+#   select(scientific_name_author, rank, taxon_id)
+# 
+# # Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
+# algaebase_higher_taxonomy <- taxa_worms %>%
+#   filter(!rank %in% c("Species", "Variety", "Forma", "Subspecies", "Genus")) %>%
+#   mutate(scientific_name_author = paste(scientific_name, authority)) %>%
+#   select(scientific_name_author, rank, taxon_id)
+# 
+# # Store files as .xlsx
+# write_xlsx(algaebase_species, "data_out/nordic_microalgae_species.xlsx")
+# write_xlsx(algaebase_genus, "data_out/nordic_microalgae_genus.xlsx")
+# write_xlsx(algaebase_higher_taxonomy, "data_out/nordic_microalgae_higher_taxonomy.xlsx")
 
 # Prepare names for AlgaeBase API query
 algaebase_species_api <- taxa_worms %>%
@@ -84,12 +65,21 @@ algaebase_species_api_missing <- algaebase_species_api %>%
 
 # Call the Algaebase API and add taxon_id
 algaebase_results <- rbind(algaebase_results,
-                           algaebase_search_df(algaebase_species_api_missing, 
+                           algaebase_search_df(algaebase_species_api_missing[1:10,], 
                                          apikey = ALGAEBASE_APIKEY,
                                          genus.name = "genus",
                                          species.name = "species")
                            )
 
+# Find taxon_id that did not get a match
+no_match <- algaebase_species_api_missing %>%
+  filter(!algaebase_species_api_missing$input.name %in% algaebase_results$input.name) %>%
+  select(input.name)
+
+# Add taxon_id for results that did not get a match
+algaebase_results <- bind_rows(algaebase_results, no_match)
+
+# Save cache
 save(algaebase_results, file = "cache/algaebase_cache.rda")
 
 # Join and wrangle
@@ -110,7 +100,8 @@ algaebase_results <- algaebase_results %>%
          taxon_rank = taxon.rank) %>%
   filter(!is.na(ab_id)) %>%
   filter(!is.na(taxon_id)) %>%
-  distinct(taxon_id, ab_id, .keep_all = TRUE)
+  distinct(taxon_id, ab_id, .keep_all = TRUE) %>%
+  filter(taxon_id %in% taxa_worms$taxon_id)
 
 # Store file
 write_tsv(algaebase_results, "data_out/content/facts_external_links_algaebase.txt", na = "")

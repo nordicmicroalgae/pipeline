@@ -36,7 +36,7 @@ for(i in 1:length(aphia_id)) {
     
     cat('Getting record', i, 'of', length(aphia_id),'\n')
   }, error=function(e){
-    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+    cat("Error occurred in AphiaID", aphia_id[i], ":", conditionMessage(e), "\n")
   })
 }
 

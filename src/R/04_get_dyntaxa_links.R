@@ -16,11 +16,11 @@ if(file.exists("cache/dyntaxa_cache.rda")) {
   dyntaxa <- data.frame() 
 }
 
-taxa_worms <- taxa_worms %>%
+taxa_worms_missing <- taxa_worms %>%
   filter(!scientific_name %in% dyntaxa$search_pattern)
 
 # Match taxa with API
-dyntaxa <- rbind(match_taxon_name(taxa_worms$scientific_name, subscription_key),
+dyntaxa <- rbind(match_taxon_name(taxa_worms_missing$scientific_name, subscription_key),
                  dyntaxa)
 
 save(dyntaxa, file = "cache/dyntaxa_cache.rda")
@@ -52,7 +52,8 @@ dyntaxa_list <- dyntaxa %>%
   select(-Taxon.id, -best_match) %>%
   rename(dyntaxa_id = taxon_id,
          scientific_name = search_pattern) %>%
-  left_join(taxa)
+  left_join(taxa) %>%
+  filter(taxon_id %in% taxa_worms$taxon_id)
 
 # Print output
 print(paste(length(unique(dyntaxa_list$taxon_id)),
