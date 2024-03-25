@@ -2,11 +2,11 @@
 
 The R Markdown document update-nua-taxonomy.Rmd calls a number of R and Python scripts to interact with APIs and webpages from [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/) in order to update the species content of Nordic Microalgae.
 
-You need a Python interpreter to be used in the ```reticulate``` package. See [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) for details.
+You need to set up a Python interpreter in Rstudio to be used in the ```reticulate``` package. See [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) for details.
 
 The R package ```SHARK4R``` is required for API queries towards Dyntaxa. See installation details on [github.com/sharksmhi/SHARK4R/](https://github.com/sharksmhi/SHARK4R/). API query functions towards AlgaeBase have been modified (stored in /src/R/fun) from the ```algaeClassify``` package to include AlgaeBase IDs (Patil et al. 2023).
 
-Store your API keys to Dyntaxa and AlgaeBase in .Renviron. The easiest way to edit this file is by running:
+API keys are required for Dyntaxa and AlgaeBase. Request a key for Dyntaxa by signing up at the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/). Requests for keys from AlgaeBase are made directly to their developer team. Store your API keys to in .Renviron. The easiest way to edit this file is by running:
 ```
 install.packages("usethis")
 usethis::edit_r_environ("project")
@@ -21,6 +21,7 @@ Patil, V.P., Seltmann, T., Salmaso, N., Anneville, O., Lajeunesse, M., Straile, 
 
 ## To update the content:
 * Clone this repo
+* Store your API keys in .Renviron (see above)
 * Download the latest NOMP biovolume list (in .xlsx) and store in /data_in/. The file can be accessed from the [Nordic Microalgae webpage](http://nordicmicroalgae.org/tools)
 * Download the latest complete IOC HAB list in .txt from the [IOC-UNESCO Taxonomic Reference List of HAB](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) and store in /data_in/
 * Additional taxa that exist in WoRMS can be manually added to the database in /data_in/additions_to_old_nua.txt
