@@ -63,13 +63,20 @@ if(file.exists("cache/algaebase_cache.rda")) {
 algaebase_species_api_missing <- algaebase_species_api %>%
   filter(!input.name %in% algaebase_results$input.name)
 
-# Call the Algaebase API and add taxon_id
-algaebase_results <- rbind(algaebase_results,
-                           algaebase_search_df(algaebase_species_api_missing, 
-                                         apikey = ALGAEBASE_APIKEY,
-                                         genus.name = "genus",
-                                         species.name = "species")
-                           )
+# Calculate the number of rows once
+missing_rows <- nrow(algaebase_species_api_missing)
+
+# If there are missing rows, call the API and update the dataframe
+if (missing_rows > 0) {
+  # Call the Algaebase API
+  api_results <- algaebase_search_df(algaebase_species_api_missing, 
+                                     apikey = ALGAEBASE_APIKEY,
+                                     genus.name = "genus",
+                                     species.name = "species")
+  
+  # Append the API results to the main dataframe
+  algaebase_results <- rbind(algaebase_results, api_results)
+}
 
 # Find taxon_id that did not get a match
 no_match <- algaebase_species_api_missing %>%
