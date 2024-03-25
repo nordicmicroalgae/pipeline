@@ -65,7 +65,7 @@ algaebase_species_api_missing <- algaebase_species_api %>%
 
 # Call the Algaebase API and add taxon_id
 algaebase_results <- rbind(algaebase_results,
-                           algaebase_search_df(algaebase_species_api_missing[1:10,], 
+                           algaebase_search_df(algaebase_species_api_missing, 
                                          apikey = ALGAEBASE_APIKEY,
                                          genus.name = "genus",
                                          species.name = "species")
