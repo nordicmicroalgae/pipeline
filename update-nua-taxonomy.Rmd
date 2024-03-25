@@ -53,6 +53,10 @@ library(tidyverse)
 subscription_key <- Sys.getenv("DYNTAXA_APIKEY")
 ALGAEBASE_APIKEY <- Sys.getenv("ALGAEBASE_APIKEY")
 
+# Setup Python virtual environment
+virtualenv_create("src/python/venv", requirements = "src/python/requirements.txt")
+use_virtualenv("src/python/venv")
+
 # Print if records are cached
 if(subscription_key == "") {
   subscription_key <- rstudioapi::askForPassword(prompt = "Please enter your SLU Artdatabanken API key")
