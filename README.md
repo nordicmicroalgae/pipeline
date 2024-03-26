@@ -6,7 +6,7 @@ You need an installed Python interpreter to be used in the ```reticulate``` pack
 
 The R package ```SHARK4R``` is required for API queries towards Dyntaxa. See installation details on [github.com/sharksmhi/SHARK4R/](https://github.com/sharksmhi/SHARK4R/). API query functions towards AlgaeBase have been modified (stored in /src/R/fun) from the ```algaeClassify``` package to include AlgaeBase IDs (Patil et al. 2023).
 
-API keys are required for Dyntaxa and AlgaeBase. Request a key for Dyntaxa by signing up at the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/). Requests for keys from AlgaeBase are made directly to their developer team. Store your API keys to in .Renviron. The easiest way to edit this file is by running:
+API keys are required for Dyntaxa and AlgaeBase. Request a key for Dyntaxa by signing up at the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/) and subscribe to the 'Taxonomy' product. Requests for keys from AlgaeBase are made directly to their developer team. Store your API keys to in .Renviron. The easiest way to edit this file is by running:
 ```
 install.packages("usethis")
 usethis::edit_r_environ("project")
