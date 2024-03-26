@@ -40,12 +40,12 @@ The pipeline builds upon the existing taxonomy in WoRMS, translating only unacce
 flowchart TD
     A[Old NµA database] -->|AphiaID| E(Get current AphiaIDs from WoRMS)
     B[NOMP] -->|AphiaID| E(Get current AphiaIDs from WoRMS)
-    C[Nordic HAB list, Karlson et al. 2021] -->|AphiaID| E(Get current AphiaIDs from WoRMS)
+    C['Nordic HAB list', Karlson et al. 2021] -->|AphiaID| E(Get current AphiaIDs from WoRMS)
     D[Additions] -->|AphiaID| E(Get current AphiaIDs from WoRMS)
-    E --> F[Construct taxonomic tree
+    E --> F[Construct taxonomical tree
     taxa_worms]
     E --->|NOMP| G(facts_biovolumes_nomp.txt)
-    E --->|Nordic HAB list| Q(facts_hab_ioc_karlson_et_al_2021.txt)
+    E --->|'Nordic HAB list'| Q(facts_hab_ioc_karlson_et_al_2021.txt)
     F --> |Accepted AphiaID, redirect parents|H[(taxa.txt)]
     H --> |API calls| K(facts_external_links_algaebase.txt
     facts_external_links_dyntaxa.txt
@@ -62,6 +62,6 @@ flowchart TD
 ```
 ### References
 
-Karlson B, Andersen P, Arneborg L, Cembella A, Eikrem W, John U, West JJ, Klemm K, Kobos J, Lehtinen S, Lundholm N, Mazur-Marzec H, Naustvoll L, Poelman M, Provoost P, De Rijcke M, Suikkanen S. Harmful algal blooms and their effects in coastal seas of Northern Europe. Harmful Algae. 2021 Feb;102:101989. doi: [10.1016/j.hal.2021.101989](https://doi.org/10.1016/j.hal.2021.101989). Epub 2021 Mar 6. PMID: 33875185.
+Karlson, B., Andersen, P., Arneborg, L., Cembella, A., Eikrem, W., John, U., West, J.J., Klemm, K., Kobos, J., Lehtinen, S., Lundholm, N., Mazur-Marzec, H., Naustvoll, L., Poelman, M., Provoost, P., De Rijcke, M., Suikkanen, S., 2021. Harmful algal blooms and their effects in coastal seas of Northern Europe. Harmful Algae. Feb;102:101989. doi: [10.1016/j.hal.2021.101989](https://doi.org/10.1016/j.hal.2021.101989). Epub 2021 Mar 6. PMID: 33875185.
 
 Patil, V.P., Seltmann, T., Salmaso, N., Anneville, O., Lajeunesse, M., Straile, D., 2023. algaeClassify (ver 2.0.1, October 2023): U.S. Geological Survey software release, https://doi.org/10.5066/F7S46Q3F
