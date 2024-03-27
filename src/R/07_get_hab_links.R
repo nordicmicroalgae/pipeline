@@ -7,11 +7,7 @@ hab_filename <- list.files("data_in") %>%
   arrange(value)
 
 # Read current HAB list
-hab_list <- read.table(file.path("data_in", hab_filename$value[nrow(hab_filename)]), 
-                        header=TRUE, 
-                        sep="\t", 
-                        encoding = "WINDOWS-1252",
-                        fill = TRUE)
+hab_list <- read_tsv(file.path("data_in", hab_filename$value[nrow(hab_filename)]))
 
 # Read HAB list from Karlson et al 2021 https://doi.org/10.1016/j.hal.2021.101989
 nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc_karlson_et_al_2021.txt",
@@ -52,7 +48,7 @@ nordic_hab_karlson_updated <- karlson_records %>%
 # Select nordic taxa and wrangle list
 nordic_hab <- hab_list %>%
   filter(AphiaID %in% taxa_worms$taxon_id) %>%
-  filter(taxonRank == "Species") %>%
+  filter(taxonRank %in% c("Species","Variety","Forma","Subspecies")) %>%
   select(ScientificName, AphiaID) %>%
   mutate(link = paste0("https://www.marinespecies.org/hab/aphia.php?p=taxdetails&id=",
                 AphiaID)) %>%
