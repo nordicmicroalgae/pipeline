@@ -312,35 +312,22 @@ source("src/R/11_update_filters.R")
 
 # Summarise runtimes
 ```{r api_operation_summary, echo=FALSE}
-print(paste("Time taken for running the entire script:"))
-print(runtime_knit)
+runtime_variables <- c("knit",
+                       "update_checklist",
+                       "get_taxa_file",
+                       "synonyms",
+                       "match_dyntaxa",
+                       "algaebase",
+                       "get_norcca",
+                       "itis",
+                       "ncbi",
+                       "gbif")
 
-print(paste("Chunk time taken for updating checklist:"))
-print(runtime_update_checklist)
+runtime_values <- c(runtime_knit, runtime_update_checklist, runtime_get_taxa_file, runtime_synonyms, runtime_match_dyntaxa, runtime_algaebase, runtime_get_norcca, runtime_itis, runtime_ncbi, runtime_gbif)
 
-print(paste("Chunk time taken for getting taxa.txt information:"))
-print(runtime_get_taxa_file)
-
-print(paste("Chunk time taken for getting WoRMS synonyms:"))
-print(runtime_synonyms)
-
-print(paste("Chunk time taken for getting Dyntaxa links:"))
-print(runtime_match_dyntaxa)
-
-print(paste("Chunk time taken for getting AlgaeBase links:"))
-print(runtime_algaebase)
-
-print(paste("Chunk time taken for getting NORCCA links:"))
-print(runtime_get_norcca)
-
-print(paste("Chunk time taken for getting ITIS links:"))
-print(runtime_itis)
-
-print(paste("Chunk time taken for getting NCBI links:"))
-print(runtime_ncbi)
-
-print(paste("Chunk time taken for getting GBIF links:"))
-print(runtime_gbif)
+for (i in seq_along(runtime_variables)) {
+  cat("Time taken for", runtime_variables[i], ": ", round(runtime_values[i]/3600, 2), "h", "\n")
+}
 ```
 
 # Create zip-archive

@@ -148,7 +148,7 @@ norcca_combined_missing <- norcca_combined %>%
 # Scrape origin information from strain page
 if (nrow(norcca_combined_missing) > 0) {
   for (i in 1:nrow(norcca_combined_missing)) {
-    message("Scraping strain page ", i, " of ", nrow(norcca_combined_missing))
+    # message("Scraping strain page ", i, " of ", nrow(norcca_combined_missing))
     
     html <- read_html(norcca_combined_missing$strain_link[i])
     
