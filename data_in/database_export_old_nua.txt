@@ -5279,7 +5279,7 @@ Cryptaulax vulgaris	578220	exact	Cryptaulax vulgaris	Skuja, 1948	578220	Cryptaul
 Cryptaulax conoidea	577821	exact	Cryptaulax conoidea	Skuja	577821	Cryptaulax conoidea	Skuja	577821	
 Katablepharis	601744	exact	Katablepharis	Skuja, 1939	601744	Katablepharis	Skuja, 1939	601744	
 Katablepharis ovalis	620842	exact	Katablepharis ovalis	Skuja, 1948	620842	Katablepharis ovalis	Skuja, 1948	620842	
-Kathablepharis remigera	119081	exact	Kathablepharis remigera	(Vørs, 1992) Clay & Krugens, 1999	627117	Katablepharis remigera	(N.Vørs) B.Clay & P.Kugrens, 2000	627117	
+Katablepharis remigera	627117	exact	Katablepharis remigera	(Vørs, 1992) B.Clay & P.Kugrens, 2000	601744	Katablepharis remigera	(N.Vørs) B.Clay & P.Kugrens, 2000	627117	manually corrected
 Haptophyta	369190	exact	Haptophyta	D.J. Hibberd ex B. Edvardsen & W. Eikrem, 2000	369190	Haptophyta	D.J. Hibberd ex B. Edvardsen & W. Eikrem, 2000	369190	
 Prymnesiophyceae	115057	exact	Prymnesiophyceae	Hibberd	115057	Prymnesiophyceae	Hibberd	115057	
 Coccolithales	493821	exact	Coccolithales		493821	Coccolithales		493821	
