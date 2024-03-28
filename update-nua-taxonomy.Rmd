@@ -13,6 +13,7 @@ params:
   cache_itis: FALSE
   cache_ncbi: FALSE
   cache_gbif: FALSE
+  cache_shark: FALSE
 knit: (function(inputFile, encoding) {
                         rmarkdown::render(inputFile,
                         encoding=encoding, 
@@ -68,7 +69,7 @@ if(ALGAEBASE_APIKEY == "") {
 }
 
 # Define cache types
-cache_types <- c("update_checklist", "taxa_worms", "synonyms", "dyntaxa", "algaebase", "norcca", "itis", "ncbi", "gbif")
+cache_types <- c("update_checklist", "taxa_worms", "synonyms", "dyntaxa", "algaebase", "norcca", "itis", "ncbi", "gbif", "shark")
 
 # Iterate over cache types
 for (cache_type in cache_types) {
@@ -295,8 +296,6 @@ start.time <- Sys.time()
 source("src/R/10_get_gbif_links.R")
 end.time <- Sys.time()
 runtime_gbif <- round(end.time - start.time, 2)
-
-runtime_knit <- round(end.time - knit.time, 2)
 ```
 
 ```{r summary_gbif, echo=FALSE}
@@ -310,6 +309,37 @@ Filters for Quick View may need to be updated
 source("src/R/11_update_filters.R")
 ```
 
+# Find taxa in SHARK
+Download all phytoplankton observations from SHARK and find taxa missing from NuA database. Consider if these should be added to the database.
+```{r get_shark_taxa, echo=FALSE, warning=FALSE, include=FALSE}
+if(!params$cache_shark) {
+  file.remove("cache/shark_cache.rda")
+}
+
+start.time <- Sys.time()
+source("src/R/12_get_shark_taxa.R")
+end.time <- Sys.time()
+runtime_shark <- round(end.time - start.time, 2)
+
+runtime_knit <- round(end.time - knit.time, 2)
+```
+
+```{r summary_shark, echo=FALSE}
+# Print table
+if(nrow(missing_shark_records) > 0){
+  missing_shark_records %>%
+  select(AphiaID,
+         scientificname,
+         status,
+         rank,
+         valid_AphiaID,
+         valid_name) %>%
+  knitr::kable(caption = "Phytoplankton taxa found in SHARK but missing in NuA database")
+} else {
+  print(paste("All SHARK phytoplankton taxa are already included in the NuA database"))
+}
+```
+
 # Summarise runtimes
 ```{r api_operation_summary, echo=FALSE}
 runtime_variables <- c("knit",
@@ -321,9 +351,10 @@ runtime_variables <- c("knit",
                        "get_norcca",
                        "itis",
                        "ncbi",
-                       "gbif")
+                       "gbif",
+                       "shark")
 
-runtime_values <- c(runtime_knit, runtime_update_checklist, runtime_get_taxa_file, runtime_synonyms, runtime_match_dyntaxa, runtime_algaebase, runtime_get_norcca, runtime_itis, runtime_ncbi, runtime_gbif)
+runtime_values <- c(runtime_knit, runtime_update_checklist, runtime_get_taxa_file, runtime_synonyms, runtime_match_dyntaxa, runtime_algaebase, runtime_get_norcca, runtime_itis, runtime_ncbi, runtime_gbif, runtime_shark)
 
 for (i in seq_along(runtime_variables)) {
   cat("Time taken for", runtime_variables[i], ": ", round(runtime_values[i]/3600, 2), "h", "\n")
