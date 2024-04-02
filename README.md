@@ -1,6 +1,6 @@
-# Update Nordic Microalgae taxonomic backbone
+# Nordic Microalgae: Data pipeline
 
-This repository contains R and Python scripts to update the taxonomic backbone of Nordic Microalgae. The process involves interacting with various APIs and webpages from key sources including [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/), and [SHARKdata](https://sharkdata.smhi.se/). The taxonomic data pipeline is initiated through the execution of the R Markdown document `update-nua-taxonomy.Rmd`.
+This repository contains R and Python scripts designed to gather the necessary data for updating the taxonomic backbone of Nordic Microalgae. The process involves interacting with various APIs and webpages from key sources including [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/), and [SHARKdata](https://sharkdata.smhi.se/). The taxonomic data pipeline is initiated through the execution of the R Markdown document `update-nua-taxonomy.Rmd`. The data is input manually into the [content](https://github.com/nordicmicroalgae/content), which is then integrated into the [backend](https://github.com/nordicmicroalgae/backend).
 
 ## Prerequisites
 - Python interpreter installed for use in R with the `reticulate` package. Refer to [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) for details.
@@ -25,15 +25,15 @@ Follow these steps to update the species content:
 2. Store your API keys in `.Renviron` as instructed above.
 3. Download the latest NOMP biovolume list (in .xlsx format) from the [Nordic Microalgae webpage](http://nordicmicroalgae.org/tools) and save it in `/data_in/`.
 4. Download the latest complete IOC HAB list in .txt format from the [IOC-UNESCO Taxonomic Reference List of HAB](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) and store it in `/data_in/`.
-5. Manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
+5. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
 6. Run the `update-nua-taxonomy.Rmd` script. Note that API calls may take 10-11 hours to run if lists are not loaded from cache.
-7. Check the output for potential duplicated taxa or errors listed in the .html report in `/update_history/`.
-8. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/](https://github.com/nordicmicroalgae/content/) and verify GitHub CI checks.
-9. Run the syncdb app as a superuser from the admin pages and check logs for potential problems.
+7. Check the output for potential duplicated taxa names, errors or missing taxa listed in the .html report in `/update_history/`. Taxa can be excluded using `/data_in/blacklist.txt`, while unaccepted taxa can be enforced to remain using `/data_in/whitelist.txt`. Return to Step 5 to include additional taxa (set cache = TRUE and run the script again).
+8. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/species](https://github.com/nordicmicroalgae/content/tree/master/species) and verify GitHub CI checks.
+9. Run the syncdb app as a superuser from the admin pages to import the new species content into the backend. Check logs for potential problems.
 10. Check for any images assigned as taxon = 'none' after the import and assign them to their current names.
 11. Verify updated Quick-View filters in `/data_out/backend/taxa/config` and push to [nordicmicroalgae/backend](https://github.com/nordicmicroalgae/backend) if needed.
-12. Corrections can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
-13. Optionally, upload a new version of the checklist to data.smhi.se.
+12. Corrections to the Quick-View filters can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
+13. Upload new .xlsx and .txt versions of the checklist from `/data_out/` to data.smhi.se.
 
 ## Workflow
 
