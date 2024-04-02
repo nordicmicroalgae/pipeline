@@ -1,11 +1,11 @@
 # Update Nordic Microalgae taxonomic backbone
 
-This repository contains R and Python scripts to update the taxonomic backbone of Nordic Microalgae. The process involves interacting with various APIs and webpages from key sources including [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/), and [SHARKdata](https://sharkdata.smhi.se/). The data pipeline is initiated through the execution of the R Markdown document `update-nua-taxonomy.Rmd`.
+This repository contains R and Python scripts to update the taxonomic backbone of Nordic Microalgae. The process involves interacting with various APIs and webpages from key sources including [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/), and [SHARKdata](https://sharkdata.smhi.se/). The taxonomic data pipeline is initiated through the execution of the R Markdown document `update-nua-taxonomy.Rmd`.
 
 ## Prerequisites
 - Python interpreter installed for use in R with the `reticulate` package. Refer to [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) for details.
 - Install the R package `SHARK4R` for API queries towards Dyntaxa. See installation details on [github.com/sharksmhi/SHARK4R/](https://github.com/sharksmhi/SHARK4R/).
-- Obtain API keys for Dyntaxa and AlgaeBase. Request a key for Dyntaxa through the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/). Request keys from AlgaeBase directly from their developer team.  Store your API keys in `.Renviron`. Use the provided function to edit this file easily:
+- Obtain API keys for Dyntaxa and AlgaeBase. To acquire a key for Dyntaxa, subscribe to the 'Taxonomy' product via the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/). Request keys from AlgaeBase directly from their developer team.  Store your API keys in `.Renviron`. Use the provided function to edit this file easily:
 
 ```
 install.packages("usethis")
@@ -20,7 +20,7 @@ DYNTAXA_APIKEY = "89ad0b9cac6ce53184cc942147e1f06f"
 API query functions towards AlgaeBase have been modified (stored in `/src/R/fun`) from the ```algaeClassify``` package to include AlgaeBase IDs (Patil et al. 2023).
 
 ## Update Process
-Follow these steps to update the content:
+Follow these steps to update the species content:
 1. Clone this repository.
 2. Store your API keys in `.Renviron` as instructed above.
 3. Download the latest NOMP biovolume list (in .xlsx format) from the [Nordic Microalgae webpage](http://nordicmicroalgae.org/tools) and save it in `/data_in/`.
