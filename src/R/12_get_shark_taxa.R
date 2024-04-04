@@ -56,7 +56,6 @@ if(length(aphia_id) > 0) {
     all_records <- rbind(all_records, record)
     
     cat('Getting record', i, 'of', length(aphia_id),'\n')
-    save(all_records, file = "cache/all_records_cache.rda")
   }
 }
 
