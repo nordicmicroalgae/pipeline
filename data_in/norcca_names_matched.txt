@@ -1,4 +1,4 @@
-ScientificName	AphiaID	Match type	ScientificName	Authority	Taxon status	AphiaID_accepted	ScientificName_accepted	Authority_accepted	Kingdom	Phylum	Class	Order	Family	Genus	Subgenus	Species	Subspecies
+scientific_name	AphiaID	Match type	ScientificName	Authority	status	AphiaID_accepted	ScientificName_accepted	Authority_accepted	Kingdom	Phylum	Class	Order	Family	Genus	Subgenus	Species	Subspecies
 Pyramimonas octopus	495382	exact	Pyramimonas octopus	Moestrup & Kristiansen, 1987	accepted	495382	Pyramimonas octopus	Moestrup & Kristiansen, 1987	Plantae	Chlorophyta	Pyramimonadophyceae	Pyramimonadales	Pyramimonadaceae	Pyramimonas		octopus	
 Pyramimonas tetrarhynchus	495194	exact	Pyramimonas tetrarhynchus	Schmarda, 1849	accepted	495194	Pyramimonas tetrarhynchus	Schmarda, 1849	Plantae	Chlorophyta	Pyramimonadophyceae	Pyramimonadales	Pyramimonadaceae	Pyramimonas		tetrarhynchus	
 Pyramimonas orientalis	547692	exact	Pyramimonas orientalis	Butcher ex McFadden, Hill & Wetherbee, 1986	accepted	547692	Pyramimonas orientalis	Butcher ex McFadden, Hill & Wetherbee, 1986	Plantae	Chlorophyta	Pyramimonadophyceae	Pyramimonadales	Pyramimonadaceae	Pyramimonas		orientalis	
@@ -17,7 +17,7 @@ Delamarea attenuata	145317	exact	Delamarea attenuata	(Kjellman) Rosenvinge, 1893
 Stragularia clavata	145002	exact	Stragularia clavata	(Harvey) Hamel, 1939	uncertain				Chromista	Ochrophyta	Phaeophyceae	Ectocarpales	Scytosiphonaceae	Stragularia		clavata	
 Feldmannia simplex	145421	exact	Feldmannia simplex	(P.Crouan & H.Crouan) Hamel, 1939	accepted	145421	Feldmannia simplex	(P.Crouan & H.Crouan) Hamel, 1939	Chromista	Ochrophyta	Phaeophyceae	Ectocarpales	Acinetosporaceae	Feldmannia		simplex	
 Feldmannia mitchelliae	699648	exact	Feldmannia mitchelliae	(Harvey) H.-S.Kim, 2010	accepted	699648	Feldmannia mitchelliae	(Harvey) H.-S.Kim, 2010	Chromista	Ochrophyta	Phaeophyceae	Ectocarpales	Acinetosporaceae	Feldmannia		mitchelliae	
-Giraudya sphacelarioides									
+Giraudya sphacelarioides																	
 Compsonema minutum	145859	exact	Compsonema minutum	(C.Agardh) Kuckuck, 1953	accepted	145859	Compsonema minutum	(C.Agardh) Kuckuck, 1953	Chromista	Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae	Compsonema		minutum	
 Pogotrichum filiforme	238952	exact	Pogotrichum filiforme	Reinke, 1892	accepted	238952	Pogotrichum filiforme	Reinke, 1892	Chromista	Ochrophyta	Phaeophyceae	Ectocarpales	Acinetosporaceae	Pogotrichum		filiforme	
 Heterosigma akashiwo	160585	exact	Heterosigma akashiwo	(Y.Hada) Y.Hada ex Y.Hara & M.Chihara, 1987	accepted	160585	Heterosigma akashiwo	(Y.Hada) Y.Hada ex Y.Hara & M.Chihara, 1987	Chromista	Ochrophyta	Raphidophyceae	Chattonellales	Chattonellaceae	Heterosigma		akashiwo	
@@ -43,7 +43,7 @@ Tribonema minus	610084	exact	Tribonema minus	(Wille) Hazen, 1902	accepted	610084
 Tribonema regulare	422908	exact	Tribonema regulare	Pascher, 1939	accepted	422908	Tribonema regulare	Pascher, 1939	Chromista	Ochrophyta	Xanthophyceae	Tribonematales	Tribonemataceae	Tribonema		regulare	
 Planctonema lauterbornii	162716	exact	Planctonema lauterbornii	Schmidle, 1903	unaccepted	575737	Binuclearia lauterbornii	(Schmidle) Proshkina-Lavrenko, 1966	Plantae	Chlorophyta	Trebouxiophyceae	Chlorellales	Oocystaceae	Planctonema		lauterbornii	
 Aphanochaete sp.	144284	exact	Aphanochaete	Braun, 1851	accepted	144284	Aphanochaete	Braun, 1851	Plantae	Chlorophyta	Chlorophyceae	Chaetophorales	Aphanochaetaceae	Aphanochaete			
-Pseudendoclonium basiliense Vischer var. brandii									
+Pseudendoclonium basiliense Vischer var. brandii																	
 Hyella balani	213703	exact	Hyella balani	Lehmann, 1903	accepted	213703	Hyella balani	Lehmann, 1903	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Pleurocapsaceae	Hyella		balani	
 Hyella sp.	146627	exact	Hyella	Bornet & Flahault, 1888	accepted	146627	Hyella	Bornet & Flahault, 1888	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Pleurocapsaceae	Hyella			
 Ulvella heteroclada	732253	exact	Ulvella heteroclada	(Correa & R.Nielsen)R.Nielsen, C.J.O'Kelly & B.Wysor, 2013	accepted	732253	Ulvella heteroclada	(Correa & R.Nielsen)R.Nielsen, C.J.O'Kelly & B.Wysor, 2013	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Ulvellaceae	Ulvella		heteroclada	
@@ -167,7 +167,7 @@ Tetraselmis levis	376156	exact	Tetraselmis levis	Butcher, 1959	accepted	376156	T
 Borghiella dodgei	623370	exact	Borghiella dodgei	Moestrup, Gert Hansen & Daugberg, 2008	accepted	623370	Borghiella dodgei	Moestrup, Gert Hansen & Daugberg, 2008	Chromista	Myzozoa	Dinophyceae	Suessiales	Borghiellaceae	Borghiella		dodgei	
 Heterocapsa pygmaea	233625	exact	Heterocapsa pygmaea	Lobelich III, R.J.Schmidt & Sherley, 1981	accepted	233625	Heterocapsa pygmaea	Lobelich III, R.J.Schmidt & Sherley, 1981	Chromista	Myzozoa	Dinophyceae	Peridiniales	Heterocapsaceae	Heterocapsa		pygmaea	
 Peridinium willei	110198	exact	Peridinium willei	Huitfeldt-Kaas, 1900	accepted	110198	Peridinium willei	Huitfeldt-Kaas, 1900	Chromista	Myzozoa	Dinophyceae	Peridiniales	Peridiniaceae	Peridinium		willei	
-Unident. cyanophyte sp.									
+Unident. cyanophyte sp.																	
 Microcystis botrys	578236	exact	Microcystis botrys	Teiling, 1942	accepted	578236	Microcystis botrys	Teiling, 1942	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Microcystaceae	Microcystis		botrys	
 Cladophora rupestris	145064	exact	Cladophora rupestris	(Linnaeus) Kützing, 1843	accepted	145064	Cladophora rupestris	(Linnaeus) Kützing, 1843	Plantae	Chlorophyta	Ulvophyceae	Cladophorales	Cladophoraceae	Cladophora		rupestris	
 Alexandrium tamarense	109714	exact	Alexandrium tamarense	(Lebour) Balech, 1995	accepted	109714	Alexandrium tamarense	(Lebour) Balech, 1995	Chromista	Myzozoa	Dinophyceae	Gonyaulacales	Ostreopsidaceae	Alexandrium		tamarense	
@@ -214,7 +214,7 @@ Geitlerinema amphibium	366599	exact	Geitlerinema amphibium	(C.Agardh ex Gomont) 
 Oscillatoria sancta	177518	exact	Oscillatoria sancta	Kützing ex Gomont, 1892	accepted	177518	Oscillatoria sancta	Kützing ex Gomont, 1892	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Oscillatoriaceae	Oscillatoria		sancta	
 Tisochrysis sp.	836583	exact	Tisochrysis	El M.Bendif & I.Probert, 2013	accepted	836583	Tisochrysis	El M.Bendif & I.Probert, 2013	Chromista	Haptophyta	Coccolithophyceae	Isochrysidales	Isochrysidaceae	Tisochrysis			
 Scrippsiella acuminata	1321853	exact	Scrippsiella acuminata	(Ehrenberg) Kretschmann, Elbrächter, Zinssmeister, S.Soehner, Kirsch, Kusber & Gottschling, 2015	accepted	1321853	Scrippsiella acuminata	(Ehrenberg) Kretschmann, Elbrächter, Zinssmeister, S.Soehner, Kirsch, Kusber & Gottschling, 2015	Chromista	Myzozoa	Dinophyceae	Peridiniales	Peridiniaceae	Scrippsiella		acuminata	
-Dinophyte sp.									
+Dinophyte sp.																	
 Karlodinium decipiens	531344	exact	Karlodinium decipiens	Salas & Laza-Martinez, 2008	accepted	531344	Karlodinium decipiens	Salas & Laza-Martinez, 2008	Chromista	Myzozoa	Dinophyceae	Gymnodiniales	Kareniaceae	Karlodinium		decipiens	
 Prorocentrum micans	110303	exact	Prorocentrum micans	Ehrenberg, 1834	accepted	110303	Prorocentrum micans	Ehrenberg, 1834	Chromista	Myzozoa	Dinophyceae	Prorocentrales	Prorocentraceae	Prorocentrum		micans	
 Dictyosphaerium sp.	178623	exact	Dictyosphaerium	Nägeli, 1849	accepted	178623	Dictyosphaerium	Nägeli, 1849	Plantae	Chlorophyta	Trebouxiophyceae	Chlorellales	Chlorellaceae	Dictyosphaerium			
@@ -223,7 +223,7 @@ Cosmarium reniforme	578406	exact	Cosmarium reniforme	(Ralfs) W.Archer, 1874	acce
 Desmodesmus communis	576237	exact	Desmodesmus communis	(E.Hegewald) E.Hegewald, 2000	accepted	576237	Desmodesmus communis	(E.Hegewald) E.Hegewald, 2000	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Scenedesmaceae	Desmodesmus		communis	
 Gymnodinium sp.	109475	exact	Gymnodinium	F. Stein, 1878	accepted	109475	Gymnodinium	F. Stein, 1878	Chromista	Myzozoa	Dinophyceae	Gymnodiniales	Gymnodiniaceae	Gymnodinium			
 Kremastochrysopsis sp.	601195	exact	Kremastochrysopsis	Bourrelly, 1957	accepted	601195	Kremastochrysopsis	Bourrelly, 1957	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Chrysocapsaceae	Kremastochrysopsis			
-Unident. chrysophyte sp.									
+Unident. chrysophyte sp.																	
 Chromulina nebulosa	610218	exact	Chromulina nebulosa	Cienkowski, 1870	accepted	610218	Chromulina nebulosa	Cienkowski, 1870	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Chromulinaceae	Chromulina		nebulosa	
 Naegeliella flagellifera	610279	exact	Naegeliella flagellifera	Correns, 1883	accepted	610279	Naegeliella flagellifera	Correns, 1883	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Chrysocapsaceae	Naegeliella		flagellifera	
 Chrysolepidomonas dendrolepidota	612319	exact	Chrysolepidomonas dendrolepidota	M.C.Peters & R.A.Andersen, 1993	accepted	612319	Chrysolepidomonas dendrolepidota	M.C.Peters & R.A.Andersen, 1993	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Chrysolepidomonadaceae	Chrysolepidomonas		dendrolepidota	
@@ -251,7 +251,7 @@ Ochromonas perlata	656225	exact	Ochromonas perlata	Doflein, 1921	accepted	656225
 Dinobryon sp.	157240	exact	Dinobryon	Ehrenberg, 1834	accepted	157240	Dinobryon	Ehrenberg, 1834	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Dinobryaceae	Dinobryon			
 Dinobryon divergens	157248	exact	Dinobryon divergens	O.E.Imhof, 1887	accepted	157248	Dinobryon divergens	O.E.Imhof, 1887	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Dinobryaceae	Dinobryon		divergens	
 Kephyrion sp.	163474	exact	Kephyrion	Pascher, 1911	accepted	163474	Kephyrion	Pascher, 1911	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Chrysococcaceae	Kephyrion			
-Unident. chlorophyte sp.									
+Unident. chlorophyte sp.																	
 Chrysosphaerella sp.	137284	exact	Chrysosphaerella	Lauterborn, 1896	accepted	137284	Chrysosphaerella	Lauterborn, 1896	Chromista	Ochrophyta	Chrysophyceae	Paraphysomonadales	Chrysosphaerellaceae	Chrysosphaerella			
 Mallomonas annulata	610020	exact	Mallomonas annulata	(D.E.Bradley) K.Harris, 1967	accepted	610020	Mallomonas annulata	(D.E.Bradley) K.Harris, 1967	Chromista	Ochrophyta	Chrysophyceae	Synurales	Mallomonadaceae	Mallomonas		annulata	
 Helicotheca tamesis	157440	exact	Helicotheca tamesis	(Shrubsole) M.Ricard, 1987	unassessed	157440	Helicotheca tamesis	(Shrubsole) M.Ricard, 1987	Chromista	Bacillariophyta	Bacillariophyceae	Lithodesmiales	Lithodesmiaceae	Helicotheca		tamesis	
@@ -273,11 +273,11 @@ Thalassiosira pseudonana	148934	exact	Thalassiosira pseudonana	Hasle & Heimdal, 
 Chlorococcum sp.	143946	exact	Chlorococcum	Meneghini, 1842	accepted	143946	Chlorococcum	Meneghini, 1842	Plantae	Chlorophyta	Chlorophyceae	Chlamydomonadales	Chlorococcaceae	Chlorococcum			
 Pavlova gyrans	573929	exact	Pavlova gyrans	Butcher, 1952	accepted	573929	Pavlova gyrans	Butcher, 1952	Chromista	Haptophyta	Pavlovophyceae	Pavlovales	Pavlovaceae	Pavlova		gyrans	
 Cryptophyceae	17639	exact	Cryptophyceae	Fritsch, 1927	accepted	17639	Cryptophyceae	Fritsch, 1927	Chromista	Cryptophyta	Cryptophyceae						
-Unident. sp.									
+Unident. sp.																	
 Thalassiosira sp.	148912	exact	Thalassiosira	P.T. Cleve, 1873 emend. Hasle, 1973	accepted	148912	Thalassiosira	P.T. Cleve, 1873 emend. Hasle, 1973	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Thalassiosiraceae	Thalassiosira			
 Melosira nummuloides	149044	exact	Melosira nummuloides	C.Agardh, 1824	unassessed	635472	Melosira discigera	Agardh, 1824	Chromista	Bacillariophyta	Bacillariophyceae	Melosirales	Melosiraceae	Melosira		nummuloides	
 Phaeocystis globosa	160538	exact	Phaeocystis globosa	Scherffel, 1899	accepted	160538	Phaeocystis globosa	Scherffel, 1899	Chromista	Haptophyta	Coccolithophyceae	Phaeocystales	Phaeocystaceae	Phaeocystis		globosa	
-Unident. diatom sp.									
+Unident. diatom sp.																	
 Dolichospermum circinale	699631	exact	Dolichospermum circinale	(Rabenhorst ex Bornet & Flahault) P.Wacklin, L.Hoffmann & J.Komárek, 2009	accepted	699631	Dolichospermum circinale	(Rabenhorst ex Bornet & Flahault) P.Wacklin, L.Hoffmann & J.Komárek, 2009	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Aphanizomenonaceae	Dolichospermum		circinale	
 Amphidinium sp.	109473	exact	Amphidinium	Claperède & Lachmann, 1859	accepted	109473	Amphidinium	Claperède & Lachmann, 1859	Chromista	Myzozoa	Dinophyceae	Amphidiniales	Amphidiniaceae	Amphidinium			
 Heterocapsa sp.	109540	exact	Heterocapsa	Stein, 1883	accepted	109540	Heterocapsa	Stein, 1883	Chromista	Myzozoa	Dinophyceae	Peridiniales	Heterocapsaceae	Heterocapsa			
@@ -321,7 +321,7 @@ Euastrum oblongum	611205	exact	Euastrum oblongum	Ralfs, 1848	accepted	611205	Eua
 Heterosigma sp.	160584	exact	Heterosigma	Y.Hada ex Y.Hara & M.Chihara, 1987	accepted	160584	Heterosigma	Y.Hada ex Y.Hara & M.Chihara, 1987	Chromista	Ochrophyta	Raphidophyceae	Chattonellales	Chattonellaceae	Heterosigma			
 Gymnodinium aureolum	232716	exact	Gymnodinium aureolum	(E.M.Hulburt) Gert Hansen, 2000	accepted	232716	Gymnodinium aureolum	(E.M.Hulburt) Gert Hansen, 2000	Chromista	Myzozoa	Dinophyceae	Gymnodiniales	Gymnodiniaceae	Gymnodinium		aureolum	
 Emiliania huxleyi	115104	exact	Emiliania huxleyi	(Lohmann) W.W.Hay & H.P.Mohler, 1967	accepted	115104	Emiliania huxleyi	(Lohmann) W.W.Hay & H.P.Mohler, 1967	Chromista	Haptophyta	Coccolithophyceae	Isochrysidales	Noelaerhabdaceae	Emiliania		huxleyi	
-Unidentified coccolithophyceaen sp.									
+Unidentified coccolithophyceaen sp.																	
 Nostoc sp.	393172	exact	Nostoc	Vaucher ex Bornet & Flahault, 1886	accepted	393172	Nostoc	Vaucher ex Bornet & Flahault, 1886	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Nostocaceae	Nostoc			
 Chaetoceros curvisetus	149221	exact	Chaetoceros curvisetus	Cleve, 1889	accepted	149221	Chaetoceros curvisetus	Cleve, 1889	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Chaetocerotaceae	Chaetoceros		curvisetus	
 Stanieria sp.	147157	exact	Stanieria	Komárek & Anagnostidis, 1986	accepted	147157	Stanieria	Komárek & Anagnostidis, 1986	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Pleurocapsaceae	Stanieria			
@@ -363,11 +363,11 @@ Ulvella marchantiae	732254	exact	Ulvella marchantiae	(Setchell & N.L.Gardner) R.
 Ruthnielsenia tenuis	376497	exact	Ruthnielsenia tenuis	(Kylin) C.J.O'Kelly, B.Wynsor & W.K.Bellows, 2004	accepted	376497	Ruthnielsenia tenuis	(Kylin) C.J.O'Kelly, B.Wynsor & W.K.Bellows, 2004	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Ulvaceae	Ruthnielsenia		tenuis	
 Gomontia polyrhiza	144903	exact	Gomontia polyrhiza	(Lagerheim) Bornet & Flahault, 1888	accepted	144903	Gomontia polyrhiza	(Lagerheim) Bornet & Flahault, 1888	Plantae	Chlorophyta	Ulvophyceae	Ulotrichales	Gomontiaceae	Gomontia		polyrhiza	
 Phaeophila ramulosa	371089	exact	Phaeophila ramulosa	(L.Moewus) R.Nielsen, 1972	unaccepted	732332	Ulvella ramulosa	(L.Moewus) R.Nielsen, C.J.O'Kelly & B. Wysor, 2013	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Phaeophilaceae	Phaeophila		ramulosa	
-unident. desmid sp.									
+unident. desmid sp.																	
 Peridinium cinctum	110183	exact	Peridinium cinctum	(O.F.Müller) Ehrenberg, 1832	accepted	110183	Peridinium cinctum	(O.F.Müller) Ehrenberg, 1832	Chromista	Myzozoa	Dinophyceae	Peridiniales	Peridiniaceae	Peridinium		cinctum	
-Micrasterias thomasiana var.notata									
+Micrasterias thomasiana var.notata																	
 Desmodesmus serratus	612513	exact	Desmodesmus serratus	(Corda) S.S.An, Friedl & E.Hegewald, 1999	accepted	612513	Desmodesmus serratus	(Corda) S.S.An, Friedl & E.Hegewald, 1999	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Scenedesmaceae	Desmodesmus		serratus	
-Hyalotheca dissiliens var.minor									
+Hyalotheca dissiliens var.minor																	
 Hemidinium nasutum	109891	exact	Hemidinium nasutum	F.Stein, 1878	accepted	109891	Hemidinium nasutum	F.Stein, 1878	Chromista	Myzozoa	Dinophyceae	Suessiales	Hemidiniaceae	Hemidinium		nasutum	
 Epicladia perforans	146008	exact	Epicladia perforans	(Huber) R.Nielsen, 1980	accepted	146008	Epicladia perforans	(Huber) R.Nielsen, 1980	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Ulvellaceae	Epicladia		perforans	
 Phaeophila dendroides	145778	exact	Phaeophila dendroides	(P.Crouan & H.Crouan) Batters, 1902	accepted	145778	Phaeophila dendroides	(P.Crouan & H.Crouan) Batters, 1902	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Phaeophilaceae	Phaeophila		dendroides	
@@ -380,7 +380,7 @@ Epicladia flustrae	146005	exact	Epicladia flustrae	Reinke, 1889	accepted	146005	
 Pseudendoclonium submarinum	144879	exact	Pseudendoclonium submarinum	Wille, 1901	accepted	144879	Pseudendoclonium submarinum	Wille, 1901	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Kornmanniaceae	Pseudendoclonium		submarinum	
 Ochlochaete hystrix	146012	exact	Ochlochaete hystrix	Thwaites, 1849	accepted	146012	Ochlochaete hystrix	Thwaites, 1849	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Ulvaceae	Ochlochaete		hystrix	
 Neostromatella monostromatica	840291	exact	Neostromatella monostromatica	M.J.Wynne, G.Furnari & R.Nielsen, 2014	accepted	840291	Neostromatella monostromatica	M.J.Wynne, G.Furnari & R.Nielsen, 2014	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Kornmanniaceae	Neostromatella		monostromatica	
-Ulvella parasitica f. zosterae									
+Ulvella parasitica f. zosterae																	
 Pseudendoclonium fucicola	156368	exact	Pseudendoclonium fucicola	(Rosenvinge) R.Nielsen, 1980	accepted	156368	Pseudendoclonium fucicola	(Rosenvinge) R.Nielsen, 1980	Plantae	Chlorophyta	Ulvophyceae	Ulvales	Kornmanniaceae	Pseudendoclonium		fucicola	
 Mougeotia sp.	248137	exact	Mougeotia	C.Agardh, 1824	accepted	248137	Mougeotia	C.Agardh, 1824	Plantae	Charophyta	Conjugatophyceae	Zygnematales	Zygnemataceae	Mougeotia			
 Nephroselmis sp.	134524	exact	Nephroselmis	F.Stein, 1878	accepted	134524	Nephroselmis	F.Stein, 1878	Plantae	Chlorophyta	Nephroselmidophyceae	Nephroselmidales	Nephroselmidaceae	Nephroselmis			
@@ -415,9 +415,9 @@ Phormidium sp.	146690	exact	Phormidium	Kützing ex Gomont, 1892	accepted	146690	
 Aulacoseira granulata	148961	exact	Aulacoseira granulata	(Ehrenberg) Simonsen, 1979	accepted	148961	Aulacoseira granulata	(Ehrenberg) Simonsen, 1979	Chromista	Bacillariophyta	Bacillariophyceae	Aulacoseirales	Aulacoseiraceae	Aulacoseira		granulata	
 Desmidium aptogonum	608950	exact	Desmidium aptogonum	Brébisson ex Kützing, 1849	accepted	608950	Desmidium aptogonum	Brébisson ex Kützing, 1849	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Desmidium		aptogonum	
 Monoraphidium sp.	160590	exact	Monoraphidium	Komárková-Legnerová, 1969	accepted	160590	Monoraphidium	Komárková-Legnerová, 1969	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Selenastraceae	Monoraphidium			
-Prasinophyte sp.									
+Prasinophyte sp.																	
 Staurastrum leptocladum var. cornutum	670977	exact	Staurastrum leptocladum var. cornutum	Wille, 1884	accepted	670977	Staurastrum leptocladum var. cornutum	Wille, 1884	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Staurastrum		leptocladum	
-Rhinomonas nottbecki									
+Rhinomonas nottbecki																	
 Microthamnion kuetzingianum	373972	exact	Microthamnion kuetzingianum	Nägeli ex Kützing, 1849	accepted	373972	Microthamnion kuetzingianum	Nägeli ex Kützing, 1849	Plantae	Chlorophyta	Trebouxiophyceae	Microthamniales	Microthamniaceae	Microthamnion		kuetzingianum	
 Thalassiosira delicatula	555264	exact	Thalassiosira delicatula	Ostenfeld, 1908	unassessed	555264	Thalassiosira delicatula	Ostenfeld, 1908	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Thalassiosiraceae	Thalassiosira		delicatula	
 Actinoptychus senarius	148948	exact	Actinoptychus senarius	(Ehrenberg) Ehrenberg, 1843	unassessed	162810	Actinocyclus senarius	Ehrenberg, 1838	Chromista	Bacillariophyta	Bacillariophyceae	Coscinodiscales	Heliopeltaceae	Actinoptychus		senarius	
@@ -428,11 +428,11 @@ Selenastrum sp.	572081	exact	Selenastrum	Reinsch, 1867	accepted	572081	Selenastr
 Nitzschia bizertensis	759283	exact	Nitzschia bizertensis	B.Smida, N.Lundholm, A.S.Hlaili & H.H.Mabrouk, 2014	accepted	759283	Nitzschia bizertensis	B.Smida, N.Lundholm, A.S.Hlaili & H.H.Mabrouk, 2014	Chromista	Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Nitzschia		bizertensis	
 Chroococcus sp.	146565	exact	Chroococcus	Nägeli, 1849	accepted	146565	Chroococcus	Nägeli, 1849	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Chroococcaceae	Chroococcus			
 Cosmarium subprotromidum	608924	near_2	Cosmarium subprotumidum	Nordstedt, 1876	accepted	608924	Cosmarium subprotumidum	Nordstedt, 1876	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Cosmarium		subprotumidum	
-Unident. Euglenophyte sp.									
+Unident. Euglenophyte sp.																	
 Trentepohlia sp.	600726	exact	Trentepohlia	Martius, 1817	accepted	600726	Trentepohlia	Martius, 1817	Plantae	Chlorophyta	Ulvophyceae	Trentepohliales	Trentepohliaceae	Trentepohlia			
 Thalassiosira punctifera	708714	exact	Thalassiosira punctifera	(Grunow) Fryxell, Simonsen & Hasle, 1974	unassessed	679812	Coscinodiscus excentricus var. punctifera	Grunow, 1884	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Thalassiosiraceae	Thalassiosira		punctifera	
 Synedropsis hyperborea	573617	exact	Synedropsis hyperborea	(Grunow) G.R.Hasle, L.K.Medlin & E.E.Syvertsen, 1994	unassessed	978902	Synedra hyperborea var. hyperborea	Grunow, 1884	Chromista	Bacillariophyta	Bacillariophyceae	Fragilariales	Fragilariaceae	Synedropsis		hyperborea	
-Unident. Eustigmatotophyte sp.									
+Unident. Eustigmatotophyte sp.																	
 Closterium venus	608765	exact	Closterium venus	Kützing ex Ralfs, 1848	accepted	608765	Closterium venus	Kützing ex Ralfs, 1848	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Closteriaceae	Closterium		venus	
 Tovellia leopoliensis	577247	exact	Tovellia leopoliensis	(Woloszynska) Moestrup, K.Lindberg & Daugbjerg, 2005	accepted	577247	Tovellia leopoliensis	(Woloszynska) Moestrup, K.Lindberg & Daugbjerg, 2005	Chromista	Myzozoa	Dinophyceae	Tovelliales	Tovelliaceae	Tovellia		leopoliensis	
 Hyalotheca dissiliens	609031	exact	Hyalotheca dissiliens	Brébisson ex Ralfs, 1848	accepted	609031	Hyalotheca dissiliens	Brébisson ex Ralfs, 1848	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Hyalotheca		dissiliens	
@@ -446,11 +446,11 @@ Tribonema sp.	144302	exact	Tribonema	Derbès & Solier, 1851	accepted	144302	Trib
 Euglena sp.	8012	exact	Euglena	Ehrenberg, 1830	accepted	8012	Euglena	Ehrenberg, 1830	Protozoa	Euglenozoa	Euglenoidea	Euglenida	Euglenaceae	Euglena			
 Isochrysis	248124	exact	Isochrysis	Parke, 1949	accepted	248124	Isochrysis	Parke, 1949	Chromista	Haptophyta	Coccolithophyceae	Isochrysidales	Isochrysidaceae	Isochrysis			
 Chrysochromulina sp.	115090	exact	Chrysochromulina	Lackey, 1939	accepted	115090	Chrysochromulina	Lackey, 1939	Chromista	Haptophyta	Coccolithophyceae	Prymnesiales	Chrysochromulinaceae	Chrysochromulina			
-Prochlorothrix scandica									
+Prochlorothrix scandica																	
 Microchloropsis salina	1359175	exact	Microchloropsis salina	(D.J.Hibbard) M.W.Fawley, I.Jameson & K.P.Fawley, 2015	accepted	1359175	Microchloropsis salina	(D.J.Hibbard) M.W.Fawley, I.Jameson & K.P.Fawley, 2015	Chromista	Ochrophyta	Eustigmatophyceae	Eustigmatales	Monodopsidaceae	Microchloropsis		salina	
 Nannochloropsis oceanica	376043	exact	Nannochloropsis oceanica	Suda & Miyashita, 2002	accepted	376043	Nannochloropsis oceanica	Suda & Miyashita, 2002	Chromista	Ochrophyta	Eustigmatophyceae	Eustigmatales	Monodopsidaceae	Nannochloropsis		oceanica	
 Cryptomonas pyrenoidifera	572022	exact	Cryptomonas pyrenoidifera	Geitler, 1922	accepted	572022	Cryptomonas pyrenoidifera	Geitler, 1922	Chromista	Cryptophyta	Cryptophyceae	Cryptomonadales	Cryptomonadaceae	Cryptomonas		pyrenoidifera	
-Unidentified, marine flagellate									
+Unidentified, marine flagellate																	
 Chrysotila carterae	837255	exact	Chrysotila carterae	(Braarud & Fagerland) Andersen, Kim, Tittley & Yoon, 2014	accepted	837255	Chrysotila carterae	(Braarud & Fagerland) Andersen, Kim, Tittley & Yoon, 2014	Chromista	Haptophyta	Coccolithophyceae	Isochrysidales	Isochrysidaceae	Chrysotila		carterae	
 Tetraselmis subcordiformis	495338	exact	Tetraselmis subcordiformis	(Wille) Butcher, 1959	accepted	495338	Tetraselmis subcordiformis	(Wille) Butcher, 1959	Plantae	Chlorophyta	Chlorodendrophyceae	Chlorodendrales	Chlorodendraceae	Tetraselmis		subcordiformis	
 Chromulina sp.	249689	exact	Chromulina	Cienkowsky, 1870	accepted	249689	Chromulina	Cienkowsky, 1870	Chromista	Ochrophyta	Chrysophyceae	Chromulinales	Chromulinaceae	Chromulina			
@@ -458,19 +458,19 @@ Dinobryon cf. sertularia	157252	exact	Dinobryon sertularia	Ehrenberg, 1834	accep
 Prochlorothrix hollandica	616813	exact	Prochlorothrix hollandica	Burger-Wiersma, Stal & Mur, 1989	accepted	616813	Prochlorothrix hollandica	Burger-Wiersma, Stal & Mur, 1989	Bacteria	Cyanobacteria	Cyanophyceae	Prochlorotrichales	Prochlorotrichaceae	Prochlorothrix		hollandica	
 Ochromonas minima	573921	exact	Ochromonas minima	Throndsen, 1969	accepted	573921	Ochromonas minima	Throndsen, 1969	Chromista	Ochrophyta	Chrysophyceae	Ochromonadales	Ochromonadaceae	Ochromonas		minima	
 Rhodomonas lacustris	248151	exact	Rhodomonas lacustris	Pascher & Ruttner, 1913	accepted	248151	Rhodomonas lacustris	Pascher & Ruttner, 1913	Chromista	Cryptophyta	Cryptophyceae	Pyrenomonadales	Pyrenomonadaceae	Rhodomonas		lacustris	
-Unidentified chrysophycean									
+Unidentified chrysophycean																	
 Skeletonema pseudocostatum	375916	exact	Skeletonema pseudocostatum	L.K.Medlin, 1991	unassessed	375916	Skeletonema pseudocostatum	L.K.Medlin, 1991	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Skeletonemaceae	Skeletonema		pseudocostatum	
 Synedra rumpens var. familiaris	172389	exact	Synedra rumpens var. familiaris	(Kützing) Grunow, 1881	unaccepted	985554	Synedra familiaris f. familiaris	Kützing, 1844	Chromista	Bacillariophyta	Bacillariophyceae	Fragilariales	Fragilariaceae	Synedra		rumpens	
 Nitzschia closterium	149610	exact	Nitzschia closterium	(Ehrenberg) W.Smith, 1853	unassessed	149610	Nitzschia closterium	(Ehrenberg) W.Smith, 1853	Chromista	Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Nitzschia		closterium	
 Asterionella formosa	148954	exact	Asterionella formosa	Hassall, 1850	accepted	148954	Asterionella formosa	Hassall, 1850	Chromista	Bacillariophyta	Bacillariophyceae	Fragilariales	Fragilariaceae	Asterionella		formosa	
-Unidentified pennales									
+Unidentified pennales																	
 Skeletonema dohrnii	489112	exact	Skeletonema dohrnii	Sarno & Kooistra, 2005	unassessed	489112	Skeletonema dohrnii	Sarno & Kooistra, 2005	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Skeletonemaceae	Skeletonema		dohrnii	
 Chaetoceros gracile	664401	exact	Chaetoceros gracile	Apstein, 1909	unaccepted	149297	Chaetoceros ceratosporus	Ostenfeld, 1910	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Chaetocerotaceae	Chaetoceros		gracile	
 Navicula pelliculosa	149428	exact	Navicula pelliculosa	(Kützing) Hilse, 1863	unassessed	695407	Synedra minutissima var. pelliculosa	Kützing, 1849	Chromista	Bacillariophyta	Bacillariophyceae	Naviculales	Naviculaceae	Navicula		pelliculosa	
 Achnantes sp.	149191	phonetic	Achnanthes	Bory, 1822	accepted	149191	Achnanthes	Bory, 1822	Chromista	Bacillariophyta	Bacillariophyceae	Achnanthales	Achnanthaceae	Achnanthes			
 Amphora coffaeiformis	624909	match_quarantine	Amphora coffaeiformis	(C.Agardh) Kützing	accepted	624909	Amphora coffaeiformis	(C.Agardh) Kützing	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiophysales	Catenulaceae	Amphora		coffaeiformis	
 Attheya septentrionalis	162823	exact	Attheya septentrionalis	(Østrup) R.M.Crawford, 1994	unassessed	962003	Chaetoceros septentrionalis	Cleve, 1896	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Attheyaceae	Attheya		septentrionalis	
-Unident. diatom									
+Unident. diatom																	
 Cyclotella sp.	148905	exact	Cyclotella	(F.T. Kützing) A. de Brébisson, 1838	accepted	148905	Cyclotella	(F.T. Kützing) A. de Brébisson, 1838	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Stephanodiscaceae	Cyclotella			
 Cyclotella cf. glomerata	149260	exact	Cyclotella glomerata	H.Bachmann, 1911	unassessed	149260	Cyclotella glomerata	H.Bachmann, 1911	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Stephanodiscaceae	Cyclotella		glomerata	
 Raphidocelis subcapitata	610914	exact	Raphidocelis subcapitata	(Korshikov) Nygaard, Komárek, J.Kristiansen & O.M.Skulberg, 1987	accepted	610914	Raphidocelis subcapitata	(Korshikov) Nygaard, Komárek, J.Kristiansen & O.M.Skulberg, 1987	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Selenastraceae	Raphidocelis		subcapitata	
@@ -484,20 +484,20 @@ Graesiella emersonii	837180	exact	Graesiella emersonii	(Shihara & R.W.Krauss) H.
 Pseudococcomyxa chodatii	1379956	exact	Pseudococcomyxa chodatii	(Jaag) Kostikov, Darienko & Hoffmann, 2002	accepted	1379956	Pseudococcomyxa chodatii	(Jaag) Kostikov, Darienko & Hoffmann, 2002	Plantae	Chlorophyta	Trebouxiophyceae	Chlorellales	Oocystaceae	Pseudococcomyxa		chodatii	
 Scenedesmus sp.	160602	exact	Scenedesmus	Meyen, 1829	accepted	160602	Scenedesmus	Meyen, 1829	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Scenedesmaceae	Scenedesmus			
 Koliella longiseta	248126	exact	Koliella longiseta	(Vischer) Hindák, 1963	accepted	248126	Koliella longiseta	(Vischer) Hindák, 1963	Plantae	Chlorophyta	Trebouxiophyceae	Prasiolales	Koliellaceae	Koliella		longiseta	
-Unidentified colonies									
+Unidentified colonies																	
 Oocystis sp. (?)	178611	exact	Oocystis	Nägeli ex A.Braun, 1855	accepted	178611	Oocystis	Nägeli ex A.Braun, 1855	Plantae	Chlorophyta	Trebouxiophyceae	Chlorellales	Oocystaceae	Oocystis			
 Myrmecia biatorellae	617049	exact	Myrmecia biatorellae	J.B.Petersen, 1956	accepted	617049	Myrmecia biatorellae	J.B.Petersen, 1956	Plantae	Chlorophyta	Trebouxiophyceae	Trebouxiales	Trebouxiaceae	Myrmecia		biatorellae	
-cf. Chlamydomonas sp.									
+cf. Chlamydomonas sp.																	
 Spondylosium secedens	609112	exact	Spondylosium secedens	(de Bary) W.Archer, 1861	accepted	609112	Spondylosium secedens	(de Bary) W.Archer, 1861	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Spondylosium		secedens	
 Chloroidium saccharophilum	623865	exact	Chloroidium saccharophilum	(W.Krüger) Darienko, Gustavs, Mudimu, Menendez, Schumann, Karsten, Friedl & Proschold, 2010	accepted	623865	Chloroidium saccharophilum	(W.Krüger) Darienko, Gustavs, Mudimu, Menendez, Schumann, Karsten, Friedl & Proschold, 2010	Plantae	Chlorophyta	Trebouxiophyceae	Watanabeales	Watanabeaceae	Chloroidium		saccharophilum	
 Eudorina elegans	390665	exact	Eudorina elegans	Ehrenberg, 1832	accepted	390665	Eudorina elegans	Ehrenberg, 1832	Plantae	Chlorophyta	Chlorophyceae	Chlamydomonadales	Volvocaceae	Eudorina		elegans	
 Apatococcus lobatus	610953	exact	Apatococcus lobatus	(Chodat) J.B.Petersen, 1928	accepted	610953	Apatococcus lobatus	(Chodat) J.B.Petersen, 1928	Plantae	Chlorophyta	Trebouxiophyceae	Chlorellales	Chlorellaceae	Apatococcus		lobatus	
 Botryococcus braunii	248104	exact	Botryococcus braunii	Kützing, 1849	accepted	248104	Botryococcus braunii	Kützing, 1849	Plantae	Chlorophyta	Trebouxiophyceae	Trebouxiales	Botryococcaceae	Botryococcus		braunii	
 Closterium sp.	162725	exact	Closterium	Nitzsch ex Ralfs, 1848	accepted	162725	Closterium	Nitzsch ex Ralfs, 1848	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Closteriaceae	Closterium			
-Unidentified green alga									
+Unidentified green alga																	
 Chloromonas sp.	600769	exact	Chloromonas	Gobi, 1899-1900	accepted	600769	Chloromonas	Gobi, 1899-1900	Plantae	Chlorophyta	Chlorophyceae	Chlamydomonadales	Chlamydomonadaceae	Chloromonas			
 Chlamydomonas noctigama	577291	exact	Chlamydomonas noctigama	Korschikov, 1927	accepted	577291	Chlamydomonas noctigama	Korschikov, 1927	Plantae	Chlorophyta	Chlorophyceae	Chlamydomonadales	Chlamydomonadaceae	Chlamydomonas		noctigama	
-cf. Messastrum gracile									
+cf. Messastrum gracile																	
 Chlamydomonas vectensis	655149	exact	Chlamydomonas vectensis	R.W.Butcher, 1959	accepted	655149	Chlamydomonas vectensis	R.W.Butcher, 1959	Plantae	Chlorophyta	Chlorophyceae	Chlamydomonadales	Chlamydomonadaceae	Chlamydomonas		vectensis	
 Chlorella sorokiniana	614413	exact	Chlorella sorokiniana	Shihira & R.W.Krauss, 1965	accepted	614413	Chlorella sorokiniana	Shihira & R.W.Krauss, 1965	Plantae	Chlorophyta	Trebouxiophyceae	Chlorellales	Chlorellaceae	Chlorella		sorokiniana	
 Hydrodictyon reticulatum	381000	exact	Hydrodictyon reticulatum	(Linnaeus) Bory de Saint-Vincent, 1824	accepted	381000	Hydrodictyon reticulatum	(Linnaeus) Bory de Saint-Vincent, 1824	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Hydrodictyaceae	Hydrodictyon		reticulatum	
@@ -516,7 +516,7 @@ Euastrum sp.	577667	exact	Euastrum	Ehrenberg ex Ralfs, 1848	accepted	577667	Euas
 Crucigenia tetrapedia	178619	exact	Crucigenia tetrapedia	(Kirchner) Kuntze, 1898	accepted	178619	Crucigenia tetrapedia	(Kirchner) Kuntze, 1898	Plantae	Chlorophyta	Trebouxiophyceae	Trebouxiophyceae ordo incertae sedis	Trebouxiophyceae incertae sedis	Crucigenia		tetrapedia	
 Sphaerozosma sp.	577678	exact	Sphaerozosma	Corda ex Ralfs, 1848	accepted	577678	Sphaerozosma	Corda ex Ralfs, 1848	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Sphaerozosma			
 Staurastrum gracile	509596	exact	Staurastrum gracile	Ralfs ex Ralfs, 1848	accepted	509596	Staurastrum gracile	Ralfs ex Ralfs, 1848	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Staurastrum		gracile	
-Pseudokirchneriella van-goori var. decussata									
+Pseudokirchneriella van-goori var. decussata																	
 Raphidocelis inclinata var. serialis	672243	exact	Raphidocelis inclinata var. serialis	G.Nygaard, J.Komárek, J.Kristiansen & O.M.Skulberg	accepted	672243	Raphidocelis inclinata var. serialis	G.Nygaard, J.Komárek, J.Kristiansen & O.M.Skulberg	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Selenastraceae	Raphidocelis		inclinata	
 Dictyosphaerium pulchellum var. minutum	673705	exact	Dictyosphaerium pulchellum var. minutum	Deflandre, 1927	uncertain				Plantae	Chlorophyta	Trebouxiophyceae	Chlorellales	Chlorellaceae	Dictyosphaerium		pulchellum	
 Pediastrum duplex	164061	exact	Pediastrum duplex	Meyen, 1829	accepted	164061	Pediastrum duplex	Meyen, 1829	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Hydrodictyaceae	Pediastrum		duplex	
@@ -538,7 +538,7 @@ Botryococcus cf. braunii	248104	exact	Botryococcus braunii	Kützing, 1849	accept
 Choricystis cf. coccoides	625389	exact	Choricystis coccoides	(Rodhe & Skuja) Fott, 1967	accepted	625389	Choricystis coccoides	(Rodhe & Skuja) Fott, 1967	Plantae	Chlorophyta	Trebouxiophyceae	Trebouxiophyceae ordo incertae sedis	Coccomyxaceae	Choricystis		coccoides	
 Choricystis cf. parasitica	837008	exact	Choricystis parasitica	(K.Brandt) Pröschold & Darienko, 2011	accepted	837008	Choricystis parasitica	(K.Brandt) Pröschold & Darienko, 2011	Plantae	Chlorophyta	Trebouxiophyceae	Trebouxiophyceae ordo incertae sedis	Coccomyxaceae	Choricystis		parasitica	
 Staurastrum pingue	609209	exact	Staurastrum pingue	Teiling, 1942	accepted	609209	Staurastrum pingue	Teiling, 1942	Plantae	Charophyta	Zygnematophyceae	Desmidiales	Desmidiaceae	Staurastrum		pingue	
-Tetradesmus obtusus									
+Tetradesmus obtusus																	
 Desmodesmus spinosus	612514	exact	Desmodesmus spinosus	(Chodat) E.Hegewald, 2000	accepted	612514	Desmodesmus spinosus	(Chodat) E.Hegewald, 2000	Plantae	Chlorophyta	Chlorophyceae	Sphaeropleales	Scenedesmaceae	Desmodesmus		spinosus	
 Planktothrix cf. prolifica	572062	exact	Planktothrix prolifica	(Gomont) Anagnostidis & Komárek, 1988	accepted	572062	Planktothrix prolifica	(Gomont) Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Planktothrix		prolifica	
 Planktothrix mougeotii	177583	exact	Planktothrix mougeotii	Anagnostidis & Komárek, 1988	accepted	177583	Planktothrix mougeotii	Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Planktothrix		mougeotii	
@@ -549,7 +549,7 @@ Limnothrix planctonica	177507	exact	Limnothrix planctonica	(Woloszynska) Meffert
 Planktothrix prolifica	572062	exact	Planktothrix prolifica	(Gomont) Anagnostidis & Komárek, 1988	accepted	572062	Planktothrix prolifica	(Gomont) Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Planktothrix		prolifica	
 Kamptonema formosum	837205	exact	Kamptonema formosum	(Bory ex Gomont) Strunecký, Komárek & J.Smarda, 2014	accepted	837205	Kamptonema formosum	(Bory ex Gomont) Strunecký, Komárek & J.Smarda, 2014	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Kamptonema		formosum	
 Tychonema bornetii	177615	exact	Tychonema bornetii	(Zukal) Anagnostidis & Komárek, 1988	accepted	177615	Tychonema bornetii	(Zukal) Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Tychonema		bornetii	
-Tychonema bornetii var. intermedia									
+Tychonema bornetii var. intermedia																	
 Planktothrix agardhii	146552	exact	Planktothrix agardhii	(Gomont) Anagnostidis & Komárek, 1988	accepted	146552	Planktothrix agardhii	(Gomont) Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Planktothrix		agardhii	
 Arthrospira maxima	661163	exact	Arthrospira maxima	Setchell & N.L.Gardner, 1917	unaccepted	1327751	Limnospira maxima	(Setchell & N.L.Gardner) Nowicka-Krawczyk, Mühlsteinová & Hauer, 2019	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Arthrospira		maxima	
 Microcystis cf. viridis	177400	exact	Microcystis viridis	(A.Braun) Lemmermann, 1903	accepted	177400	Microcystis viridis	(A.Braun) Lemmermann, 1903	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Microcystaceae	Microcystis		viridis	
@@ -560,14 +560,14 @@ Anabaenopsis arnoldii	609458	exact	Anabaenopsis arnoldii	Aptekar, 1926	accepted	
 Arthrospira fusiformis	612090	exact	Arthrospira fusiformis	(Voronichin) Komárek & J.W.G.Lund, 1990	unaccepted	1327367	Limnospira fusiformis	(Voronichin) Nowicka-Krawczyk, Mühlsteinová & Hauer, 2019	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Arthrospira		fusiformis	
 Dolichospermum flos-aquae	1637127	exact	Dolichospermum flos-aquae	(Bornet & Flahault) P.Wacklin, L.Hoffmann & Komárek, 2009	accepted	1637127	Dolichospermum flos-aquae	(Bornet & Flahault) P.Wacklin, L.Hoffmann & Komárek, 2009	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Aphanizomenonaceae	Dolichospermum		flos-aquae	
 Synechococcus cf. rhodobaktron	614829	exact	Synechococcus rhodobaktron	Komárek & Anagnostidis, 1995	accepted	614829	Synechococcus rhodobaktron	Komárek & Anagnostidis, 1995	Bacteria	Cyanobacteria	Cyanophyceae	Synechococcales	Synechococcaceae	Synechococcus		rhodobaktron	
-Pseudanabaena cf. brunnei									
+Pseudanabaena cf. brunnei																	
 Aphanizomenon flos-aquae	248099	exact	Aphanizomenon flos-aquae	Ralfs ex Bornet & Flahault, 1886	accepted	248099	Aphanizomenon flos-aquae	Ralfs ex Bornet & Flahault, 1886	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Aphanizomenonaceae	Aphanizomenon		flos-aquae	
 Microcystis cf. aeruginosa	146558	exact	Microcystis aeruginosa	(Kützing) Kützing, 1846	accepted	146558	Microcystis aeruginosa	(Kützing) Kützing, 1846	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Microcystaceae	Microcystis		aeruginosa	
 Pseudanabaena catenata	213742	exact	Pseudanabaena catenata	Lauterborn, 1915	accepted	213742	Pseudanabaena catenata	Lauterborn, 1915	Bacteria	Cyanobacteria	Cyanophyceae	Pseudanabaenales	Pseudanabaenaceae	Pseudanabaena		catenata	
 Dolichospermum danicum	625370	exact	Dolichospermum danicum	(Nygaard) P.Wacklin, L.Hoffmann & J.Komárek, 2009	accepted	625370	Dolichospermum danicum	(Nygaard) P.Wacklin, L.Hoffmann & J.Komárek, 2009	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Aphanizomenonaceae	Dolichospermum		danicum	
 Oscillatoria curviceps	660923	exact	Oscillatoria curviceps	C.Agardh ex Gomont, 1892	accepted	660923	Oscillatoria curviceps	C.Agardh ex Gomont, 1892	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Oscillatoriaceae	Oscillatoria		curviceps	
 Planktothrix pseudagardhii	616561	phonetic	Planktothrix pseudoagardhii	Suda & Watanabe, 2002	accepted	616561	Planktothrix pseudoagardhii	Suda & Watanabe, 2002	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Planktothrix		pseudoagardhii	
-Unidentified trichal species									
+Unidentified trichal species																	
 Merismopedia punctata	146577	exact	Merismopedia punctata	Meyen, 1839	unaccepted	627627	Merismopedia tranquilla	(Ehrenberg) Trevisan, 1845	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Microcystaceae	Merismopedia		punctata	
 Spirulina subsalsa	660753	exact	Spirulina subsalsa	Oersted ex Gomont, 1892	accepted	660753	Spirulina subsalsa	Oersted ex Gomont, 1892	Bacteria	Cyanobacteria	Cyanophyceae	Spirulinales	Spirulinaceae	Spirulina		subsalsa	
 Phormidium cf. chalybea	156349	near_2	Phormidium chalybeum	(Mertens ex Gomont) Anagnostidis & Komárek, 1988	accepted	156349	Phormidium chalybeum	(Mertens ex Gomont) Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Oscillatoriaceae	Phormidium		chalybeum	
@@ -577,7 +577,7 @@ Oscillatoria cf. major	665981	exact	Oscillatoria major	Vaucher ex Forti, 1907	ac
 Kamptonema cf. formosum	837205	exact	Kamptonema formosum	(Bory ex Gomont) Strunecký, Komárek & J.Smarda, 2014	accepted	837205	Kamptonema formosum	(Bory ex Gomont) Strunecký, Komárek & J.Smarda, 2014	Bacteria	Cyanobacteria	Cyanophyceae	Oscillatoriales	Microcoleaceae	Kamptonema		formosum	
 Leptolyngbya sp.	146994	exact	Leptolyngbya	Anagnostidis & Komárek, 1988	accepted	146994	Leptolyngbya	Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Leptolyngbyales	Leptolyngbyaceae	Leptolyngbya			
 Synechococcus elongatus	610181	exact	Synechococcus elongatus	(Nägeli) Nägeli, 1849	accepted	610181	Synechococcus elongatus	(Nägeli) Nägeli, 1849	Bacteria	Cyanobacteria	Cyanophyceae	Synechococcales	Synechococcaceae	Synechococcus		elongatus	
-Unidentified Microchaetaceae species									
+Unidentified Microchaetaceae species																	
 Trichormus variabilis	146661	exact	Trichormus variabilis	(Kützing ex Bornet & Flahault) Komárek & Anagnostidis, 1989	accepted	146661	Trichormus variabilis	(Kützing ex Bornet & Flahault) Komárek & Anagnostidis, 1989	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Aphanizomenonaceae	Trichormus		variabilis	
 Merismopedia angularis	614944	exact	Merismopedia angularis	R.H.Thompson, 1939	accepted	614944	Merismopedia angularis	R.H.Thompson, 1939	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Microcystaceae	Merismopedia		angularis	
 Synechococcus nidulans	614828	exact	Synechococcus nidulans	(Pringsheim) Komárek, 1970	accepted	614828	Synechococcus nidulans	(Pringsheim) Komárek, 1970	Bacteria	Cyanobacteria	Cyanophyceae	Synechococcales	Synechococcaceae	Synechococcus		nidulans	
@@ -597,7 +597,7 @@ Leptolyngbya cf. tenuis	177504	exact	Leptolyngbya tenuis	(Gomont) Anagnostidis &
 Snowella lacustris	146645	exact	Snowella lacustris	(Chodat) Komárek & Hindák, 1988	accepted	146645	Snowella lacustris	(Chodat) Komárek & Hindák, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Microcystaceae	Snowella		lacustris	
 Cylindrospermum sp.	146640	exact	Cylindrospermum	Kützing ex Bornet & Flahault, 1886	accepted	146640	Cylindrospermum	Kützing ex Bornet & Flahault, 1886	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Aphanizomenonaceae	Cylindrospermum			
 Leptolyngbya tenuis	177504	exact	Leptolyngbya tenuis	(Gomont) Anagnostidis & Komárek, 1988	accepted	177504	Leptolyngbya tenuis	(Gomont) Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Leptolyngbyales	Leptolyngbyaceae	Leptolyngbya		tenuis	
-Unidentified chroococcal species									
+Unidentified chroococcal species																	
 Spirulina major	660933	exact	Spirulina major	Kützing ex Gomont, 1892	accepted	660933	Spirulina major	Kützing ex Gomont, 1892	Bacteria	Cyanobacteria	Cyanophyceae	Spirulinales	Spirulinaceae	Spirulina		major	
 Katagnymene accurata	627890	exact	Katagnymene accurata	Geitler, 1982	accepted	627890	Katagnymene accurata	Geitler, 1982	Bacteria	Cyanobacteria	Cyanophyceae	Gomontiellales	Gomontiellaceae	Katagnymene		accurata	
 Cyanothece aeruginosa	578252	exact	Cyanothece aeruginosa	(Nägeli) Komárek, 1976	accepted	578252	Cyanothece aeruginosa	(Nägeli) Komárek, 1976	Bacteria	Cyanobacteria	Cyanophyceae	Gomontiellales	Cyanothecaceae	Cyanothece		aeruginosa	
@@ -609,7 +609,7 @@ Phormidium cf. subfuscum	609516	exact	Phormidium subfuscum	Kützing ex Gomont, 1
 Komvophoron sp.	146658	exact	Komvophoron	Anagnostidis & Komárek, 1988	accepted	146658	Komvophoron	Anagnostidis & Komárek, 1988	Bacteria	Cyanobacteria	Cyanophyceae	Gomontiellales	Gomontiellaceae	Komvophoron			
 Pseudanabaena limnetica	177590	exact	Pseudanabaena limnetica	(Lemmermann) Komárek, 1974	accepted	177590	Pseudanabaena limnetica	(Lemmermann) Komárek, 1974	Bacteria	Cyanobacteria	Cyanophyceae	Pseudanabaenales	Pseudanabaenaceae	Pseudanabaena		limnetica	
 Microcystis cf. ichthyoblabe	177245	exact	Microcystis ichthyoblabe	(G.Kunze) Kützing, 1843	accepted	177245	Microcystis ichthyoblabe	(G.Kunze) Kützing, 1843	Bacteria	Cyanobacteria	Cyanophyceae	Chroococcales	Microcystaceae	Microcystis		ichthyoblabe	
-Anabaena lemmermannii var. lemmermannii									
+Anabaena lemmermannii var. lemmermannii																	
 Anabaena oscillarioides	239061	exact	Anabaena oscillarioides	Bory ex Bornet & Flahault, 1886	accepted	239061	Anabaena oscillarioides	Bory ex Bornet & Flahault, 1886	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Aphanizomenonaceae	Anabaena		oscillarioides	
 Nostoc kihlmani	628033	phonetic	Nostoc kihlmanii	Lemmermann, 1900	accepted	628033	Nostoc kihlmanii	Lemmermann, 1900	Bacteria	Cyanobacteria	Cyanophyceae	Nostocales	Nostocaceae	Nostoc		kihlmanii	
 Rhabdogloea cf. linearis	177454	exact	Rhabdogloea linearis	(Geitler) Komárek, 1983	accepted	177454	Rhabdogloea linearis	(Geitler) Komárek, 1983	Bacteria	Cyanobacteria	Cyanophyceae	Synechococcales	Synechococcaceae	Rhabdogloea		linearis	
@@ -693,7 +693,7 @@ Micromonas sp.	134533	exact	Micromonas	I.Manton & M.Parke, 1960	accepted	134533	
 Attheya sp.	160519	exact	Attheya	T. West, 1860	accepted	160519	Attheya	T. West, 1860	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Attheyaceae	Attheya			
 Ruttnera lamellosa	836862	exact	Ruttnera lamellosa	(P.L.Anand) R.A.Andersen, J.I.Kim, Tittley & H.S.Yoon, 2014	accepted	836862	Ruttnera lamellosa	(P.L.Anand) R.A.Andersen, J.I.Kim, Tittley & H.S.Yoon, 2014	Chromista	Haptophyta	Coccolithophyceae	Isochrysidales	Isochrysidaceae	Ruttnera		lamellosa	
 Skeletonema japonicum	376666	exact	Skeletonema japonicum	Zingone & Sarno, 2005	unassessed	376666	Skeletonema japonicum	Zingone & Sarno, 2005	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Skeletonemaceae	Skeletonema		japonicum	
-unidentified picoflagellate									
+unidentified picoflagellate																	
 Detonula sp.	149285	exact	Detonula	F. Schütt ex G.B. De Toni, 1894	accepted	149285	Detonula	F. Schütt ex G.B. De Toni, 1894	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Skeletonemaceae	Detonula			
 Chaetoceros neogracilis	178207	exact	Chaetoceros neogracilis	VanLand., 1968	accepted	178207	Chaetoceros neogracilis	VanLand., 1968	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Chaetocerotaceae	Chaetoceros		neogracilis	
 Corethron sp.	149109	exact	Corethron	A.F. Castracane, 1886	accepted	149109	Corethron	A.F. Castracane, 1886	Chromista	Bacillariophyta	Bacillariophyceae	Corethrales	Corethraceae	Corethron			
@@ -702,9 +702,9 @@ Chaetoceros cf. neogracilis	178207	exact	Chaetoceros neogracilis	VanLand., 1968	
 Chaetoceros cf. debilis	149219	exact	Chaetoceros debilis	Cleve, 1894 emend Xu, Y.Li & Lundholm in Xu et al., 2020	accepted	149219	Chaetoceros debilis	Cleve, 1894 emend Xu, Y.Li & Lundholm in Xu et al., 2020	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Chaetocerotaceae	Chaetoceros		debilis	
 Chaetoceros cf. brevis	149291	exact	Chaetoceros brevis	F.Schütt, 1895	accepted	149291	Chaetoceros brevis	F.Schütt, 1895	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Chaetocerotaceae	Chaetoceros		brevis	
 Nitzschia longissima / Cylindrotheca closterium	149150	exact	Nitzschia longissima	(Brébisson) Ralfs, 1861	accepted	149150	Nitzschia longissima	(Brébisson) Ralfs, 1861	Chromista	Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Nitzschia		longissima	
-cf. Stephanopyxis sp.									
-Pseudo-nitzschia delicatissima-group									
-cf. Fragilariopsis pseudonana									
+cf. Stephanopyxis sp.																	
+Pseudo-nitzschia delicatissima-group																	
+cf. Fragilariopsis pseudonana																	
 Shionodiscus bioculatus	841633	exact	Shionodiscus bioculatus	(Grunow) Alverson, Kang & Theriot	unassessed	974857	Coscinodiscus bioculatus var. bioculatus	Grunow, 1884	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Thalassiosiraceae	Shionodiscus		bioculatus	
 Pseudo-nitzschia cf. turgidula	246609	exact	Pseudo-nitzschia turgidula	(Hustedt) G.R.Hasle, 1993	accepted	246609	Pseudo-nitzschia turgidula	(Hustedt) G.R.Hasle, 1993	Chromista	Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Pseudo-nitzschia		turgidula	
 Arcocellulus cornucervis	464322	exact	Arcocellulus cornucervis	G.R.Hasle, H.A.von Stosch & E.E.Syvertsen, 1983	unassessed	464322	Arcocellulus cornucervis	G.R.Hasle, H.A.von Stosch & E.E.Syvertsen, 1983	Chromista	Bacillariophyta	Bacillariophyceae	Cymatosirales	Cymatosiraceae	Arcocellulus		cornucervis	
@@ -714,12 +714,12 @@ Cylindrotheca closterium	149004	exact	Cylindrotheca closterium	(Ehrenberg) Reima
 Thalassiosira nordenskioeldii	148931	exact	Thalassiosira nordenskioeldii	Cleve, 1873	accepted	148931	Thalassiosira nordenskioeldii	Cleve, 1873	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Thalassiosiraceae	Thalassiosira		nordenskioeldii	
 Eucampia groenlandica	157430	exact	Eucampia groenlandica	Cleve, 1896	unassessed	157430	Eucampia groenlandica	Cleve, 1896	Chromista	Bacillariophyta	Bacillariophyceae	Hemiaulales	Hemiaulaceae	Eucampia		groenlandica	
 Rhodomonas sp.	106289	exact	Rhodomonas	G. Karsten, 1898	accepted	106289	Rhodomonas	G. Karsten, 1898	Chromista	Cryptophyta	Cryptophyceae	Pyrenomonadales	Pyrenomonadaceae	Rhodomonas			
-cf. Chrysolepidomonas sp.									
+cf. Chrysolepidomonas sp.																	
 Neodenticula seminae	196813	exact	Neodenticula seminae	(R.Simonsen & T.Kanaya) F.Akiba & Y.Yanagisawa, 1986	unassessed	196813	Neodenticula seminae	(R.Simonsen & T.Kanaya) F.Akiba & Y.Yanagisawa, 1986	Chromista	Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Neodenticula		seminae	
 Bacterosira sp.	162923	exact	Bacterosira	H.H. Gran, 1900	accepted	162923	Bacterosira	H.H. Gran, 1900	Chromista	Bacillariophyta	Bacillariophyceae			Bacterosira			
 Chaetoceros cinctus	149622	exact	Chaetoceros cinctus	Gran, 1897	accepted	149622	Chaetoceros cinctus	Gran, 1897	Chromista	Bacillariophyta	Bacillariophyceae	Chaetocerotanae incertae sedis	Chaetocerotaceae	Chaetoceros		cinctus	
 Pedinellaceae sp.	160598	exact	Pedinellaceae	Pascher, 1910	accepted	160598	Pedinellaceae	Pascher, 1910	Chromista	Ochrophyta	Dictyochophyceae	Pedinellales	Pedinellaceae				
 Nitzschia sp.	149045	exact	Nitzschia	A.H. Hassall, 1845	accepted	149045	Nitzschia	A.H. Hassall, 1845	Chromista	Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Nitzschia			
-Pennate diatom									
-Unknown pennate diatom									
+Pennate diatom																	
+Unknown pennate diatom																	
 Thalassiosira hispida	625490	exact	Thalassiosira hispida	Syvertsen, 1986	unassessed	625490	Thalassiosira hispida	Syvertsen, 1986	Chromista	Bacillariophyta	Bacillariophyceae	Thalassiosirales	Thalassiosiraceae	Thalassiosira		hispida	

@@ -93,5 +93,20 @@ yaml_output <- c("# Definition of ranks considered to be 'species or below'",
                  "#         include in the group.",
                  as.yaml(list(groups_of_organisms = yaml_list)))
 
+# Load yaml
+new_yaml <- yaml.load(yaml_output)
+
+# Download the current filters from backend for comparison
+url <- "https://raw.githubusercontent.com/nordicmicroalgae/backend/master/taxa/config/filters.yaml"
+yaml_content <- readLines(url)
+backend_yaml <- yaml.load(yaml_content)
+
+# Print warning if filters differ
+if (!identical(new_yaml, backend_yaml)) {
+  cat(paste("Warning: Quick-view filter content has changed, please consider to update filters in backend"))
+} else {
+  cat(paste("Info: Quick-view filters are identical to current backend version, no need to update backend"))
+}
+
 # Write YAML to file
 writeLines(yaml_output, "data_out/backend/taxa/config/filters.yaml")

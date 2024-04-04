@@ -55,9 +55,5 @@ dyntaxa_list <- dyntaxa %>%
   left_join(taxa) %>%
   filter(taxon_id %in% taxa_worms$taxon_id)
 
-# Print output
-print(paste(length(unique(dyntaxa_list$taxon_id)),
-            "taxa found in Dyntaxa"))
-
 # Store file
 write_delim(dyntaxa_list, "data_out/content/facts_external_links_dyntaxa.txt", delim = "\t") 

@@ -20,13 +20,13 @@ taxa_worms <- read_tsv("data_out/content/taxa.txt",
 
 # Fix column names and select relevant information
 norcca_worms <- norcca_worms %>%
-  rename(scientific_name = ScientificName...1,
-         ScientificName = ScientificName...4,
-         status = `Taxon status`) %>%
   select(scientific_name, status, AphiaID, AphiaID_accepted)
 
 # Get all aphia_id
 aphia_id <- unique(norcca_worms$AphiaID)
+
+# Remove NA
+aphia_id <- aphia_id[!is.na(aphia_id)]
 
 # Load stored file if running from cache
 if(file.exists("cache/norcca_cache.rda")) {
@@ -39,17 +39,19 @@ if(file.exists("cache/norcca_cache.rda")) {
 aphia_id <- aphia_id[!aphia_id %in% norcca_updated$AphiaID]
 
 # Loop for each AphiaID to get taxonomic records
-for(i in 1:length(aphia_id)) {
-  tryCatch({
-    record <- wm_record(aphia_id[i])
-    
-    norcca_updated <- rbind(norcca_updated, record)
-    
-    save(norcca_updated, file = "cache/norcca_cache.rda")
-  }, error=function(e){
-    cat("Error occurred in iteration", i, ":", conditionMessage(e), "\n")
+if (length(aphia_id) > 0) {
+  for(i in 1:length(aphia_id)) {
+    tryCatch({
+      record <- wm_record(aphia_id[i])
+      
+      norcca_updated <- rbind(norcca_updated, record)
+      
+      save(norcca_updated, file = "cache/norcca_cache.rda")
+    }, error=function(e){
+      cat("Error occurred in AphiaID", aphia_id[i], ":", conditionMessage(e), "\n")
+    }
+    )
   }
-  )
 }
 
 # Update AphiaID if id is unaccepted
@@ -98,7 +100,7 @@ for(i in 1:length(aphia_id)) {
   
   missing_records <- rbind(missing_records, record)
   
-  cat('Getting record', i, 'of', length(aphia_id),'\n')
+  cat('Getting missing record', i, 'of', length(aphia_id),'\n')
   }, error=function(e){
     cat("Error occurred in AphiaID", aphia_id[i], ":", conditionMessage(e), "\n")
   })
@@ -173,13 +175,6 @@ norcca_nordic <- norcca_nordic %>%
   filter(nordic) %>%
   filter(taxon_id %in% taxa_worms$taxon_id) %>%
   select(-nordic)
-
-# Print output
-print(paste("Information from",
-            length(unique(norcca_nordic$strain_name)),
-            "strains extracted from NORCCA, matching",
-            length(unique(norcca_nordic$scientific_name)),
-            "NuA taxa"))
 
 # Store file
 write_tsv(norcca_nordic, "data_out/content/facts_external_links_norcca.txt", na = "")
