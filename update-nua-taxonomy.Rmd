@@ -50,20 +50,20 @@ library(yaml)
 library(rvest)
 library(tidyverse)
 
-# Load API keys from .Renviron
-subscription_key <- Sys.getenv("DYNTAXA_APIKEY")
-ALGAEBASE_APIKEY <- Sys.getenv("ALGAEBASE_APIKEY")
-
 # Setup Python virtual environment
 virtualenv_create("src/python/venv", requirements = "src/python/requirements.txt")
 use_virtualenv("src/python/venv")
 
-# Print if records are cached
+# Load API keys from .Renviron
+subscription_key <- Sys.getenv("DYNTAXA_APIKEY")
+ALGAEBASE_APIKEY <- Sys.getenv("ALGAEBASE_APIKEY")
+
+# Prompt for API key if not available in env
 if(subscription_key == "") {
   subscription_key <- rstudioapi::askForPassword(prompt = "Please enter your SLU Artdatabanken API key")
 }
 
-# Print if records are cached
+# Prompt for API key if not available in env
 if(ALGAEBASE_APIKEY == "") {
   ALGAEBASE_APIKEY <- rstudioapi::askForPassword(prompt = "Please enter your AlgaeBase API key")
 }
@@ -74,7 +74,7 @@ cache_types <- c("update_checklist", "taxa_worms", "synonyms", "dyntaxa", "algae
 # Iterate over cache types
 for (cache_type in cache_types) {
   if (params[[paste0("cache_", cache_type)]]) {
-    cat("Warning:", toupper(cache_type), "records are loaded from CACHE")
+    cat("Warning:", toupper(cache_type), "records are set to load from CACHE\n")
   }
 }
 ```
@@ -416,7 +416,9 @@ cat("All output stored in", filename)
 
 ```{r reproducibility, echo=FALSE}
 # Date time
-Sys.time()
+cat("Time started:", format(knit.time))
+cat("Time finished:", format(Sys.time()))
+
 # Here we store the session info for this script
 sessioninfo::session_info()
 ```
