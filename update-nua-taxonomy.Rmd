@@ -48,6 +48,7 @@ library(algaeClassify)
 library(rgbif)
 library(yaml)
 library(rvest)
+library(pr2database)
 library(tidyverse)
 
 # Setup Python virtual environment
@@ -320,10 +321,23 @@ runtime_gbif <- round(end.time - start.time, 2)
 cat(nrow(gbif_list), "taxa found in GBIF")
 ```
 
+# Get PR2 links
+There can be multiple species names for each taxon_id (e.g. Amphora_ovalis and Amphora_ovalis:plas)
+```{r get_pr2, echo=FALSE}
+source("src/R/11_get_PR2.R")
+
+# Print output
+cat("Information from",
+    length(unique(nordic_pr2$pr2_name)),
+    "species names extracted from PR2, matching",
+    length(unique(nordic_pr2$taxon_id)),
+    "NuA taxa")
+```
+
 # Update filters.yaml for backend
 Filters for Quick View may need to be updated, see output
 ```{r update_filters, echo=FALSE}
-source("src/R/11_update_filters.R")
+source("src/R/12_update_filters.R")
 ```
 
 # Find taxa in SHARK
@@ -334,7 +348,7 @@ if(!params$cache_shark & file.exists("cache/shark_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/12_get_shark_taxa.R")
+source("src/R/13_get_shark_taxa.R")
 end.time <- Sys.time()
 runtime_shark <- round(end.time - start.time, 2)
 
@@ -398,6 +412,7 @@ zip::zip(zipfile = filename,
                    'data_out/content/facts_external_links_itis.txt',
                    'data_out/content/facts_external_links_ncbi.txt',
                    'data_out/content/facts_external_links_norcca.txt',
+                   'data_out/content/facts_external_links_pr2.txt',
                    'data_out/content/facts_external_links_worms.txt',
                    'data_out/content/facts_hab_ioc_karlson_et_al_2021.txt',
                    'data_out/content/synonyms.txt',
