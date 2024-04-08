@@ -24,7 +24,7 @@ API query functions towards AlgaeBase have been modified (stored in `/src/R/fun`
 Follow these steps to update the species content:
 1. Clone this repository.
 2. Store your API keys in `.Renviron` as instructed above.
-3. Download the latest NOMP biovolume list (in .xlsx format) from the [Nordic Microalgae webpage](http://nordicmicroalgae.org/tools) and save it in `/data_in/`.
+3. Download the latest NOMP biovolume list (in .xlsx format) from the [Nordic Microalgae webpage](https://nordicmicroalgae.org/biovolume-lists/) and save it in `/data_in/`.
 4. Download the latest complete IOC HAB list in .txt format from the [IOC-UNESCO Taxonomic Reference List of HAB](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) and store it in `/data_in/`.
 5. Make sure you have the latest version of the `pr2database` installed, see details above.
 6. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
