@@ -1,6 +1,6 @@
 # Nordic Microalgae: Data pipeline
 
-This repository contains R and Python scripts designed to gather the necessary data for updating the taxonomic backbone of Nordic Microalgae. The process involves interacting with various APIs, databases and webpages from key sources including [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/), [PR2](https://pr2-database.org/) and [SHARKdata](https://sharkdata.smhi.se/). The taxonomic data pipeline is initiated through the execution of the R Markdown document `update-nua-taxonomy.Rmd`. The data is input manually into the [content](https://github.com/nordicmicroalgae/content), which is then integrated into the [backend](https://github.com/nordicmicroalgae/backend).
+This repository contains R and Python scripts designed to gather the necessary data for updating the taxonomic backbone of Nordic Microalgae. The process involves interacting with various APIs, databases and webpages from key sources including [WoRMS](https://www.marinespecies.org/), [Dyntaxa](https://namnochslaktskap.artfakta.se/), [AlgaeBase](https://www.algaebase.org/), [GBIF](https://www.gbif.org/), [NORCCA](https://norcca.scrol.net/), [IOC-UNESCO Toxins database](https://toxins.hais.ioc-unesco.org/), [PR2](https://pr2-database.org/) and [SHARKdata](https://sharkdata.smhi.se/). The taxonomic data pipeline is initiated through the execution of the R Markdown document `update-nua-taxonomy.Rmd`. The data is input manually into the [content](https://github.com/nordicmicroalgae/content), which is then integrated into the [backend](https://github.com/nordicmicroalgae/backend).
 
 ## Prerequisites
 - Python interpreter installed for use in R with the `reticulate` package. Refer to [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) for details.
@@ -26,16 +26,17 @@ Follow these steps to update the species content:
 2. Store your API keys in `.Renviron` as instructed above.
 3. Download the latest NOMP biovolume list (in .xlsx format) from the [Nordic Microalgae webpage](https://nordicmicroalgae.org/biovolume-lists/) and save it in `/data_in/`.
 4. Download the latest complete IOC HAB list in .txt format from the [IOC-UNESCO Taxonomic Reference List of HAB](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) and store it in `/data_in/`.
-5. Make sure you have the latest version of the `pr2database` installed, see details above.
-6. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
-7. Run the `update-nua-taxonomy.Rmd` script. Note that API calls may take 10-11 hours to run if lists are not loaded from cache.
-8. Check the output for potential duplicated taxa names, errors or missing taxa listed in the .html report in `/update_history/`. Taxa can be excluded using `/data_in/blacklist.txt`, while unaccepted taxa can be enforced to remain using `/data_in/whitelist.txt`. Return to Step 5 to include additional taxa (set cache = TRUE and run the script again).
-9. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/species](https://github.com/nordicmicroalgae/content/tree/master/species) and verify GitHub CI checks.
-10. Run the syncdb app as a superuser from the admin pages to import the new species content into the backend. Check logs for potential problems.
-11. Check for any images assigned as taxon = 'none' after the import and assign them to their current names.
-12. Verify updated Quick-View filters in `/data_out/backend/taxa/config` and push to [nordicmicroalgae/backend](https://github.com/nordicmicroalgae/backend) if needed.
-13. Corrections to the Quick-View filters can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
-14. Upload new .xlsx and .txt versions of the checklist from `/data_out/` to data.smhi.se.
+5. Download the latest IPHAB database export from [IOC-UNESCO Toxins database](https://toxins.hais.ioc-unesco.org/) and store as .txt in `/data_in/`.
+6. Make sure you have the latest version of the `pr2database` installed, see details above.
+7. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
+8. Run the `update-nua-taxonomy.Rmd` script. Note that API calls may take 10-11 hours to run if lists are not loaded from cache.
+9. Check the output for potential duplicated taxa names, errors or missing taxa listed in the .html report in `/update_history/`. Taxa can be excluded using `/data_in/blacklist.txt`, while unaccepted taxa can be enforced to remain using `/data_in/whitelist.txt`. Return to Step 5 to include additional taxa (set cache = TRUE and run the script again).
+10. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/species](https://github.com/nordicmicroalgae/content/tree/master/species) and verify GitHub CI checks.
+11. Run the syncdb app as a superuser from the admin pages to import the new species content into the backend. Check logs for potential problems.
+12. Check for any images assigned as taxon = 'none' after the import and assign them to their current names.
+13. Verify updated Quick-View filters in `/data_out/backend/taxa/config` and push to [nordicmicroalgae/backend](https://github.com/nordicmicroalgae/backend) if needed.
+14. Corrections to the Quick-View filters can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
+15. Upload new .xlsx and .txt versions of the checklist from `/data_out/` to data.smhi.se.
 
 ## Workflow
 
@@ -62,8 +63,10 @@ flowchart TD
     facts_external_links_pr2.txt
     synonyms.txt )
     I[NORCCA] -.-|Web scrape| H -.-|Filter Nordic culture strains & HABs|J(facts_external_links_hab_ioc.txt
-    facts_external_links_norcca.txt)
-    L[IOC HAB list] -.- H
+    facts_external_links_norcca.txt
+    facts_ioc_toxins.txt)
+    L[IOC HAB list,
+    IPHAB IOC Toxin Database] -.- H
     H --> M[filters.yaml]
 ```
 ## References
