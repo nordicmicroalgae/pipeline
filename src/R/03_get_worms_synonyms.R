@@ -1,5 +1,6 @@
 library(tidyverse)
 library(worrms)
+library(rgbif)
 library(writexl)
 
 # Read taxa_worms file
@@ -34,6 +35,14 @@ if (nrow(taxa_worms_missing) > 0) {
   }
 }
 
+# Get GBIF ids for API call
+gbif_missing_records <- all_synonyms %>%
+  filter(!is.na(AphiaID)) %>%
+  mutate(name = paste(scientificname, authority)) %>%
+  name_backbone_checklist() %>%
+  select(usageKey, verbatim_name) %>%
+  distinct()
+
 # Wrangle synonyms
 worms_synonyms <- all_synonyms %>%
   filter(!is.na(AphiaID)) %>%
@@ -42,7 +51,12 @@ worms_synonyms <- all_synonyms %>%
   rename(synonym_name = scientificname,
          author = authority,
          taxon_id = valid_AphiaID) %>%
-  filter(taxon_id %in% taxa_worms$taxon_id)
+  filter(taxon_id %in% taxa_worms$taxon_id)%>%
+  mutate(verbatim_name = paste(synonym_name, author)) %>%
+  distinct() %>%
+  left_join(gbif_missing_records) %>%
+  rename(usage_key = usageKey) %>%
+  select(-verbatim_name)
 
 # Store file
 write_tsv(worms_synonyms, "data_out/content/synonyms.txt", na = "")
