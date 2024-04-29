@@ -270,6 +270,22 @@ source("src/R/07_get_hab_links.R")
 cat(nrow(nordic_hab), "IOC HAB species found in database")
 ```
 
+# Reformat IPHAP toxin database list and add taxon_id
+Downloaded (Save as text file, tab delimited) from
+https://toxins.hais.ioc-unesco.org/export
+
+```{r get_toxins, echo=FALSE, include=FALSE}
+source("src/R/08_get_toxins.R")
+```
+
+```{r summary_toxins, echo=FALSE}
+# Print output
+cat(paste(length(unique(toxin_all_updated$recommended_name)),
+            "toxins from IPHAB database found in", 
+            length(unique(toxin_all_updated$taxon_id)),
+            "Nordic Microalgae taxa"))
+```
+
 # Get ITIS links
 ```{r get_itis, echo=FALSE, include=FALSE}
 if(!params$cache_itis & file.exists("cache/itis_cache.rda")) {
@@ -415,6 +431,7 @@ zip::zip(zipfile = filename,
                    'data_out/content/facts_external_links_pr2.txt',
                    'data_out/content/facts_external_links_worms.txt',
                    'data_out/content/facts_hab_ioc_karlson_et_al_2021.txt',
+                   'data_out/content/facts_ioc_toxins.txt',
                    'data_out/content/synonyms.txt',
                    'data_out/content/taxa.txt',
                    'data_out/duplicated_scientific_name.txt',
