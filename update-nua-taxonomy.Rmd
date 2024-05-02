@@ -293,7 +293,7 @@ if(!params$cache_itis & file.exists("cache/itis_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/08_get_itis_links.R")
+source("src/R/09_get_itis_links.R")
 end.time <- Sys.time()
 runtime_itis <- round(end.time - start.time, 2)
 ```
@@ -310,7 +310,7 @@ if(!params$cache_ncbi & file.exists("cache/ncbi_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/09_get_ncbi_links.R")
+source("src/R/10_get_ncbi_links.R")
 end.time <- Sys.time()
 runtime_ncbi <- round(end.time - start.time, 2)
 ```
@@ -327,7 +327,7 @@ if(!params$cache_gbif & file.exists("cache/gbif_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/10_get_gbif_links.R")
+source("src/R/11_get_gbif_links.R")
 end.time <- Sys.time()
 runtime_gbif <- round(end.time - start.time, 2)
 ```
@@ -340,7 +340,7 @@ cat(nrow(gbif_list), "taxa found in GBIF")
 # Get PR2 links
 There can be multiple species names for each taxon_id (e.g. Amphora_ovalis and Amphora_ovalis:plas)
 ```{r get_pr2, echo=FALSE}
-source("src/R/11_get_PR2.R")
+source("src/R/12_get_PR2.R")
 
 # Print output
 cat("Information from",
@@ -353,7 +353,7 @@ cat("Information from",
 # Update filters.yaml for backend
 Filters for Quick View may need to be updated, see output
 ```{r update_filters, echo=FALSE}
-source("src/R/12_update_filters.R")
+source("src/R/13_update_filters.R")
 ```
 
 # Find taxa in SHARK
@@ -364,7 +364,7 @@ if(!params$cache_shark & file.exists("cache/shark_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/13_get_shark_taxa.R")
+source("src/R/14_get_shark_taxa.R")
 end.time <- Sys.time()
 runtime_shark <- round(end.time - start.time, 2)
 
