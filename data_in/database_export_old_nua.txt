@@ -645,7 +645,7 @@ Microcystis holsatica	146642	exact	Microcystis holsatica	(Lemmermann) Lemmermann
 Aphanocapsa delicatissima	146563	exact	Aphanocapsa delicatissima	West & G.S.West, 1912	146563	Aphanocapsa delicatissima	West & G.S.West, 1912	146563	
 Aphanocapsa conferta	146646	exact	Aphanocapsa conferta	(West & G.S.West) Komárková-Legnerová & Cronberg, 1994	146646	Aphanocapsa conferta	(West & G.S.West) Komárková-Legnerová & Cronberg, 1994	146646	
 Aphanocapsa grevillei	162667	exact	Aphanocapsa grevillei	(Berkeley) Rabenhorst, 1865	162667	Aphanocapsa grevillei	(Berkeley) Rabenhorst, 1865	162667	
-Aphanocapsa parallelliformis	249704							249704	Changed from Aphanocapsa parallelliformis to Aphanothece parallelliformis
+Aphanocapsa parallelliformis	624961							624961	Changed from Aphanocapsa parallelliformis to Aphanothece paralleliformis
 Aphanocapsa parasitica	162671	exact	Aphanocapsa parasitica	(Kützing) Komárek & Anagnostidis, 1995	162671	Aphanocapsa parasitica	(Kützing) Komárek & Anagnostidis, 1995	162671	
 Aphanocapsa planctonica	162672	exact	Aphanocapsa planctonica	(G.M.Smith) Komárek & Anagnostidis, 1995	162672	Aphanocapsa planctonica	(G.M.Smith) Komárek & Anagnostidis, 1995	162672	
 Aphanocapsa rivularis	162675	exact	Aphanocapsa rivularis	(Carmichael) Rabenhorst, 1865	162675	Aphanocapsa rivularis	(Carmichael) Rabenhorst, 1865	162675	
