@@ -152,13 +152,34 @@ if (nrow(norcca_combined_missing) > 0) {
   for (i in 1:nrow(norcca_combined_missing)) {
     # message("Scraping strain page ", i, " of ", nrow(norcca_combined_missing))
     
-    html <- read_html(norcca_combined_missing$strain_link[i])
+    # Try to read the HTML, handle errors with tryCatch
+    html <- tryCatch({
+      read_html(norcca_combined_missing$strain_link[i])
+    }, error = function(e) {
+      message("Error at strain page ", i, ": ", e$message)
+      return(NA)  # Return NA on error
+    })
     
-    field_items <- html  %>%
-      html_elements(css = ".field__item") %>% 
-      html_text()
-    
-    norcca_combined_missing$nordic[i] <- any(nordic_countries %in% field_items)
+    # If read_html fails, set nordic[i] to NA
+    if (is.na(html)) {
+      norcca_combined_missing$nordic[i] <- NA
+    } else {
+      # Extract and inspect the legends of all fieldsets
+      fieldsets <- html %>% html_elements("fieldset")
+      legends <- fieldsets %>% html_elements("legend") %>% html_text()
+
+      # Adjusted filtering using trimws() to remove any leading/trailing spaces
+      origin_fieldset <- fieldsets %>%
+        keep(~ trimws(html_element(.x, "legend") %>% html_text()) == "ORIGIN") %>%
+        html_element(".fieldset-wrapper")
+      
+      # Extract the text content of the 'Origin' section
+      origin_text <- origin_fieldset %>%
+        html_text(trim = TRUE)
+      
+      # Check if any nordic country is mentioned in the 'Origin' section
+      norcca_combined_missing$nordic[i] <- any(sapply(nordic_countries, function(country) grepl(country, origin_text)))
+    }
   }
 }
 

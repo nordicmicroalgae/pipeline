@@ -90,7 +90,7 @@ if(!params$cache_update_checklist & file.exists("cache/all_records_cache.rda")) 
 }
 
 start.time <- Sys.time()
-source("src/R/01_get_current_aphia_ids.R")
+source("src/R/01_get_current_aphia_ids.R", encoding = "UTF-8")
 end.time <- Sys.time()
 runtime_update_checklist <- round(end.time - start.time, 2)
 ```
@@ -187,7 +187,7 @@ if(!params$cache_dyntaxa & file.exists("cache/dyntaxa_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/04_get_dyntaxa_links.R")
+source("src/R/04_get_dyntaxa_links.R", encoding = "UTF-8")
 
 # Print output
 cat(length(unique(dyntaxa_list$taxon_id)),
@@ -205,7 +205,7 @@ if(!params$cache_algaebase & file.exists("cache/algaebase_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/05_get_algaebase_links.R")
+source("src/R/05_get_algaebase_links.R", encoding = "UTF-8")
 end.time <- Sys.time()
 runtime_algaebase <- round(end.time - start.time, 2)
 ```
