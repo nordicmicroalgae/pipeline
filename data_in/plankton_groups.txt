@@ -1,6 +1,6 @@
 group_name	included_taxa	rank
 Protozoa	Protozoa	Kingdom
-Diatoms	Bacillariophyta	Phylum
+Diatoms	Bacillariophyceae	Class
 Dinoflagellates	Myzozoa	Phylum
 Cyanobacteria	Cyanobacteria	Phylum
 Ciliates	Ciliophora	Phylum
