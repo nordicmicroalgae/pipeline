@@ -2943,7 +2943,7 @@ Peridinium lubieniense	700539	exact	Peridinium lubieniense	Wolszynska, 1916	8412
 Peridinium palatinum	110191	exact	Peridinium palatinum	Lauterborn, 1896	623653	Palatinus apiculatus	(Ehrenberg) Craveiro, Calado, Daugbjerg & Moestrup, 2009	623653	
 Peridinium palustre	110192	exact	Peridinium palustre	(Er.Lindemann) M.Lefèvre, 1932	684810	Peridinium raciborskii var. palustre	(Er.Lindemann) Er.Lindemann, 1928	684810	
 Peridinium pusillum	110193	exact	Peridinium pusillum	(Pénard) Lemmermann, 1901	838488	Parvodinium pusillum	(Penard) Carty, 2008	838488	
-Peridinium quinquecorne	233804	exact	Peridinium quinquecorne	T.H.Abé, 1927	1360848	Blixaea quinquecornis	(T.H.Abé) Gottschling, 2017	1360848	manually edited according to algaebase
+Blixaea quinquecornis	1360848	exact	Blixaea quinquecornis	(T.H.Abé) Gottschling, 2017	1360848	Blixaea quinquecornis	(T.H.Abé) Gottschling, 2017	1360848	manually edited according to algaebase
 Peridinium raciborskii	615590	exact	Peridinium raciborskii	Woloszynska, 1912	615590	Peridinium raciborskii	Woloszynska, 1912	615590	
 Peridinium umbonatum var. deflandrei	672196	exact	Peridinium umbonatum var. deflandrei	(Lefèvre) Popovsky & Pfeister, 1986	838485	Parvodinium deflandrei	(M.Lefèvre) Carty, 2008	838485	
 Peridinium umbonatum var. goslaviense	675427	exact	Peridinium umbonatum var. goslaviense	(Wolszynska) Popovsky & Pfeister, 1986	838486	Parvodinium goslaviense	(Woloszynska) Carty, 2008	838486	
