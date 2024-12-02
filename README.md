@@ -4,7 +4,7 @@ This repository contains R and Python scripts designed to gather the necessary d
 
 ## Prerequisites
 - Python interpreter installed for use in R with the `reticulate` package. Refer to [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) for details.
-- Install the R package `SHARK4R` for API queries towards Dyntaxa. See installation details on [github.com/sharksmhi/SHARK4R/](https://github.com/sharksmhi/SHARK4R/).
+- Install the R package `SHARK4R` (> 0.1.5) for API queries towards Dyntaxa. See installation details on [github.com/sharksmhi/SHARK4R/](https://github.com/sharksmhi/SHARK4R/).
 - Make sure you have the latest version of the `pr2database` package installed in R. See installation details on [PR2 R package](https://pr2database.github.io/pr2database/articles/pr2database.html)
 - Obtain API keys for Dyntaxa and AlgaeBase. To acquire a key for Dyntaxa, subscribe to the 'Taxonomy' product via the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/). Request keys from AlgaeBase directly from their developer team.  Store your API keys in `.Renviron`. Use the provided function to edit this file easily:
 
@@ -17,9 +17,6 @@ Edit your .Renviron to look like this (fake checksums provided below):
 ALGAEBASE_APIKEY = "e1482dc9abfe073d56db08c0b604e333"
 DYNTAXA_APIKEY = "89ad0b9cac6ce53184cc942147e1f06f"
 ```
-
-API query functions towards AlgaeBase have been modified (stored in `/src/R/fun`) from the ```algaeClassify``` package to include AlgaeBase IDs (Patil et al. 2023).
-
 ## Update Process
 Follow these steps to update the species content:
 1. Clone this repository.
@@ -72,4 +69,3 @@ flowchart TD
 ## References
 
 - Karlson, B., Andersen, P., Arneborg, L., Cembella, A., Eikrem, W., John, U., West, J.J., Klemm, K., Kobos, J., Lehtinen, S., Lundholm, N., Mazur-Marzec, H., Naustvoll, L., Poelman, M., Provoost, P., De Rijcke, M., Suikkanen, S., 2021. Harmful algal blooms and their effects in coastal seas of Northern Europe. Harmful Algae. Feb;102:101989. doi: [10.1016/j.hal.2021.101989](https://doi.org/10.1016/j.hal.2021.101989). Epub 2021 Mar 6. PMID: 33875185.
-- Patil, V.P., Seltmann, T., Salmaso, N., Anneville, O., Lajeunesse, M., Straile, D., 2023. algaeClassify (ver 2.0.1, October 2023): U.S. Geological Survey software release, https://doi.org/10.5066/F7S46Q3F
