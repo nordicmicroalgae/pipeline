@@ -20,7 +20,7 @@ taxa_worms_missing <- taxa_worms %>%
   filter(!scientific_name %in% dyntaxa$search_pattern)
 
 # Match taxa with API
-dyntaxa <- rbind(match_taxon_name(taxa_worms_missing$scientific_name, subscription_key),
+dyntaxa <- rbind(match_taxon_name(taxa_worms_missing$scientific_name, subscription_key, verbose = FALSE),
                  dyntaxa)
 
 save(dyntaxa, file = "cache/dyntaxa_cache.rda")

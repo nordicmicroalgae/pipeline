@@ -1,11 +1,12 @@
 library(tidyverse)
 library(writexl)
-library(algaeClassify)
+library(SHARK4R)
+# library(algaeClassify)
 
-# Source modified functions from the algaeClassify package
-source("src/R/fun/algaebase_genus_search.r") # Edited function from algaeClassify, with added id
-source("src/R/fun/algaebase_species_search.r") # Edited function from algaeClassify, with added id
-source("src/R/fun/algaebase_search_df.r") # Edited function from algaeClassify, with added id
+# # Source modified functions from the algaeClassify package
+# source("src/R/fun/algaebase_genus_search.r") # Edited function from algaeClassify, with added id
+# source("src/R/fun/algaebase_species_search.r") # Edited function from algaeClassify, with added id
+# source("src/R/fun/algaebase_search_df.r") # Edited function from algaeClassify, with added id
 
 # Load API key
 if(!exists('ALGAEBASE_APIKEY')) {
@@ -46,8 +47,10 @@ taxa_worms <- read.table("data_out/content/taxa.txt",
 # Prepare names for AlgaeBase API query
 algaebase_species_api <- taxa_worms %>%
   filter(rank %in% c("Species", "Variety", "Forma", "Subspecies", "Genus")) %>%
-  select(scientific_name, rank, taxon_id) %>%
-  genus_species_extract(phyto.name = 'scientific_name') %>%
+  select(scientific_name, rank, taxon_id)
+
+algaebase_species_api <- parse_scientific_names(algaebase_species_api$scientific_name) %>%
+  cbind(algaebase_species_api) %>%
   filter(!duplicated(scientific_name)) %>%
   mutate(input.name = str_trim(paste(genus, species))) %>%
   mutate(species = na_if(species, ""))
@@ -69,10 +72,10 @@ missing_rows <- nrow(algaebase_species_api_missing)
 # If there are missing rows, call the API and update the dataframe
 if (missing_rows > 0) {
   # Call the Algaebase API
-  api_results <- algaebase_search_df(algaebase_species_api_missing, 
-                                     apikey = ALGAEBASE_APIKEY,
-                                     genus.name = "genus",
-                                     species.name = "species")
+  api_results <- match_algaebase(genus = algaebase_species_api_missing$genus, 
+                                 species = algaebase_species_api_missing$species,
+                                 apikey = ALGAEBASE_APIKEY,
+                                 verbose = FALSE)
   
   # Append the API results to the main dataframe
   algaebase_results <- rbind(algaebase_results, api_results)

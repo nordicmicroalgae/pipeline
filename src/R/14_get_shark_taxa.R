@@ -2,31 +2,65 @@ library(tidyverse)
 library(SHARK4R)
 library(worrms)
 
-# Find SHARKdata dataset names
-datasets <- load_dataset_names("Phytoplankton")
-dataset_names <- unique(datasets$dataset_name)
+# Get SHARK options
+shark_options <- get_shark_options()
+
+min_year <- shark_options$minYear
+max_year <- shark_options$maxYear
+dataset_names <- unlist(shark_options$datasets)[grepl("Phytoplankton", unlist(shark_options$datasets))]
 
 # Load stored file if running from cache
 if(file.exists("cache/shark_cache.rda")) {
   load(file = "cache/shark_cache.rda")
 } else {
-  data <- download_sharkdata(dataset_names)
+  # data <- download_sharkdata(dataset_names)
+
+  
+  data <- get_shark_data(tableView = "sharkdata_phytoplankton",
+                         dataTypes = "Phytoplankton",
+                         fromYear = min_year,
+                         toYear = max_year,
+                         verbose = FALSE)
 }
 
-# Update data
-data <- update_data(data)
+# Find missing dataset file names
+outdated_datasets <- unique(data$dataset_file_name)[!unique(data$dataset_file_name) %in% dataset_names]
 
-# Find new datasets
-missing_datasets <- datasets %>%
-  filter(!dataset_name %in% data$dataset_name)
-
-tryCatch({
-  data <- bind_rows(data,
-                    download_sharkdata(missing_datasets$dataset_name))
-  }, error=function(e){
-  cat("Failed to download data\n")
+if(length(outdated_datasets) > 0) {
+  missing_dataset_names <- dataset_names[grepl(paste0(outdated_datasets, collapse = "|"), dataset_names)]
+  
+  # Download latest version of data
+  data_updated <- get_shark_data(tableView = "sharkdata_phytoplankton",
+                                 dataTypes = "Phytoplankton",
+                                 fromYear = min_year,
+                                 toYear = max_year,
+                                 datasets = missing_dataset_names,
+                                 verbose = FALSE)
+  
+  # Replace outdated data
+  data <- data %>%
+    filter(!dataset_name %in% missing_dataset_names) %>%
+    bind_rows(data_updated)
   }
-)
+
+# Find missing datasets
+missing_datasets <- dataset_names[!dataset_names %in% data$dataset_file_name]
+
+# Add data if any datasets are missing
+if(length(missing_datasets) > 0) {
+  tryCatch({
+    data <- bind_rows(data,
+                      get_shark_data(tableView = "sharkdata_phytoplankton",
+                                     dataTypes = "Phytoplankton",
+                                     fromYear = min_year,
+                                     toYear = max_year,
+                                     datasets = missing_datasets,
+                                     verbose = FALSE))
+  }, error=function(e){
+    cat("Failed to download data\n")
+  }
+  )
+}
 
 # Store cached items
 save(data, file = "cache/shark_cache.rda")
@@ -65,4 +99,4 @@ missing_shark_records <- all_records %>%
   filter(!valid_AphiaID %in% taxa_worms$taxon_id)
 
 # Store file
-write_delim(missing_records, "data_out/missing_shark_records.txt", delim = "\t") 
+write_delim(missing_shark_records, "data_out/missing_shark_records.txt", delim = "\t") 
