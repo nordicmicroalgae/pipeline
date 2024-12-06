@@ -1,12 +1,6 @@
 library(tidyverse)
 library(writexl)
 library(SHARK4R)
-# library(algaeClassify)
-
-# # Source modified functions from the algaeClassify package
-# source("src/R/fun/algaebase_genus_search.r") # Edited function from algaeClassify, with added id
-# source("src/R/fun/algaebase_species_search.r") # Edited function from algaeClassify, with added id
-# source("src/R/fun/algaebase_search_df.r") # Edited function from algaeClassify, with added id
 
 # Load API key
 if(!exists('ALGAEBASE_APIKEY')) {
@@ -21,29 +15,6 @@ taxa_worms <- read.table("data_out/content/taxa.txt",
                          quote = "", 
                          encoding = "latin-1")
 
-# # Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
-# algaebase_species <- taxa_worms %>%
-#   filter(rank %in% c("Species", "Variety", "Forma", "Subspecies")) %>%
-#   mutate(scientific_name_author = paste(scientific_name, authority)) %>%
-#   select(scientific_name_author, rank, taxon_id)
-# 
-# # Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
-# algaebase_genus <- taxa_worms %>%
-#   filter(rank == "Genus") %>%
-#   mutate(scientific_name_author = paste(scientific_name, authority)) %>%
-#   select(scientific_name_author, rank, taxon_id)
-# 
-# # Wrangle data to match AlgaeBase API query, according to Mike Guiry's instructions
-# algaebase_higher_taxonomy <- taxa_worms %>%
-#   filter(!rank %in% c("Species", "Variety", "Forma", "Subspecies", "Genus")) %>%
-#   mutate(scientific_name_author = paste(scientific_name, authority)) %>%
-#   select(scientific_name_author, rank, taxon_id)
-# 
-# # Store files as .xlsx
-# write_xlsx(algaebase_species, "data_out/nordic_microalgae_species.xlsx")
-# write_xlsx(algaebase_genus, "data_out/nordic_microalgae_genus.xlsx")
-# write_xlsx(algaebase_higher_taxonomy, "data_out/nordic_microalgae_higher_taxonomy.xlsx")
-
 # Prepare names for AlgaeBase API query
 algaebase_species_api <- taxa_worms %>%
   filter(rank %in% c("Species", "Variety", "Forma", "Subspecies", "Genus")) %>%
@@ -52,7 +23,7 @@ algaebase_species_api <- taxa_worms %>%
 algaebase_species_api <- parse_scientific_names(algaebase_species_api$scientific_name) %>%
   cbind(algaebase_species_api) %>%
   filter(!duplicated(scientific_name)) %>%
-  mutate(input.name = str_trim(paste(genus, species))) %>%
+  mutate(input_name = str_trim(paste(genus, species))) %>%
   mutate(species = na_if(species, ""))
 
 # Load stored file if running from cache
@@ -64,7 +35,7 @@ if(file.exists("cache/algaebase_cache.rda")) {
 
 # Remove cached items
 algaebase_species_api_missing <- algaebase_species_api %>%
-  filter(!input.name %in% algaebase_results$input.name)
+  filter(!input_name %in% algaebase_results$input_name)
 
 # Calculate the number of rows once
 missing_rows <- nrow(algaebase_species_api_missing)
@@ -75,7 +46,7 @@ if (missing_rows > 0) {
   api_results <- match_algaebase(genus = algaebase_species_api_missing$genus, 
                                  species = algaebase_species_api_missing$species,
                                  apikey = ALGAEBASE_APIKEY,
-                                 verbose = FALSE)
+                                 verbose = TRUE)
   
   # Append the API results to the main dataframe
   algaebase_results <- rbind(algaebase_results, api_results)
@@ -83,8 +54,8 @@ if (missing_rows > 0) {
 
 # Find taxon_id that did not get a match
 no_match <- algaebase_species_api_missing %>%
-  filter(!algaebase_species_api_missing$input.name %in% algaebase_results$input.name) %>%
-  select(input.name)
+  filter(!algaebase_species_api_missing$input_name %in% algaebase_results$input_name) %>%
+  select(input_name)
 
 # Add taxon_id for results that did not get a match
 algaebase_results <- bind_rows(algaebase_results, no_match)
@@ -94,20 +65,19 @@ save(algaebase_results, file = "cache/algaebase_cache.rda")
 
 # Join and wrangle
 algaebase_results <- algaebase_results %>% 
-  # rename(scientific_name = input.name) %>%
+  # rename(scientific_name = input_name) %>%
   distinct() %>%
   left_join(select(algaebase_species_api, 
                    -genus,
                    -species)
-            , by = 'input.name') %>%
-  mutate(url = ifelse(taxon.rank=="genus",
+            , by = 'input_name') %>%
+  mutate(url = ifelse(taxon_rank=="genus",
                       paste0("https://www.algaebase.org/search/genus/detail/?genus_id=", id),
                       paste0("https://www.algaebase.org/search/species/detail/?species_id=", id)
   )
   ) %>%
-  select(taxon_id, id, scientific_name, kingdom, phylum, class, order, family, genus, species, taxon.rank, url) %>%
-  rename(ab_id = id,
-         taxon_rank = taxon.rank) %>%
+  select(taxon_id, id, scientific_name, kingdom, phylum, class, order, family, genus, species, taxon_rank, url) %>%
+  rename(ab_id = id) %>%
   filter(!is.na(ab_id)) %>%
   filter(!is.na(taxon_id)) %>%
   distinct(taxon_id, ab_id, .keep_all = TRUE) %>%
