@@ -4398,7 +4398,6 @@ Nitzschia fasciculata	149605	exact	Nitzschia fasciculata	(Grunow) Grunow, 1881	1
 Nitzschia filiformis var. filiformis	979837	exact	Nitzschia filiformis var. filiformis	(W. Smith) Van Heurck, 1896	979837	Nitzschia filiformis var. filiformis	(W. Smith) Van Heurck, 1896	979837	
 Nitzschia filiformis var. conferta	675175	exact	Nitzschia filiformis var. conferta	(Richt) Lange-Bertalot, 1987	611664	Homoeocladia conferta	Richter, 1879	611664	
 Nitzschia flexoides	610608	exact	Nitzschia flexoides	Geitler, 1968	610608	Nitzschia flexoides	Geitler, 1968	610608	
-Nitzschia fonticola var. fonticola	976864	exact	Nitzschia fonticola var. fonticola	Grunow in Cleve & Möller, 1879	976864	Nitzschia fonticola var. fonticola	Grunow in Cleve & Möller, 1879	976864	
 Nitzschia fonticola var. pelagica	671854	exact	Nitzschia fonticola var. pelagica	Hustedt in Schmidt et al., 1924	671854	Nitzschia fonticola var. pelagica	Hustedt in Schmidt et al., 1924	671854	
 Nitzschia frigida	175400	exact	Nitzschia frigida	Grunow, 1880	175400	Nitzschia frigida	Grunow, 1880	175400	
 Nitzschia frustulum	175404	exact	Nitzschia frustulum	(Kützing) Grunow, 1880	175404	Nitzschia frustulum	(Kützing) Grunow, 1880	175404	

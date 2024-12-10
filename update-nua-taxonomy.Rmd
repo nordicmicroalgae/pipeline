@@ -49,6 +49,7 @@ library(yaml)
 library(rvest)
 library(pr2database)
 library(tidyverse)
+library(stringdist)
 
 # Setup Python virtual environment
 virtualenv_create("src/python/venv", requirements = "src/python/requirements.txt")
@@ -101,7 +102,7 @@ cat("AphiaID for", nrow(all_records), "taxa found")
 # Get WoRMS records, including higher taxonomy
 
 ```{r get_taxa_file, include=FALSE}
-if(!params$cache_taxa_worms & file.exists("cache/worms_cache.rda")) {
+if(!params$cache_taxa_worms & file.exists("cache/worms_cache.db")) {
   temp <- file.remove("cache/worms_cache.db")
 }
 
@@ -212,6 +213,21 @@ runtime_algaebase <- round(end.time - start.time, 2)
 ```{r summary_algaebase, echo=FALSE}
 # Print
 cat(nrow(algaebase_results), "species and genera found in AlgaeBase")
+```
+
+# Find taxa with duplicated AlgaeBase links
+
+```{r duplicate_algaebase, echo=FALSE}
+# Print table
+algaebase_duplicates %>%
+  rename(authority_ab = authorship) %>%
+  select(taxon_id,
+         ab_id,
+         scientific_name,
+         authority,
+         authority_ab,
+         url) %>%
+  knitr::kable(caption = "Taxa with duplicated algaebase links")
 ```
 
 # Extract culture information from NORCCA
@@ -352,7 +368,7 @@ cat("Information from",
 # Update filters.yaml for backend
 Filters for Quick View may need to be updated, see output
 ```{r update_filters, echo=FALSE}
-source("src/R/13_update_filters.R")
+# source("src/R/13_update_filters.R")
 ```
 
 # Find taxa in SHARK
@@ -363,7 +379,7 @@ if(!params$cache_shark & file.exists("cache/shark_cache.rda")) {
 }
 
 start.time <- Sys.time()
-source("src/R/14_get_shark_taxa.R")
+# source("src/R/14_get_shark_taxa.R")
 end.time <- Sys.time()
 runtime_shark <- round(end.time - start.time, 2)
 
@@ -372,18 +388,18 @@ runtime_knit <- round(end.time - knit.time, 2)
 
 ```{r summary_shark, echo=FALSE}
 # Print table
-if(nrow(missing_shark_records) > 0){
-  missing_shark_records %>%
-  select(AphiaID,
-         scientificname,
-         status,
-         rank,
-         valid_AphiaID,
-         valid_name) %>%
-  knitr::kable(caption = "Phytoplankton taxa found in SHARK but missing in NuA database")
-} else {
-  cat("All SHARK phytoplankton taxa are already included in the NuA database")
-}
+# if(nrow(missing_shark_records) > 0){
+#   missing_shark_records %>%
+#   select(AphiaID,
+#          scientificname,
+#          status,
+#          rank,
+#          valid_AphiaID,
+#          valid_name) %>%
+#   knitr::kable(caption = "Phytoplankton taxa found in SHARK but missing in NuA database")
+# } else {
+#   cat("All SHARK phytoplankton taxa are already included in the NuA database")
+# }
 ```
 
 # Summarise runtimes
