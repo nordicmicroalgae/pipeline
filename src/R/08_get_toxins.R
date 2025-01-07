@@ -1,20 +1,13 @@
-library(jsonlite)
 library(tidyverse)
 library(worrms)
+library(SHARK4R)
 
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_out/content/taxa.txt",
                        col_types = cols())
 
-# Read JSON data from a .txt file
-json_data <- fromJSON("data_in/ioc-toxins.txt")
-
-# # Parse JSON data into R
-# parsed_data <- fromJSON(json_data)
-
-# Convert to tibble
-toxins <- json_data$toxins %>%
-  as_tibble()
+# Get Toxin information from API
+toxins <- get_toxin_list()
 
 # Filter toxins with known taxa
 algal_toxins <- toxins %>%

@@ -1,13 +1,9 @@
 library(tidyverse)
+library(SHARK4R)
+library(worrms)
 
-# Find the latest HAB list
-hab_filename <- list.files("data_in") %>%
-  as_tibble() %>%
-  filter(agrepl("HABs_taxlist_", value)) %>%
-  arrange(value)
-
-# Read current HAB list
-hab_list <- read_tsv(file.path("data_in", hab_filename$value[nrow(hab_filename)]))
+# Get current HAB list
+hab_list <- get_hab_list()
 
 # Read HAB list from Karlson et al 2021 https://doi.org/10.1016/j.hal.2021.101989
 nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc_karlson_et_al_2021.txt",

@@ -4,7 +4,7 @@ This repository contains R and Python scripts designed to gather the necessary d
 
 ## Prerequisites
 - Python interpreter installed for use in R with the `reticulate` package. Refer to [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) for details.
-- Install the R package `SHARK4R` (> 0.1.6) for API queries towards Dyntaxa and AlgaeBase. See installation details on [github.com/sharksmhi/SHARK4R/](https://github.com/sharksmhi/SHARK4R/).
+- Install the R package `SHARK4R` (> 0.1.7) for API queries towards Dyntaxa, AlgaeBase and IOC Toxins Database. See installation details on [github.com/sharksmhi/SHARK4R/](https://github.com/sharksmhi/SHARK4R/).
 - Make sure you have the latest version of the `pr2database` package installed in R. See installation details on [PR2 R package](https://pr2database.github.io/pr2database/articles/pr2database.html)
 - Obtain API keys for Dyntaxa and AlgaeBase. To acquire a key for Dyntaxa, subscribe to the 'Taxonomy' product via the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/). Request keys from AlgaeBase directly from their developer team.  Store your API keys in `.Renviron`. Use the provided function to edit this file easily:
 
@@ -22,18 +22,16 @@ Follow these steps to update the species content:
 1. Clone this repository.
 2. Store your API keys in `.Renviron` as instructed above.
 3. Download the latest NOMP biovolume list (in .xlsx format) from the [Nordic Microalgae webpage](https://nordicmicroalgae.org/biovolume-lists/) and save it in `/data_in/`.
-4. Download the latest complete IOC HAB list in .txt format from the [IOC-UNESCO Taxonomic Reference List of HAB](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) and store it in `/data_in/`.
-5. Download the latest IPHAB database export from [IOC-UNESCO Toxins database](https://toxins.hais.ioc-unesco.org/) and store as .txt in `/data_in/`.
-6. Make sure you have the latest version of the `pr2database` installed, see details above.
-7. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
-8. Run the `update-nua-taxonomy.Rmd` script. Note that API calls may take 10-11 hours to run if lists are not loaded from cache.
-9. Check the output for potential duplicated taxa names, errors or missing taxa listed in the .html report in `/update_history/`. Taxa can be excluded using `/data_in/blacklist.txt`, while unaccepted taxa can be enforced to remain using `/data_in/whitelist.txt`. Return to Step 5 to include additional taxa (set cache = TRUE and run the script again).
-10. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/species](https://github.com/nordicmicroalgae/content/tree/master/species) and verify GitHub CI checks.
-11. Run the syncdb app as a superuser from the admin pages to import the new species content into the backend. Check logs for potential problems.
-12. Check for any images assigned as taxon = 'none' after the import and assign them to their current names.
-13. Verify updated Quick-View filters in `/data_out/backend/taxa/config` and push to [nordicmicroalgae/backend](https://github.com/nordicmicroalgae/backend) if needed.
-14. Corrections to the Quick-View filters can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
-15. Upload new .xlsx and .txt versions of the checklist from `/data_out/` to data.smhi.se.
+4. Make sure you have the latest version of the `pr2database` installed, see details above.
+5. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
+6. Run the `update-nua-taxonomy.Rmd` script. Note that API calls may take 10-11 hours to run if lists are not loaded from cache.
+7. Check the output for potential duplicated taxa names, errors or missing taxa listed in the .html report in `/update_history/`. Taxa can be excluded using `/data_in/blacklist.txt`, while unaccepted taxa can be enforced to remain using `/data_in/whitelist.txt`. Return to Step 5 to include additional taxa (set cache = TRUE and run the script again).
+8. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/species](https://github.com/nordicmicroalgae/content/tree/master/species) and verify GitHub CI checks.
+9. Run the syncdb app as a superuser from the admin pages to import the new species content into the backend. Check logs for potential problems.
+10. Check for any images assigned as taxon = 'none' after the import and assign them to their current names.
+11. Verify updated Quick-View filters in `/data_out/backend/taxa/config` and push to [nordicmicroalgae/backend](https://github.com/nordicmicroalgae/backend) if needed.
+12. Corrections to the Quick-View filters can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
+13. Upload new .xlsx and .txt versions of the checklist from `/data_out/` to data.smhi.se.
 
 ## Workflow
 
