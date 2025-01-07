@@ -8,7 +8,7 @@ This repository contains R and Python scripts designed to gather the necessary d
 - Make sure you have the latest version of the `pr2database` package installed in R. See installation details on [PR2 R package](https://pr2database.github.io/pr2database/articles/pr2database.html)
 - Obtain API keys for Dyntaxa and AlgaeBase. To acquire a key for Dyntaxa, subscribe to the 'Taxonomy' product via the [SLU Artdatabanken developer portal](https://api-portal.artdatabanken.se/). Request keys from AlgaeBase directly from their developer team.  Store your API keys in `.Renviron`. Use the provided function to edit this file easily:
 
-```
+```r
 install.packages("usethis")
 usethis::edit_r_environ("project")
 ```
