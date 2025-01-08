@@ -1,6 +1,6 @@
 library(tidyverse)
-library(worrms)
 library(readxl)
+library(SHARK4R)
 
 # Find the latest bvol file
 bvol_filename <- list.files("data_in") %>%
@@ -56,9 +56,10 @@ aphia_id_combined <- aphia_id_combined[!aphia_id_combined %in% all_records$Aphia
 # Extract records from WoRMS based on AphiaID
 if(length(aphia_id_combined) > 0) {
   for(i in 1:length(aphia_id_combined)) {
-    record <- wm_record(aphia_id_combined[i])
+    record <- get_worms_records(aphia_id_combined[i],
+                                verbose = FALSE)
     
-    all_records <- rbind(all_records, record)
+    all_records <- bind_rows(all_records, record)
     
     cat('Getting record', i, 'of', length(aphia_id_combined),'\n')
     save(all_records, file = "cache/all_records_cache.rda")
@@ -74,7 +75,12 @@ bvol_nomp <- all_records %>%
   mutate(taxon_id = ifelse(status == "superseded combination", valid_AphiaID, taxon_id)) %>%
   relocate(taxon_id) %>%
   filter(!is.na(taxon_id)) %>%
+  filter(!status == "no content") %>%
   filter(!AphiaID %in% blacklist$taxon_id)
+
+# Find all taxa with missing content
+no_content <- all_records %>%
+  filter(status == "no content")
 
 # Translate unaccepted names, remove blank names (deleted/quaratine), remove flagellates (146222)
 all_records <- all_records %>%
@@ -84,6 +90,7 @@ all_records <- all_records %>%
   mutate(scientificname = ifelse(status == "deleted", valid_name, scientificname)) %>%
   filter(!is.na(scientificname)) %>%
   filter(!is.na(used_aphia_id)) %>%
+  filter(!status == "no content") %>%
   filter(!AphiaID %in% blacklist$taxon_id)
 
 # Summarise translated unaccepted names
@@ -97,5 +104,6 @@ translate <- all_records %>%
 
 # Store files, use used_aphia_id_list.txt in https://github.com/nordicmicroalgae/taxa-worms to build taxa_worms.txt
 write_tsv(translate, "data_out/translate_to_worms.txt", na = "")
+write_tsv(no_content, "data_out/no_content.txt", na = "")
 write_tsv(all_records, "data_in/used_aphia_id_list.txt", na = "")
 write_tsv(bvol_nomp, "data_out/content/facts_biovolumes_nomp.txt", na = "")

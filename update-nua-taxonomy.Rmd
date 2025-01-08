@@ -22,7 +22,7 @@ knit: (function(inputFile, encoding) {
                         ".html")) })
 ---
 
-This Rmarkdown file calls necessary R and Python code for gathering the necessary data for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for an anual update of the NuA species content content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) and [HAB IOC list](https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist) needs to be downloaded separately and placed in data_in/.
+This Rmarkdown file calls necessary R and Python code for gathering the necessary data for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for an anual update of the NuA species content content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) needs to be downloaded placed in data_in/.
 
 * Additional taxa can be included in additions_to_old_nua.txt
 * Unwanted taxa, e.g. Flagellates, can be included in blacklist.txt
@@ -273,8 +273,6 @@ runtime_get_norcca <- round(end.time - start.time, 2)
 ```
 
 # Reformat IOC HAB list and add taxon_id
-Downloaded (Text file, tab delimited) from
-https://www.marinespecies.org/hab/aphia.php?p=download&what=taxlist
 
 ```{r get_hab, echo=FALSE, include=FALSE}
 source("src/R/07_get_hab_links.R")
@@ -286,8 +284,6 @@ cat(nrow(nordic_hab), "IOC HAB species found in database")
 ```
 
 # Reformat IPHAP toxin database list and add taxon_id
-Downloaded (Save as text file, tab delimited) from
-https://toxins.hais.ioc-unesco.org/export
 
 ```{r get_toxins, echo=FALSE, include=FALSE}
 source("src/R/08_get_toxins.R")
@@ -379,7 +375,7 @@ if(!params$cache_shark & file.exists("cache/shark_cache.rda")) {
 }
 
 start.time <- Sys.time()
-# source("src/R/14_get_shark_taxa.R")
+source("src/R/14_get_shark_taxa.R")
 end.time <- Sys.time()
 runtime_shark <- round(end.time - start.time, 2)
 
@@ -388,18 +384,18 @@ runtime_knit <- round(end.time - knit.time, 2)
 
 ```{r summary_shark, echo=FALSE}
 # Print table
-# if(nrow(missing_shark_records) > 0){
-#   missing_shark_records %>%
-#   select(AphiaID,
-#          scientificname,
-#          status,
-#          rank,
-#          valid_AphiaID,
-#          valid_name) %>%
-#   knitr::kable(caption = "Phytoplankton taxa found in SHARK but missing in NuA database")
-# } else {
-#   cat("All SHARK phytoplankton taxa are already included in the NuA database")
-# }
+if(nrow(missing_shark_records) > 0){
+  missing_shark_records %>%
+  select(AphiaID,
+         scientificname,
+         status,
+         rank,
+         valid_AphiaID,
+         valid_name) %>%
+  knitr::kable(caption = "Phytoplankton taxa found in SHARK but missing in NuA database")
+} else {
+  cat("All SHARK phytoplankton taxa are already included in the NuA database")
+}
 ```
 
 # Summarise runtimes
