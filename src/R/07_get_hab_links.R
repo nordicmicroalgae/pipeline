@@ -7,7 +7,7 @@ hab_list <- get_hab_list()
 
 # Read HAB list from Karlson et al 2021 https://doi.org/10.1016/j.hal.2021.101989
 nordic_hab_karlson <- read_tsv("data_in/facts_hab_ioc_karlson_et_al_2021.txt",
-                       col_types = cols())
+                               col_types = cols())
 
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_out/content/taxa.txt",

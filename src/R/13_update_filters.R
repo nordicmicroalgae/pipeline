@@ -13,9 +13,14 @@ kingdom <- plankton_groups %>%
 phylum <- plankton_groups %>%
   filter(rank == "Phylum")
 
+# Find the Class
+class <- plankton_groups %>%
+  filter(rank == "Class")
+
 # Select phylum and kingdom to be excluded from "other microalgae"
 kingdom_exclude <- c(paste(kingdom$included_taxa))
 phylum_exclude <- c(paste(phylum$included_taxa))
+class_exclude <- c(paste(class$included_taxa))
 
 # Read taxa_worms file
 taxa_worms <- read_tsv("data_out/content/taxa.txt",
@@ -38,7 +43,7 @@ higher_taxa <- taxa_worms %>%
 
 # Find classes for all "other microalgae"
 others <- higher_taxa %>%
-  filter(!phylum %in% phylum_exclude & !kingdom %in% kingdom_exclude)
+  filter(!phylum %in% phylum_exclude & !kingdom %in% kingdom_exclude & !class %in% class_exclude)
 
 # Create a dataframe with all classes within the other microalgae group
 other <- data.frame(included_taxa = paste0(sort(unique(others$class)))) %>%
@@ -96,9 +101,18 @@ yaml_output <- c("# Definition of ranks considered to be 'species or below'",
 # Load yaml
 new_yaml <- yaml.load(yaml_output)
 
-# Download the current filters from backend for comparison
-url <- "https://raw.githubusercontent.com/nordicmicroalgae/backend/master/taxa/config/filters.yaml"
-yaml_content <- readLines(url)
+zip_url <- "https://github.com/nordicmicroalgae/backend/archive/refs/heads/master.zip"
+
+# Temporary download location
+tmp <- tempfile(fileext = ".zip")
+utils::download.file(zip_url, tmp)
+
+unpack_dir <- tempdir()
+utils::unzip(tmp, exdir = unpack_dir)
+
+current_yaml <- file.path(unpack_dir, "backend-master", "taxa", "config", "filters.yaml")
+
+yaml_content <- readLines(current_yaml)
 backend_yaml <- yaml.load(yaml_content)
 
 # Print warning if filters differ

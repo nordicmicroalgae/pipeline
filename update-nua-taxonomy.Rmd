@@ -22,7 +22,7 @@ knit: (function(inputFile, encoding) {
                         ".html")) })
 ---
 
-This Rmarkdown file calls necessary R and Python code for gathering the necessary data for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for an anual update of the NuA species content content. Current [NOMP Biovolume file](http://nordicmicroalgae.org/tools) needs to be downloaded placed in data_in/.
+This Rmarkdown file calls necessary R and Python code for gathering the necessary data for updating the taxonomic backbone for Nordic Microalgae, through various APIs and webpage interactions. Records can be cached when running the script multiple times. Remember to set to cache == FALSE in params before data are prepared for an annual update of the NuA species content content.
 
 * Additional taxa can be included in additions_to_old_nua.txt
 * Unwanted taxa, e.g. Flagellates, can be included in blacklist.txt
@@ -364,7 +364,7 @@ cat("Information from",
 # Update filters.yaml for backend
 Filters for Quick View may need to be updated, see output
 ```{r update_filters, echo=FALSE}
-# source("src/R/13_update_filters.R")
+source("src/R/13_update_filters.R")
 ```
 
 # Find taxa in SHARK

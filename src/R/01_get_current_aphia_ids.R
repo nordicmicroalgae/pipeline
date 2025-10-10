@@ -11,9 +11,7 @@ bvol_filename <- list.files("data_in") %>%
   arrange(value)
 
 # Read current NOMP list
-bvol_nomp <- read_excel(file.path("data_in", bvol_filename$value[nrow(bvol_filename)])) %>%
-  # mutate(Calculated_volume_µm3 = round(Calculated_volume_µm3, 6),
-  #        `Calculated_Carbon_pg/counting_unit` = round(`Calculated_Carbon_pg/counting_unit`, 6)) %>%
+bvol_nomp <- get_nomp_list() %>%
   rename(Calculated_volume_µm3 = `Calculated_volume_µm3/counting_unit`) %>%
   select(-contains("NOT IMPORTED"))
 

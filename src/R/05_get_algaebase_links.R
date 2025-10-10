@@ -42,11 +42,11 @@ missing_rows <- nrow(algaebase_species_api_missing)
 # If there are missing rows, call the API and update the dataframe
 if (missing_rows > 0) {
   # Call the Algaebase API
-  api_results <- match_algaebase(genus = algaebase_species_api_missing$genus, 
-                                 species = algaebase_species_api_missing$species,
-                                 apikey = ALGAEBASE_APIKEY,
-                                 newest_only = FALSE,
-                                 verbose = TRUE)
+  api_results <- match_algaebase_taxa(genus = algaebase_species_api_missing$genus, 
+                                      species = algaebase_species_api_missing$species,
+                                      apikey = ALGAEBASE_APIKEY,
+                                      newest_only = FALSE,
+                                      verbose = TRUE)
   
   # Append the API results to the main dataframe
   algaebase_results <- rbind(algaebase_results, api_results)
