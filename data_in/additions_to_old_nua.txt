@@ -17,3 +17,7 @@ AphiaID	scientific_name	comment
 235828	Calyptrosphaera	From olf Checklist 1998
 696473	Syracosphaera mediterranea var. binodata	From olf Checklist 1998
 145790	Rhodella violacea	From olf Checklist 1998
+1832348	Prasiolotta rindii	From Dr. Svenja Heesch
+1832349	Prasiolotta hercynia	From Dr. Svenja Heesch
+1832351	Prasibo cubiformis	From Dr. Svenja Heesch
+689307	Rhizodomus tagatzi	From SHARK
