@@ -20,9 +20,43 @@ taxa_worms_missing <- taxa_worms %>%
 
 # Get GBIF records
 if (nrow(taxa_worms_missing > 0)) {
-  gbif_missing_records <- taxa_worms_missing %>%
-    rename(name = scientific_name_authority) %>%
-    name_backbone_checklist() %>%
+
+  # Extract vector of names
+  names_list <- taxa_worms_missing %>%
+    pull(scientific_name_authority)
+  
+  # Safe wrapper for single name
+  safe_name_lookup <- function(x) {
+    tryCatch(
+      name_backbone_checklist(x),
+      error = function(e) {
+        message("Failed: ", x)
+        tibble()
+      }
+    )
+  }
+  
+  # Batch wrapper
+  get_gbif_batch <- function(x) {
+    tryCatch(
+      name_backbone_checklist(x),
+      error = function(e) {
+        message("Batch failed, retrying individually...")
+        map_dfr(x, safe_name_lookup)
+      }
+    )
+  }
+  
+  # Run in batches
+  gbif_missing_records <- map_dfr(
+    split(names_list, ceiling(seq_along(names_list) / 50)),
+    get_gbif_batch
+  ) 
+  
+  # Keep only desired columns
+  gbif_missing_records <- gbif_missing_records %>%
+    select(usageKey, verbatim_name) %>%
+    distinct() %>%
     mutate(n_nordic_occurrences = NA)
   
   # Get number of occurrences
