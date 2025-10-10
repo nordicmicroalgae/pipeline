@@ -21,17 +21,16 @@ DYNTAXA_APIKEY = "89ad0b9cac6ce53184cc942147e1f06f"
 Follow these steps to update the species content:
 1. Clone this repository.
 2. Store your API keys in `.Renviron` as instructed above.
-3. Download the latest NOMP biovolume list (in .xlsx format) from the [Nordic Microalgae webpage](https://nordicmicroalgae.org/biovolume-lists/) and save it in `/data_in/`.
-4. Make sure you have the latest version of the `pr2database` installed, see details above.
-5. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
-6. Run the `update-nua-taxonomy.Rmd` script. Note that API calls may take 10-11 hours to run if lists are not loaded from cache.
-7. Check the output for potential duplicated taxa names, errors or missing taxa listed in the .html report in `/update_history/`. Taxa can be excluded using `/data_in/blacklist.txt`, while unaccepted taxa can be enforced to remain using `/data_in/whitelist.txt`. Return to Step 5 to include additional taxa (set cache = TRUE and run the script again).
-8. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/species](https://github.com/nordicmicroalgae/content/tree/master/species) and verify GitHub CI checks.
-9. Run the syncdb app as a superuser from the admin pages to import the new species content into the backend. Check logs for potential problems.
-10. Check for any images assigned as taxon = 'none' after the import and assign them to their current names.
-11. Verify updated Quick-View filters in `/data_out/backend/taxa/config` and push to [nordicmicroalgae/backend](https://github.com/nordicmicroalgae/backend) if needed.
-12. Corrections to the Quick-View filters can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
-13. Upload new .xlsx and .txt versions of the checklist from `/data_out/` to data.smhi.se.
+3. Make sure you have the latest version of the `pr2database` installed, see details above.
+4. If needed, manually add additional taxa existing in WoRMS to the database in `/data_in/additions_to_old_nua.txt`.
+5. Run the `update-nua-taxonomy.Rmd` script. Note that API calls may take 10-11 hours to run if lists are not loaded from cache.
+6. Check the output for potential duplicated taxa names, errors or missing taxa listed in the .html report in `/update_history/`. Taxa can be excluded using `/data_in/blacklist.txt`, while unaccepted taxa can be enforced to remain using `/data_in/whitelist.txt`. Return to Step 5 to include additional taxa (set cache = TRUE and run the script again).
+7. Push updated lists from `/data_out/content` to [nordicmicroalgae/content/species](https://github.com/nordicmicroalgae/content/tree/master/species) and verify GitHub CI checks.
+8. Run the syncdb app as a superuser from the admin pages to import the new species content into the backend. Check logs for potential problems.
+9. Check for any images assigned as taxon = 'none' after the import and assign them to their current names.
+10. Verify updated Quick-View filters in `/data_out/backend/taxa/config` and push to [nordicmicroalgae/backend](https://github.com/nordicmicroalgae/backend) if needed.
+11. Corrections to the Quick-View filters can be made in `/data_in/plankton_groups.txt`, defining major groups for Kingdom and Phylum. 'Other microalgae' are defined as everything else except groups specified under `exclude_from_others`.
+12. Upload new .xlsx and .txt versions of the checklist from `/data_out/` to data.smhi.se.
 
 ## Workflow
 
