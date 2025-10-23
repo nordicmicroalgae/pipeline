@@ -36,42 +36,52 @@ if (nrow(taxa_worms_missing) > 0) {
 }
 
 # Clean names
-names_list <- all_synonyms %>%
+names_df <- all_synonyms %>%
   filter(!is.na(AphiaID)) %>%
   mutate(name = ifelse(is.na(authority), scientificname,
                        paste(scientificname, authority))) %>%
   mutate(name = iconv(name, from = "", to = "UTF-8")) %>%
-  pull(name) %>%
-  unique()
+  select(name, rank) %>%
+  mutate(rank = gsub("Forma", "Form", rank)) %>%
+  distinct()
 
-# Helper: safe wrapper for a single name
-safe_name_lookup <- function(x) {
-  tryCatch(
-    name_backbone_checklist(x),
-    error = function(e) {
-      message("Failed: ", x)
-      tibble()
+# Safe single-name lookup which passes rank when present
+safe_name_lookup <- function(name, rank) {
+  tryCatch({
+    if (is.na(rank) || rank == "") {
+      # call without rank if rank missing
+      name_backbone_checklist(name = name, strict = FALSE)
+    } else {
+      # include rank argument
+      name_backbone_checklist(name = name, rank = rank, strict = FALSE)
     }
-  )
+  }, error = function(e) {
+    message("Failed: ", name, " (rank: ", rank, ") -> ", conditionMessage(e))
+    tibble()  # return empty tibble on error so map_dfr keeps working
+  })
 }
 
-# Helper: try batch, if it fails → fall back to per-name
-get_gbif_batch <- function(x) {
-  tryCatch(
-    name_backbone_checklist(x),
-    error = function(e) {
-      message("Batch failed, retrying individually...")
-      map_dfr(x, safe_name_lookup)
-    }
-  )
+# Batch wrapper: try vectorized call first (faster), if it errors -> fallback to individual calls with rank
+get_gbif_batch <- function(df_chunk) {
+  # df_chunk is a tibble with columns name, rank, rowid
+  tryCatch({
+    # fast attempt: vectorized call with just names (no per-name ranks)
+    name_backbone_checklist(name = df_chunk$name, rank = df_chunk$rank, strict = FALSE)
+  }, error = function(e) {
+    message("Batch failed, retrying individually with rank... (", nrow(df_chunk), " names)")
+    # map each name => safe lookup with rank
+    map2_dfr(df_chunk$name, df_chunk$rank, safe_name_lookup)
+  })
 }
 
-# Run in batches
-gbif_missing_records <- map_dfr(
-  split(names_list, ceiling(seq_along(names_list) / 50)), # adjust batch size
-  get_gbif_batch
-) %>%
-  select(usageKey, verbatim_name) %>%
+# Run in batches of 50 (adjust size as desired)
+batch_size <- 50
+
+gbif_missing_records <- names_df %>%
+  split(ceiling(seq_len(nrow(names_df)) / batch_size)) %>%
+  map_dfr(get_gbif_batch) %>%
+  select(usageKey, verbatim_name, matchType, scientificName) %>%
+  filter(matchType == "EXACT") %>%
   distinct()
 
 # Get number of occurrences
@@ -108,7 +118,7 @@ worms_synonyms <- all_synonyms %>%
   distinct() %>%
   left_join(gbif_missing_records) %>%
   rename(usage_key = usageKey) %>%
-  select(-verbatim_name)
+  select(-verbatim_name, -matchType, -scientificName)
 
 # Store file
 write_tsv(worms_synonyms, "data_out/content/synonyms.txt", na = "")
