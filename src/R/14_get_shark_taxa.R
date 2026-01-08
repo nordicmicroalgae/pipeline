@@ -85,9 +85,9 @@ all_records <- data.frame()
 # Extract records from WoRMS based on AphiaID
 if(length(aphia_id) > 0) {
   for(i in 1:length(aphia_id)) {
-    record <- wm_record(aphia_id[i])
+    record <- get_worms_records(aphia_id[i])
     
-    all_records <- rbind(all_records, record)
+    all_records <- bind_rows(all_records, record)
     
     cat('Getting record', i, 'of', length(aphia_id),'\n')
   }
